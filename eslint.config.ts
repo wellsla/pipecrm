@@ -1,5 +1,4 @@
 // For more info, see https://github.com/storybookjs/eslint-plugin-storybook#configuration-flat-config-format
-import storybook from "eslint-plugin-storybook";
 
 import { globalIgnores } from 'eslint/config'
 import { defineConfigWithVueTs, vueTsConfigs } from '@vue/eslint-config-typescript'
@@ -22,4 +21,16 @@ export default defineConfigWithVueTs(
   pluginVue.configs['flat/essential'],
   vueTsConfigs.recommended,
   skipFormatting,
+
+  // Relax some rules for Storybook stories and example components
+  {
+    name: 'stories/overrides',
+    files: ['src/stories/**/*.{ts,tsx,vue}'],
+    rules: {
+      // Story samples often use simple names like "Button"
+      'vue/multi-word-component-names': 'off',
+      // It's common to type story render args as any in examples
+      '@typescript-eslint/no-explicit-any': 'off',
+    },
+  },
 )
