@@ -1,24 +1,24 @@
 import type { Meta, StoryObj } from '@storybook/vue3-vite';
 import { ref } from 'vue';
 
-import MyPage from '@/components/MyPage.vue';
-import MyHeader from '@/components/MyHeader.vue';
+import PipePage from '@/components/pipekit/PipePage.vue';
+import PipeHeader from '@/components/pipekit/PipeHeader.vue';
 
 const meta = {
-  title: 'Pages/MyPage',
-  component: MyPage,
+  title: 'PipeKit/PipePage',
+  component: PipePage,
   parameters: {
     layout: 'fullscreen',
   },
   tags: ['autodocs'],
-} satisfies Meta<typeof MyPage>;
+} satisfies Meta<typeof PipePage>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const LoggedOut: Story = {
   render: () => ({
-    components: { MyPage, MyHeader },
+    components: { PipePage, PipeHeader },
     setup() {
       const user = ref<{ name: string } | null>(null);
       
@@ -36,17 +36,17 @@ export const LoggedOut: Story = {
     },
     template: `
       <article>
-        <my-header :user="user" @login="onLogin" @logout="onLogout" @createAccount="onCreateAccount" />
-        <my-page>
+        <pipe-header :user="user" @login="onLogin" @logout="onLogout" @createAccount="onCreateAccount" />
+        <pipe-page>
           <h2>Pages in Storybook</h2>
           <p>
-            This is an example page layout component. Use <code>&lt;MyPage&gt;</code> 
+            This is an example page layout component. Use <code>&lt;PipePage&gt;</code> 
             as a wrapper for your page content to get consistent styling.
           </p>
           <p>
             Build pages from components and preview them in Storybook.
           </p>
-        </my-page>
+        </pipe-page>
       </article>
     `,
   }),
@@ -54,7 +54,7 @@ export const LoggedOut: Story = {
 
 export const LoggedIn: Story = {
   render: () => ({
-    components: { MyPage, MyHeader },
+    components: { PipePage, PipeHeader },
     setup() {
       const user = ref<{ name: string } | null>({ name: 'Jane Doe' });
       
@@ -72,17 +72,17 @@ export const LoggedIn: Story = {
     },
     template: `
       <article>
-        <my-header :user="user" @login="onLogin" @logout="onLogout" @createAccount="onCreateAccount" />
-        <my-page>
+        <pipe-header :user="user" @login="onLogin" @logout="onLogout" @createAccount="onCreateAccount" />
+        <pipe-page>
           <h2>Welcome Back!</h2>
           <p>
-            You are now logged in. This page demonstrates how <code>&lt;MyPage&gt;</code> 
+            You are now logged in. This page demonstrates how <code>&lt;PipePage&gt;</code> 
             can wrap different content based on user state.
           </p>
           <p>
-            The MyPage component provides consistent styling across all pages.
+            The PipePage component provides consistent styling across all pages.
           </p>
-        </my-page>
+        </pipe-page>
       </article>
     `,
   }),

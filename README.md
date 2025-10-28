@@ -15,14 +15,7 @@ A modern CRM application built with Vue 3, TypeScript, and PrimeVue following fe
 
 ### UI & Design System
 - **PrimeVue + PrimeIcons** - UI component library (Lara theme + custom tokens)
-- **PipeKit** - Custom PrimeVue wrappers documented in Storybook
-- **Storybook** - Component documentation (CSF + docs, args/controls, decorators)
-
-### HTTP & Mocking
-- **Axios** - HTTP client (single instance, interceptors, domain-based services)
-- **MSW (Mock Service Worker)** - API mocking (development only)
-
-### Code Quality
+- **PipeKit** - Custom PrimeVue wrappers documented in Storybook (stories colocated next to components)
 - **ESLint + Prettier** - Code linting and formatting
 - **Husky + lint-staged** - Pre-commit hooks
 - **Conventional Commits** - Standardized commit messages
@@ -30,10 +23,6 @@ A modern CRM application built with Vue 3, TypeScript, and PrimeVue following fe
 
 ## Architecture Principles
 
-### Feature-First Organization
-Each feature module contains:
-- **View** - Page components
-- **Store** - Pinia state management
 - **Service** - API communication layer
 - **Components** - Feature-specific components
 
@@ -80,6 +69,8 @@ npm run storybook
 ```
 
 Storybook will be available at `http://localhost:6006/`
+
+Stories are colocated with PipeKit components under `src/components/pipekit` using `*.stories.ts`.
 
 ## Scripts
 
@@ -137,21 +128,28 @@ git commit --no-verify -m "commit message"
 ```
 pipecrm/
 ├── src/
-│   ├── app/              # Application core
-│   │   ├── layouts/      # Layout components
-│   │   └── App.vue       # Root component
-│   ├── features/         # Feature modules (feature-first)
+│   ├── app/                    # Application core
+│   │   ├── layouts/            # Layout components
+│   │   └── App.vue             # Root component
+│   ├── features/               # Feature modules (feature-first)
 │   │   └── [feature]/
-│   │       ├── [FeatureView].vue/    # Feature page
-│   │       └── components/ # Feature components
-│   ├── components/       # Shared components
-│   ├── router/           # Vue Router configuration
-│   ├── stores/           # Global Pinia stores
-│   └── stories/          # Storybook stories
-│       ├── components/   # Component stories
-│       └── pages/        # Page stories
-├── public/               # Static assets
-└── .storybook/           # Storybook configuration
+│   │       ├── views/          # Feature pages
+│   │       ├── store/          # Pinia stores
+│   │       ├── services/       # API services
+│   │       └── components/     # Feature components
+│   ├── components/
+│   │   └── pipekit/            # PipeKit Design System (PrimeVue wrappers)
+│   │       ├── PipeButton.vue
+│   │       ├── PipeHeader.vue
+│   │       ├── PipePage.vue
+│   │       ├── PipeMenubar.vue
+│   │       ├── PipePanelMenu.vue
+│   │       ├── button.css header.css page.css
+│   │       └── Pipe*.stories.ts
+│   ├── router/                 # Vue Router configuration
+│   └── stores/                 # Global Pinia stores
+├── public/                     # Static assets
+└── .storybook/                 # Storybook configuration
 ```
 
 ## Design System (PipeKit)

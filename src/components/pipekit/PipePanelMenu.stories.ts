@@ -1,11 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/vue3-vite';
 import type { MenuItem } from 'primevue/menuitem';
 
-import MyPanelMenu from '@/components/MyPanelMenu.vue';
+import PipePanelMenu from '@/components/pipekit/PipePanelMenu.vue';
 
 const meta = {
-  title: 'Components/MyPanelMenu',
-  component: MyPanelMenu,
+  title: 'PipeKit/PipePanelMenu',
+  component: PipePanelMenu,
   tags: ['autodocs'],
   argTypes: {
     model: {
@@ -13,7 +13,7 @@ const meta = {
       control: 'object',
     },
   },
-} satisfies Meta<typeof MyPanelMenu>;
+} satisfies Meta<typeof PipePanelMenu>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

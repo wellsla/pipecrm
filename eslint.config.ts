@@ -15,9 +15,10 @@ export default defineConfigWithVueTs(
   vueTsConfigs.recommended,
   skipFormatting,
 
+  // Stories are colocated under components/pipekit
   {
-    name: 'stories/overrides',
-    files: ['src/stories/**/*.{ts,tsx,vue}'],
+    name: 'pipekit-stories/overrides',
+    files: ['src/components/pipekit/**/*.stories.{ts,tsx,vue}'],
     rules: {
       'vue/multi-word-component-names': 'off',
       '@typescript-eslint/no-explicit-any': 'off',

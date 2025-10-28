@@ -2,18 +2,11 @@ import type { Meta, StoryObj } from '@storybook/vue3-vite';
 
 import { fn } from 'storybook/test';
 
-import MyHeader from '@/components/MyHeader.vue';
+import PipeHeader from '@/components/pipekit/PipeHeader.vue';
 
 const meta = {
-  title: 'Components/MyHeader',
-  component: MyHeader,
-  render: (args: any) => ({
-    components: { MyHeader },
-    setup() {
-      return { args };
-    },
-    template: '<my-header :user="args.user" />',
-  }),
+  title: 'PipeKit/PipeHeader',
+  component: PipeHeader,
   parameters: {
     layout: 'fullscreen',
   },
@@ -23,7 +16,7 @@ const meta = {
     onCreateAccount: fn(),
   },
   tags: ['autodocs'],
-} satisfies Meta<typeof MyHeader>;
+} satisfies Meta<typeof PipeHeader>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

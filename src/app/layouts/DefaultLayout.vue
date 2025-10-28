@@ -1,16 +1,16 @@
 <script lang="ts">
 import {defineComponent, ref} from 'vue';
 import { useRouter } from 'vue-router';
-import MyMenubar from '@/components/MyMenubar.vue';
-import MyPanelMenu from '@/components/MyPanelMenu.vue';
-import MyButton from '@/components/MyButton.vue';
+import PipeMenubar from '@/components/pipekit/PipeMenubar.vue';
+import PipePanelMenu from '@/components/pipekit/PipePanelMenu.vue';
+import PipeButton from '@/components/pipekit/PipeButton.vue';
 
 export default defineComponent({
   name: 'DefaultLayout',
   components: {
-    MyMenubar,
-    MyButton,
-    MyPanelMenu
+    PipeMenubar,
+    PipeButton,
+    PipePanelMenu
   },
   setup() {
     const router = useRouter();
@@ -37,13 +37,13 @@ export default defineComponent({
 <template>
   <div class="layout">
     <header class="topbar">
-      <MyMenubar :model="menubarItems">
-  <template #end><MyButton text icon="pi pi-bars" @click="sidebarOpen = !sidebarOpen" /></template>
-      </MyMenubar>
+      <PipeMenubar :model="menubarItems">
+  <template #end><PipeButton text icon="pi pi-bars" @click="sidebarOpen = !sidebarOpen" /></template>
+      </PipeMenubar>
     </header>
     <div class="body">
       <aside class="sidebar" v-show="sidebarOpen">
-        <MyPanelMenu :model="menu" />
+        <PipePanelMenu :model="menu" />
       </aside>
       <main class="content"><slot /></main>
     </div>

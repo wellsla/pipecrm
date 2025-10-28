@@ -2,11 +2,11 @@ import type { Meta, StoryObj } from '@storybook/vue3-vite';
 
 import { fn } from 'storybook/test';
 
-import MyButton from '@/components/MyButton.vue';
+import PipeButton from '@/components/pipekit/PipeButton.vue';
 
 const meta = {
-  title: 'Components/MyButton',
-  component: MyButton,
+  title: 'PipeKit/PipeButton',
+  component: PipeButton,
   tags: ['autodocs'],
   argTypes: {
     size: { control: 'select', options: ['small', 'medium', 'large'] },
@@ -16,7 +16,7 @@ const meta = {
     primary: false,
     onClick: fn(),
   },
-} satisfies Meta<typeof MyButton>;
+} satisfies Meta<typeof PipeButton>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
