@@ -13,7 +13,6 @@ const config: StorybookConfig = {
     '@storybook/addon-vitest',
     '@chromatic-com/storybook'
   ],
-  // Let Storybook's builder-vite manage the Vite plugins it needs. If you need to tweak Vite, do it minimally here.
   viteFinal: async (viteConfig) => viteConfig
 }
 export default config

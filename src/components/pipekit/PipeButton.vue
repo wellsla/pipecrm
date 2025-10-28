@@ -11,7 +11,7 @@
 <script lang="ts" setup>
 import { computed } from 'vue'
 import Button from 'primevue/button'
-import '../stories/components/button.css'
+import './button.css'
 
 const props = defineProps<{
   label?: string
@@ -20,12 +20,10 @@ const props = defineProps<{
   backgroundColor?: string
 }>()
 
-// Emit typing so template $emit is recognized by TS
 defineEmits<{
   (e: 'click', ev?: MouseEvent): void
 }>()
 
-// Keep this component small for story/app parity; we don't need a typed 'emit' here
 const classes = computed(() => ({
   'storybook-button': true,
   'storybook-button--primary': props.primary,

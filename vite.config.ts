@@ -14,14 +14,12 @@ export default defineConfig(() => {
     plugins: [
       vue(),
       vueJsx(),
-      // Only enable Vue DevTools in Vite dev server, and allow toggling off via VUE_DEVTOOLS=false
       enableVueDevtools && vueDevTools(),
       eslint2(),
     ].filter(Boolean),
     server: isRunningViteCLI
       ? {
           hmr: {
-            // Avoid dev overlay breaking the session if a plugin's HMR hook misbehaves
             overlay: false,
           },
         }
