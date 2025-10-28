@@ -2,9 +2,10 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid #B3B4BC;
   padding: 15px 20px;
   font-family: 'Nunito Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  background-color: #FEFFF4;
 }
 
 .storybook-header svg {
@@ -19,6 +20,7 @@
   font-weight: 700;
   font-size: 20px;
   line-height: 1;
+  color: #243747;
 }
 
 .storybook-header button + button {
@@ -27,6 +29,6 @@
 
 .storybook-header .welcome {
   margin-right: 10px;
-  color: #333;
+  color: #3A4B59;
   font-size: 14px;
 }

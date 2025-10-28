@@ -5,7 +5,7 @@ import { expect, userEvent, within } from 'storybook/test';
 import MyPage from './Page.vue';
 
 const meta = {
-  title: 'Example/Page',
+  title: 'Pages/Page',
   component: MyPage,
   render: () => ({
     components: { MyPage },

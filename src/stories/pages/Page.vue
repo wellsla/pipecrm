@@ -56,7 +56,7 @@
 <script lang="ts" setup>
 import { ref } from 'vue';
 
-import MyHeader from './Header.vue';
+import MyHeader from '../components/Header.vue';
 import './page.css';
 
 const user = ref<{ name: string } | null>(null);

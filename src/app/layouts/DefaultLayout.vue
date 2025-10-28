@@ -1,17 +1,15 @@
 <script lang="ts">
 import {defineComponent, ref} from 'vue';
 import { useRouter } from 'vue-router';
-import Menubar from 'primevue/menubar';
-import Button from 'primevue/button';
-import PanelMenu from 'primevue/panelmenu';
+import Menubar from 'primevue/menubar'
+import PanelMenu from 'primevue/panelmenu'
+import MyButton from '@/components/MyButton.vue'
 
 export default defineComponent({
   name: 'DefaultLayout',
   components: {
     Menubar,
-    // 'Button' conflicts with the reserved HTML <button> element name in some linters.
-    // Register PrimeVue's Button under a different local name to avoid vue/no-reserved-component-names.
-    PButton: Button,
+    MyButton,
     PanelMenu
   },
   setup() {
@@ -40,7 +38,7 @@ export default defineComponent({
   <div class="layout">
     <header class="topbar">
       <Menubar :model="menubarItems">
-        <template #end><PButton text icon="pi pi-bars" @click="sidebarOpen = !sidebarOpen" /></template>
+  <template #end><MyButton text icon="pi pi-bars" @click="sidebarOpen = !sidebarOpen" /></template>
       </Menubar>
     </header>
     <div class="body">
