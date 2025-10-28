@@ -11,7 +11,7 @@
 <script lang="ts" setup>
 import { computed } from 'vue'
 import Button from 'primevue/button'
-import '../stories/components/button.css'
+import './button.css'
 
 const props = defineProps<{
   label?: string
