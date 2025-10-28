@@ -14,8 +14,8 @@ export default defineConfig(() => {
     plugins: [
       vue(),
       vueJsx(),
-  // Only enable Vue DevTools in Vite dev server, and allow toggling off via VUE_DEVTOOLS=false
-  enableVueDevtools && vueDevTools(),
+      // Only enable Vue DevTools in Vite dev server, and allow toggling off via VUE_DEVTOOLS=false
+      enableVueDevtools && vueDevTools(),
       eslint2(),
     ].filter(Boolean),
     server: isRunningViteCLI
