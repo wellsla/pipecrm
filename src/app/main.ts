@@ -6,8 +6,9 @@ import App from './App.vue'
 import router, { setupAuthGuard } from '../router'
 
 import PrimeVue from 'primevue/config'
-import '@primeuix/themes/lara' //themes
-import '@primevue/icons' //icons
+import Lara from '@primeuix/themes/lara' //themes
+
+import 'primeicons/primeicons.css' //icons
 import '@/assets/tokens.css' //design tokens
 import '@/assets/base.scss' //base styles
 
@@ -16,7 +17,10 @@ const bootstrap = async () => {
   app.use(createPinia())
   app.use(router)
   app.use(PrimeVue, {
-    ripple: true
+    ripple: true,
+    theme: {
+      preset: Lara
+    }
   })
   
   const auth0 = createAuth0({

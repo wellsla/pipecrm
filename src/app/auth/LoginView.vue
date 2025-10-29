@@ -65,9 +65,9 @@ export default defineComponent({
 .auth-card { 
   width: 100%; 
   max-width: 420px;
-  border:1px solid #e2e8f0; 
+  border:1px solid #B3B4BC; 
   border-radius:12px; 
-  background:#fff; 
+  background:#FEFFF4; 
   padding:16px 
 }
 .col { 

@@ -6,18 +6,20 @@ export default defineComponent({
 </script>
 
 <template>
-  <div class="public-wrap">
+  <div class="wrap">
     <header class="brand">PipeCRM</header>
-    <main><slot /></main>
+    <main><router-view /></main>
     <footer>© {{ new Date().getFullYear() }} PipeCRM</footer>
   </div>
 </template>
 
 <style scoped>
-.public-wrap{ 
+.wrap{ 
   min-height:100vh; 
   display:grid; 
-  grid-template-rows:auto 1fr auto; }
+  grid-template-rows:auto 1fr auto; 
+  background: #FEFFF4; 
+  color: #3A4B59; }
 .brand{ 
   padding:1rem; 
   font-weight:700; 
@@ -31,6 +33,6 @@ main{
 footer{ 
   padding:1rem; 
   text-align:center; 
-  color:#64748b 
+  color:#3A4B59 
 }
 </style>
