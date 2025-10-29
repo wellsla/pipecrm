@@ -24,7 +24,7 @@
 <script lang="ts">
 import { defineComponent, type PropType } from 'vue'
 import PipeButton from './PipeButton.vue'
-import './header.css'
+import './css/header.css'
 
 export default defineComponent({
   name: 'PipeHeader',
@@ -40,7 +40,3 @@ export default defineComponent({
   emits: ['createAccount', 'login', 'logout']
 })
 </script>
-
-<style scoped>
-/* keep visuals in header.css */
-</style>

@@ -57,15 +57,15 @@ export default defineComponent({
   align-items: center;
   justify-content: center;
   gap: 12px;
-  background: #FEFFF4;
-  color: #3A4B59;
+  background: var(--color-bg);
+  color: var(--color-text);
   font-weight: 500;
 }
 .spinner {
   width: 40px;
   height: 40px;
-  border: 4px solid #B3B4BC;
-  border-top-color: #B8284B;
+  border: 4px solid var(--color-border);
+  border-top-color: var(--color-accent);
   border-radius: 50%;
   animation: spin 0.8s linear infinite;
 }

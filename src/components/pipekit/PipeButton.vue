@@ -11,7 +11,7 @@
 <script lang="ts">
 import { defineComponent, type PropType } from 'vue'
 import PrimeButton from 'primevue/button'
-import './button.css'
+import './css/button.css'
 
 export default defineComponent({
   name: 'PipeButton',
@@ -54,7 +54,3 @@ export default defineComponent({
   }
 })
 </script>
-
-<style scoped>
-/* keep styles delegated to imported button.css */
-</style>

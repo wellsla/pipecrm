@@ -10,9 +10,9 @@
 
 /* Primary variant */
 .storybook-button--primary.p-button {
-  background-color: #B8284B !important;
-  border-color: #B8284B !important;
-  color: #FEFFF4 !important;
+  background-color: var(--color-accent) !important;
+  border-color: var(--color-accent) !important;
+  color: var(--color-bg) !important;
 }
 .storybook-button--primary.p-button:hover {
   filter: brightness(0.95);
@@ -24,13 +24,13 @@
 /* Secondary variant */
 .storybook-button--secondary.p-button {
   background-color: transparent !important;
-  color: #3A4B59 !important;
-  border: 1px solid #B3B4BC !important;
+  color: var(--color-text) !important;
+  border: 1px solid var(--color-border) !important;
 }
 .storybook-button--secondary.p-button:hover {
   background-color: rgba(184, 40, 75, 0.06) !important;
-  border-color: #B8284B !important;
-  color: #B8284B !important;
+  border-color: var(--color-accent) !important;
+  color: var(--color-accent) !important;
 }
 .storybook-button--secondary.p-button:focus {
   box-shadow: 0 0 0 0.2rem rgba(184, 40, 75, 0.25) !important;
@@ -47,4 +47,8 @@
   padding: 12px 24px;
   font-size: 16px;
 }
+
+/* Ensure icon spacing matches PrimeVue defaults */
+.storybook-button.p-button .p-button-icon-left { margin-right: 0.5rem; }
+.storybook-button.p-button .p-button-icon-right { margin-left: 0.5rem; }
 

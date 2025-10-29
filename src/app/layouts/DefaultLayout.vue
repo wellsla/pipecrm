@@ -88,16 +88,16 @@ export default defineComponent({
   padding: 1rem;
 }
 .sidebar {
-  background:#FEFFF4;
-  border: 1px solid #B3B4BC;
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
   border-radius: 1rem;
   padding: 0.5rem;
 }
 .content {
   overflow:auto;
   padding: 1rem;
-  background: #FEFFF4;
-  border: 1px solid #B3B4BC;
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
   border-radius: 1rem;
 }
 @media (max-width: 1024px) {
