@@ -1,9 +1,8 @@
 <script lang="ts">
-import {defineComponent, ref} from 'vue';
-import { useRouter } from 'vue-router';
-import PipeMenubar from '@/components/pipekit/PipeMenubar.vue';
-import PipePanelMenu from '@/components/pipekit/PipePanelMenu.vue';
-import PipeButton from '@/components/pipekit/PipeButton.vue';
+import { defineComponent } from 'vue'
+import PipeMenubar from '@/components/pipekit/PipeMenubar.vue'
+import PipePanelMenu from '@/components/pipekit/PipePanelMenu.vue'
+import PipeButton from '@/components/pipekit/PipeButton.vue'
 
 export default defineComponent({
   name: 'DefaultLayout',
@@ -12,27 +11,51 @@ export default defineComponent({
     PipeButton,
     PipePanelMenu
   },
-  setup() {
-    const router = useRouter();
-    const sidebarOpen = ref(true);
-    const menubarItems = [{label: 'PipeCRM', icon: 'pi pi-verified', command:() => router.push('/')}];
-    const menu = [
-      {label: 'Vendas', icon: 'pi pi-chart-line', items:[
-        {label: 'Pipeline', icon: 'pi pi-columns', command:() => router.push('/')},
-        {label: 'Leads', icon: 'pi pi-users', command:() => router.push('/')},
-        {label: 'Propostas', icon: 'pi pi-file', command: () => router.push('/')}
-      ]},
-      {label: 'Atendimento', icon: 'pi pi-comments', items:[
-        {label: 'Inbox', icon: 'pi pi-whatsapp', command:() => router.push('/')},
-        {label: 'CSAT', icon: 'pi pi-star', command:() => router.push('/')}
-      ]},
-      {label: 'Automação', icon: 'pi pi-bolt', items:[
-        {label: 'Regras & Eventos', icon: 'pi pi-cog', command:() => router.push('/')}
-      ]}
-    ]
-    return { sidebarOpen, menubarItems, menu };
+  data() {
+    return {
+      sidebarOpen: true
+    }
+  },
+  computed: {
+    menubarItems() {
+      return [
+        {
+          label: 'PipeCRM',
+          icon: 'pi pi-verified',
+          command: () => this.$router.push('/')
+        }
+      ]
+    },
+    menu() {
+      return [
+        {
+          label: 'Vendas',
+          icon: 'pi pi-chart-line',
+          items: [
+            { label: 'Pipeline', icon: 'pi pi-columns', command: () => this.$router.push('/') },
+            { label: 'Leads', icon: 'pi pi-users', command: () => this.$router.push('/') },
+            { label: 'Propostas', icon: 'pi pi-file', command: () => this.$router.push('/') }
+          ]
+        },
+        {
+          label: 'Atendimento',
+          icon: 'pi pi-comments',
+          items: [
+            { label: 'Inbox', icon: 'pi pi-whatsapp', command: () => this.$router.push('/') },
+            { label: 'CSAT', icon: 'pi pi-star', command: () => this.$router.push('/') }
+          ]
+        },
+        {
+          label: 'Automação',
+          icon: 'pi pi-bolt',
+          items: [
+            { label: 'Regras & Eventos', icon: 'pi pi-cog', command: () => this.$router.push('/') }
+          ]
+        }
+      ]
+    }
   }
-});
+})
 </script>
 <template>
   <div class="layout">

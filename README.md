@@ -144,6 +144,8 @@ pipecrm/
 │   │       ├── PipePage.vue
 │   │       ├── PipeMenubar.vue
 │   │       ├── PipePanelMenu.vue
+│   │       ├── PipeInput.vue
+│   │       ├── PipePassword.vue
 │   │       ├── button.css header.css page.css
 │   │       └── Pipe*.stories.ts
 │   ├── router/                 # Vue Router configuration

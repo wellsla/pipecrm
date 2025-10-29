@@ -4,8 +4,13 @@
   </article>
 </template>
 
-<script setup lang="ts">
+<script lang="ts">
+import { defineComponent } from 'vue'
 import './page.css'
+
+export default defineComponent({
+  name: 'PipePage'
+})
 </script>
 
 <style scoped>

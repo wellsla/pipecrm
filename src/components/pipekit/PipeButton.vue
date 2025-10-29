@@ -1,5 +1,5 @@
 <template>
-  <Button
+  <PrimeButton
     v-bind="$attrs"
     :label="label"
     :class="classes"
@@ -8,32 +8,51 @@
   />
 </template>
 
-<script lang="ts" setup>
-import { computed } from 'vue'
-import Button from 'primevue/button'
+<script lang="ts">
+import { defineComponent, type PropType } from 'vue'
+import PrimeButton from 'primevue/button'
 import './button.css'
 
-const props = defineProps<{
-  label?: string
-  primary?: boolean
-  size?: 'small' | 'medium' | 'large'
-  backgroundColor?: string
-}>()
-
-defineEmits<{
-  (e: 'click', ev?: MouseEvent): void
-}>()
-
-const classes = computed(() => ({
-  'storybook-button': true,
-  'storybook-button--primary': props.primary,
-  'storybook-button--secondary': !props.primary,
-  [`storybook-button--${props.size || 'medium'}`]: true,
-}))
-
-const style = computed(() => ({
-  backgroundColor: props.backgroundColor,
-}))
+export default defineComponent({
+  name: 'PipeButton',
+  components: {
+    PrimeButton
+  },
+  props: {
+    label: {
+      type: String,
+      default: undefined
+    },
+    primary: {
+      type: Boolean,
+      default: false
+    },
+    size: {
+      type: String as PropType<'small' | 'medium' | 'large'>,
+      default: 'medium'
+    },
+    backgroundColor: {
+      type: String,
+      default: undefined
+    }
+  },
+  emits: ['click'],
+  computed: {
+    classes() {
+      return {
+        'storybook-button': true,
+        'storybook-button--primary': this.primary,
+        'storybook-button--secondary': !this.primary,
+        [`storybook-button--${this.size}`]: true,
+      }
+    },
+    style() {
+      return {
+        backgroundColor: this.backgroundColor,
+      }
+    }
+  }
+})
 </script>
 
 <style scoped>

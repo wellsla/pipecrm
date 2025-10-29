@@ -21,17 +21,24 @@
   </header>
 </template>
 
-<script setup lang="ts">
+<script lang="ts">
+import { defineComponent, type PropType } from 'vue'
 import PipeButton from './PipeButton.vue'
 import './header.css'
 
-defineProps<{ user: { name: string } | null }>()
-
-defineEmits<{
-  (event: 'createAccount'): void
-  (event: 'login'): void
-  (event: 'logout'): void
-}>()
+export default defineComponent({
+  name: 'PipeHeader',
+  components: {
+    PipeButton
+  },
+  props: {
+    user: {
+      type: Object as PropType<{ name: string } | null>,
+      default: null
+    }
+  },
+  emits: ['createAccount', 'login', 'logout']
+})
 </script>
 
 <style scoped>

@@ -6,13 +6,23 @@
   </Menubar>
 </template>
 
-<script lang="ts" setup>
+<script lang="ts">
+import { defineComponent, type PropType } from 'vue'
 import Menubar from 'primevue/menubar'
 import type { MenuItem } from 'primevue/menuitem'
 
-defineProps<{
-  model?: MenuItem[]
-}>()
+export default defineComponent({
+  name: 'PipeMenubar',
+  components: {
+    Menubar
+  },
+  props: {
+    model: {
+      type: Array as PropType<MenuItem[]>,
+      default: undefined
+    }
+  }
+})
 </script>
 
 <style scoped>

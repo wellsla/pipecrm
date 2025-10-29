@@ -3,7 +3,7 @@ import { createPinia } from 'pinia'
 import { createAuth0 } from '@auth0/auth0-vue'
 
 import App from './App.vue'
-import router from '../router'
+import router, { setupAuthGuard } from '../router'
 
 import PrimeVue from 'primevue/config'
 import '@primeuix/themes/lara' //themes
@@ -15,14 +15,24 @@ const bootstrap = async () => {
   const app = createApp(App)
   app.use(createPinia())
   app.use(router)
-  app.use(PrimeVue, {ripple: true})
-  app.use(createAuth0({
+  app.use(PrimeVue, {
+    ripple: true
+  })
+  
+  const auth0 = createAuth0({
     domain: import.meta.env.VITE_AUTH0_DOMAIN,
     clientId: import.meta.env.VITE_AUTH0_CLIENT_ID,
     authorizationParams: {
       redirect_uri: window.location.origin
-    }
-  }))
+    },
+    cacheLocation: 'localstorage'
+  })
+  
+  app.use(auth0)
+  
+  // Setup auth guard after Auth0 is initialized
+  setupAuthGuard(router, auth0)
+  
   app.mount('#app')
 }
 bootstrap()
