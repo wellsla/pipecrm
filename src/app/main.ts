@@ -3,7 +3,7 @@ import { createPinia } from 'pinia'
 import { createAuth0 } from '@auth0/auth0-vue'
 
 import App from './App.vue'
-import router, { setupAuthGuard } from '../router'
+import router from '../router'
 
 import PrimeVue from 'primevue/config'
 import Lara from '@primeuix/themes/lara' //themes
@@ -33,9 +33,6 @@ const bootstrap = async () => {
   })
   
   app.use(auth0)
-  
-  // Setup auth guard after Auth0 is initialized
-  setupAuthGuard(router, auth0)
   
   app.mount('#app')
 }

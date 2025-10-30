@@ -4,6 +4,7 @@
     v-bind="$attrs"
     :modelValue="modelValue"
     @update:modelValue="handleUpdate"
+    placeholder="••••••••"
   />
 </template>
 

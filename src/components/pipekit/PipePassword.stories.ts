@@ -21,14 +21,14 @@ export const Default: Story = {
 export const WithToggleMask: Story = {
   render: () => ({
     components: { PipePassword },
-    template: '<pipe-password placeholder="••••••••" toggleMask />',
+    template: '<pipe-password toggleMask />',
   }),
 };
 
 export const NoFeedback: Story = {
   render: () => ({
     components: { PipePassword },
-    template: '<pipe-password placeholder="••••••••" toggleMask :feedback="false" />',
+    template: '<pipe-password toggleMask :feedback="false" />',
   }),
 };
 

@@ -54,8 +54,8 @@ export default defineComponent({
       <label for="email">Email</label>
       <PipeInput id="email" v-model="email" placeholder="voce@empresa.com" />
       <label for="password">Senha</label>
-      <PipePassword id="password" v-model="password" toggleMask placeholder="••••••••" :feedback="false" />
-      <PipeButton label="Entrar" icon="pi pi-sign-in" @click="loginEmail" />
+      <PipePassword id="password" v-model="password" toggleMask :feedback="false" />
+      <PipeButton label="Entrar" icon="pi pi-sign-in" primary @click="loginEmail" />
       <PipeButton label="Entrar com Google" icon="pi pi-google" severity="secondary" @click="loginGoogle" />
     </div>
   </div>
