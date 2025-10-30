@@ -56,14 +56,14 @@ export default defineComponent({
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 12px;
+  gap: 1rem;
   background: var(--color-bg);
   color: var(--color-text);
   font-weight: 500;
 }
 .spinner {
-  width: 40px;
-  height: 40px;
+  width: 3rem;
+  height: 3rem;
   border: 4px solid var(--color-border);
   border-top-color: var(--color-accent);
   border-radius: 50%;

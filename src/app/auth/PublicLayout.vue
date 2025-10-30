@@ -18,20 +18,21 @@ export default defineComponent({
   min-height:100vh; 
   display:grid; 
   grid-template-rows:auto 1fr auto; 
-  background: #FEFFF4; 
-  color: #3A4B59; }
+  background:#FEFFF4; 
+  color:#3A4B59; }
 .brand{ 
-  padding:1rem; 
+  padding:12px; 
   font-weight:700; 
   display:flex; 
-  gap:0.75rem; 
+  gap:8px; 
   align-items:center }
 main{ 
   display:grid; 
   place-items:center; 
-  padding:2rem }
+  padding:24px 
+}
 footer{ 
-  padding:1rem; 
+  padding:12px; 
   text-align:center; 
   color:#3A4B59 
 }

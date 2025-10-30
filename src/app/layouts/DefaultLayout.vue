@@ -13,99 +13,76 @@ export default defineComponent({
   },
   data() {
     return {
-      sidebarOpen: true
+      sidebarOpen: true,
+      menu: [
+        {label:'Vendas', icon:'pi pi-chart-line', items: []},
+        {label:'Atendimento', icon:'pi pi-comments', items: []},
+        {label:'Automação', icon:'pi pi-bolt', items: []}
+      ]
     }
   },
   computed: {
-    menubarItems() {
-      return [
-        {
-          label: 'PipeCRM',
-          icon: 'pi pi-verified',
-          command: () => this.$router.push('/')
-        }
-      ]
-    },
-    menu() {
-      return [
-        {
-          label: 'Vendas',
-          icon: 'pi pi-chart-line',
-          items: [
-            { label: 'Pipeline', icon: 'pi pi-columns', command: () => this.$router.push('/') },
-            { label: 'Leads', icon: 'pi pi-users', command: () => this.$router.push('/') },
-            { label: 'Propostas', icon: 'pi pi-file', command: () => this.$router.push('/') }
-          ]
-        },
-        {
-          label: 'Atendimento',
-          icon: 'pi pi-comments',
-          items: [
-            { label: 'Inbox', icon: 'pi pi-whatsapp', command: () => this.$router.push('/') },
-            { label: 'CSAT', icon: 'pi pi-star', command: () => this.$router.push('/') }
-          ]
-        },
-        {
-          label: 'Automação',
-          icon: 'pi pi-bolt',
-          items: [
-            { label: 'Regras & Eventos', icon: 'pi pi-cog', command: () => this.$router.push('/') }
-          ]
-        }
-      ]
+    userName(): string {
+      return this.$auth.user?.name || 'Usuário'
+    }
+  },
+  methods: {
+    async doLogout() {
+      sessionStorage.setItem('__pipecrm_auth__', '0')
+      await this.$auth.logout()
     }
   }
 })
 </script>
+
 <template>
   <div class="layout">
     <header class="topbar">
-      <PipeMenubar :model="menubarItems">
-  <template #end><PipeButton text icon="pi pi-bars" @click="sidebarOpen = !sidebarOpen" /></template>
+      <PipeMenubar>
+        <template #start>
+          <b>PipeCRM</b>
+        </template>
+        <template #end>
+          <span>{{ userName }}</span>
+          <PipeButton text icon="pi pi-sign-out" @click="doLogout" />
+          <PipeButton text icon="pi pi-bars" @click="sidebarOpen = !sidebarOpen" />
+        </template>
       </PipeMenubar>
     </header>
     <div class="body">
       <aside class="sidebar" v-show="sidebarOpen">
         <PipePanelMenu :model="menu" />
       </aside>
-      <main class="content"><slot /></main>
+      <main class="content">
+        <router-view />
+      </main>
     </div>
   </div>
 </template>
+
 <style scoped>
-.layout {
-  display: grid;
-  grid-template-rows: auto 1fr;
-  height: 100vh;
+.layout{ 
+  display:grid; 
+  grid-template-rows:56px 1fr; 
+  height:100vh 
 }
-.topbar :deep(.p-menubar) {
-  border-radius: 0;
+.body{ 
+  display:grid; 
+  grid-template-columns:260px 1fr; 
+  gap:12px;
+  padding:12px 
 }
-.body {
-  display:grid;
-  grid-template-columns: auto 1fr;
-  gap: 1rem;
-  padding: 1rem;
+.sidebar{ 
+  background:#fff; 
+  border:1px solid #e2e8f0; 
+  border-radius:12px; 
+  padding:8px 
 }
-.sidebar {
-  background: var(--color-bg);
-  border: 1px solid var(--color-border);
-  border-radius: 1rem;
-  padding: 0.5rem;
-}
-.content {
-  overflow:auto;
-  padding: 1rem;
-  background: var(--color-bg);
-  border: 1px solid var(--color-border);
-  border-radius: 1rem;
-}
-@media (max-width: 1024px) {
-  .body {
-    grid-template-columns: 1fr;
-  }
-  .sidebar {
-    display:none;
-  }
+.content{ 
+  background:#fff;
+  border:1px solid #e2e8f0; 
+  border-radius:12px; 
+  padding:12px; 
+  overflow:auto 
 }
 </style>

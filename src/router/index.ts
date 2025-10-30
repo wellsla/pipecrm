@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
 import PublicLayout from '@/app/auth/PublicLayout.vue'
+import AuthCallback from '@/app/auth/AuthCallback.vue'
 import LoginView from '@/app/auth/LoginView.vue'
 
 import DefaultLayout from '@/app/layouts/DefaultLayout.vue'
@@ -8,8 +9,9 @@ import DefaultLayout from '@/app/layouts/DefaultLayout.vue'
 const routes = [
   // Public
   {path: '/', component: PublicLayout, children: [
-    {path: '', redirect: '/login'},
-    {path: '/login', component: LoginView}
+    {path: '', redirect: '/auth/login'},
+    {path: 'auth/login', component: LoginView},
+    {path: 'auth/callback', component: AuthCallback}
   ]},
   // Protected
   {path: '/', component: DefaultLayout, meta:{requiresAuth:true}, children: []}

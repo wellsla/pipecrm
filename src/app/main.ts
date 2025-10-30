@@ -3,7 +3,7 @@ import { createPinia } from 'pinia'
 import { createAuth0 } from '@auth0/auth0-vue'
 
 import App from './App.vue'
-import router from '../router'
+import router from '@/router'
 
 import PrimeVue from 'primevue/config'
 import Lara from '@primeuix/themes/lara' //themes
@@ -22,17 +22,14 @@ const bootstrap = async () => {
       preset: Lara
     }
   })
-  
-  const auth0 = createAuth0({
+  app.use(createAuth0({
     domain: import.meta.env.VITE_AUTH0_DOMAIN,
     clientId: import.meta.env.VITE_AUTH0_CLIENT_ID,
     authorizationParams: {
-      redirect_uri: window.location.origin
+      redirect_uri: window.location.origin + '/auth/callback',
     },
     cacheLocation: 'localstorage'
-  })
-  
-  app.use(auth0)
+  }))
   
   app.mount('#app')
 }

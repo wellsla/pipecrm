@@ -42,8 +42,11 @@ export default defineComponent({
         },
         appState: { target: '/' }
       })
-    }
-  }
+    },
+  },
+  async created() {
+    console.log(this)
+  },
 })
 </script>
 
