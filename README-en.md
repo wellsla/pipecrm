@@ -403,4 +403,4 @@ Automated checks before each commit:
 
 ## License
 
-Private project
+Public project inspired by [PipeRunCRM](https://crmpiperun.com/)

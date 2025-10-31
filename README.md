@@ -405,4 +405,4 @@ Verificações automatizadas antes de cada commit:
 
 ## Licença
 
-Projeto privado
+Projeto público inspirado na empresa [PipeRunCRM](https://crmpiperun.com/)
