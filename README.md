@@ -1,144 +1,151 @@
 # PipeCRM
 
-A modern CRM application built with Vue 3, TypeScript, and PrimeVue following feature-first architecture.
+Uma aplicação CRM moderna construída com Vue 3, TypeScript e PrimeVue seguindo arquitetura feature-first.
 
-## Tech Stack
+[🇺🇸 English Version](./README-en.md)
+
+## Stack Tecnológica
 
 ### Core
-- **Vue 3** (Options API) - Progressive JavaScript framework
-- **TypeScript** - Type safety and better developer experience
-- **Vite** - Fast build tool and dev server
 
-### State & Routing
-- **Pinia** - State management (stores organized by domain/feature)
-- **Vue Router** - Client-side routing (feature-based routes with minimal guards)
+- **Vue 3** (Options API) - Framework JavaScript progressivo
+- **TypeScript** - Segurança de tipos e melhor experiência de desenvolvimento
+- **Vite** - Ferramenta de build rápida e servidor de desenvolvimento
 
-### UI & Design System
-- **PrimeVue + PrimeIcons** - UI component library (Lara theme + custom tokens)
-- **PipeKit** - Custom PrimeVue wrappers documented in Storybook (stories colocated next to components)
-- **ESLint + Prettier** - Code linting and formatting
-- **Husky + lint-staged** - Pre-commit hooks
-- **Conventional Commits** - Standardized commit messages
-- **Vitest** - Unit testing with browser mode
+### Estado & Roteamento
 
-## Architecture Principles
+- **Pinia** - Gerenciamento de estado (stores organizadas por domínio/funcionalidade)
+- **Vue Router** - Roteamento client-side (rotas baseadas em features com guardas mínimas)
 
-- **Service** - API communication layer
-- **Components** - Feature-specific components
+### UI & Sistema de Design
 
-### Layer Separation
-- **UI Layer** - Components (presentational, isolated)
-- **State Layer** - Pinia stores (business logic, state management)
-- **API Layer** - Services (HTTP requests, data transformation)
+- **PrimeVue + PrimeIcons** - Biblioteca de componentes UI (tema Lara + tokens customizados)
+- **PipeKit** - Wrappers customizados do PrimeVue documentados no Storybook (stories colocadas junto aos componentes)
+- **ESLint + Prettier** - Linting e formatação de código
+- **Husky + lint-staged** - Hooks de pré-commit
+- **Conventional Commits** - Mensagens de commit padronizadas
+- **Vitest** - Testes unitários com modo browser
 
-### Developer Experience
-- **Path Aliases** - `@/*` for clean imports
-- **Standardized Scripts** - Consistent npm commands
-- **Pre-commit Hooks** - Automated linting and formatting
-- **Type Safety** - Full TypeScript coverage
+## Princípios de Arquitetura
 
-## Prerequisites
+- **Service** - Camada de comunicação com API
+- **Components** - Componentes específicos de funcionalidades
 
-- Node.js `^20.19.0` or `>=22.12.0`
-- npm (or pnpm/yarn)
+### Separação de Camadas
 
-## Getting Started
+- **Camada UI** - Componentes (apresentacionais, isolados)
+- **Camada de Estado** - Stores Pinia (lógica de negócio, gerenciamento de estado)
+- **Camada API** - Services (requisições HTTP, transformação de dados)
 
-### Install Dependencies
+### Experiência do Desenvolvedor
+
+- **Aliases de Caminho** - `@/*` para imports limpos
+- **Scripts Padronizados** - Comandos npm consistentes
+- **Hooks de Pré-commit** - Linting e formatação automatizados
+- **Segurança de Tipos** - Cobertura completa do TypeScript
+
+## Pré-requisitos
+
+- Node.js `^20.19.0` ou `>=22.12.0`
+- npm (ou pnpm/yarn)
+
+## Começando
+
+### Instalar Dependências
 
 ```bash
 npm install
 ```
 
-### Development
+### Desenvolvimento
 
-Run the development server:
+Execute o servidor de desenvolvimento:
 
 ```bash
 npm run dev
 ```
 
-The app will be available at `http://localhost:5173/`
+A aplicação estará disponível em `http://localhost:5173/`
 
-### Storybook (PipeKit Design System)
+### Storybook (Sistema de Design PipeKit)
 
-View and test components in isolation:
+Visualize e teste componentes isoladamente:
 
 ```bash
 npm run storybook
 ```
 
-Storybook will be available at `http://localhost:6006/`
+O Storybook estará disponível em `http://localhost:6006/`
 
-Stories are colocated with PipeKit components under `src/components/pipekit` using `*.stories.ts`.
+As stories são colocadas junto aos componentes PipeKit em `src/components/pipekit` usando `*.stories.ts`.
 
 ## Scripts
 
-| Command | Description |
-|---------|-------------|
-| `npm run dev` | Start development server with HMR |
-| `npm run build` | Type-check and build for production |
-| `npm run preview` | Preview production build locally |
-| `npm run type-check` | Run TypeScript type checking |
-| `npm run lint` | Lint and auto-fix code with ESLint |
-| `npm run format` | Format code with Prettier |
-| `npm run storybook` | Start Storybook dev server |
-| `npm run build-storybook` | Build Storybook for deployment |
-| `npm run prepare` | Setup Husky git hooks |
+| Comando                   | Descrição                                       |
+| ------------------------- | ----------------------------------------------- |
+| `npm run dev`             | Inicia servidor de desenvolvimento com HMR      |
+| `npm run build`           | Verifica tipos e faz build para produção        |
+| `npm run preview`         | Visualiza build de produção localmente          |
+| `npm run type-check`      | Executa verificação de tipos TypeScript         |
+| `npm run lint`            | Lint e auto-correção de código com ESLint       |
+| `npm run format`          | Formata código com Prettier                     |
+| `npm run storybook`       | Inicia servidor de desenvolvimento do Storybook |
+| `npm run build-storybook` | Faz build do Storybook para deploy              |
+| `npm run prepare`         | Configura git hooks do Husky                    |
 
-### Quality Assurance Commands
+### Comandos de Garantia de Qualidade
 
 ```bash
-# Run linting
+# Executar linting
 npm run lint
 
-# Format all files
+# Formatar todos os arquivos
 npm run format
 
-# Type checking
+# Verificação de tipos
 npm run type-check
 
-# Run all checks (before committing)
+# Executar todas as verificações (antes de commitar)
 npm run lint && npm run format && npm run type-check
 ```
 
 ### Husky & Lint-Staged
 
-Pre-commit hooks are automatically configured via Husky. To manually trigger:
+Os hooks de pré-commit são configurados automaticamente via Husky. Para acionar manualmente:
 
 ```bash
-# Initialize Husky (runs automatically after npm install)
+# Inicializar Husky (executa automaticamente após npm install)
 npm run prepare
 
-# Test lint-staged manually
+# Testar lint-staged manualmente
 npx lint-staged
 
-# Skip pre-commit hooks (not recommended)
-git commit --no-verify -m "commit message"
+# Pular hooks de pré-commit (não recomendado)
+git commit --no-verify -m "mensagem de commit"
 ```
 
-**What runs on commit:**
-- ESLint auto-fix on `.ts, .tsx, .vue, .js, .jsx, .json, .md, .css, .scss` files
-- Prettier formatting on staged files
-- Stylelint fix on `.css` files
+**O que é executado no commit:**
 
+- ESLint auto-correção em arquivos `.ts, .tsx, .vue, .js, .jsx, .json, .md, .css, .scss`
+- Formatação Prettier em arquivos staged
+- Correção Stylelint em arquivos `.css`
 
-## Project Structure
+## Estrutura do Projeto
 
 ```
 pipecrm/
 ├── src/
-│   ├── app/                    # Application core
-│   │   ├── layouts/            # Layout components
-│   │   └── App.vue             # Root component
-│   ├── features/               # Feature modules (feature-first)
+│   ├── app/                    # Núcleo da aplicação
+│   │   ├── layouts/            # Componentes de layout
+│   │   └── App.vue             # Componente raiz
+│   ├── features/               # Módulos de funcionalidades (feature-first)
 │   │   └── [feature]/
-│   │       ├── views/          # Feature pages
-│   │       ├── store/          # Pinia stores
-│   │       ├── services/       # API services
-│   │       └── components/     # Feature components
+│   │       ├── views/          # Páginas da funcionalidade
+│   │       ├── store/          # Stores Pinia
+│   │       ├── services/       # Services de API
+│   │       └── components/     # Componentes da funcionalidade
 │   ├── components/
-│   │   └── pipekit/            # PipeKit Design System (PrimeVue wrappers)
+│   │   └── pipekit/            # Sistema de Design PipeKit (wrappers PrimeVue)
 │   │       ├── PipeButton.vue
 │   │       ├── PipeHeader.vue
 │   │       ├── PipePage.vue
@@ -146,237 +153,239 @@ pipecrm/
 │   │       ├── PipePanelMenu.vue
 │   │       ├── PipeInput.vue
 │   │       ├── PipePassword.vue
-│   │       ├── button.css header.css page.css
-│   │       └── Pipe*.stories.ts
-│   ├── router/                 # Vue Router configuration
-│   └── stores/                 # Global Pinia stores
-├── public/                     # Static assets
-└── .storybook/                 # Storybook configuration
+│   │       ├── css/            # Estilos dos componentes
+│   │       └── *.stories.ts    # Stories do Storybook
+│   ├── router/                 # Configuração do Vue Router
+│   └── stores/                 # Stores Pinia globais
+├── public/                     # Assets estáticos
+└── .storybook/                 # Configuração do Storybook
 ```
 
-## Design System (PipeKit)
+## Sistema de Design (PipeKit)
 
-PipeKit is our custom design system built on top of PrimeVue, providing:
-- Consistent component wrappers
-- Custom theme tokens (Lara base)
-- Full Storybook documentation
-- Accessibility compliance
+O PipeKit é nosso sistema de design customizado construído sobre o PrimeVue, fornecendo:
 
-### Color Palette
+- Wrappers de componentes consistentes
+- Tokens de tema customizados (base Lara)
+- Documentação completa no Storybook
+- Conformidade com acessibilidade
 
-- **Primary Dark**: `#3A4B59` - Main text and UI elements
-- **Secondary Gray**: `#B3B4BC` - Borders and dividers
-- **Background Light**: `#FEFFF4` - Page backgrounds
-- **Accent Red**: `#B8284B` - CTAs and highlights
-- **Deep Blue**: `#243747` - Headings and emphasis
+### Paleta de Cores
 
-## Development Workflow
+- **Primary Dark**: `#3A4B59` - Texto principal e elementos UI
+- **Secondary Gray**: `#B3B4BC` - Bordas e divisores
+- **Background Light**: `#FEFFF4` - Fundos de página
+- **Accent Red**: `#B8284B` - CTAs e destaques
+- **Deep Blue**: `#243747` - Títulos e ênfase
 
-### Quick Start Commands
+## Fluxo de Desenvolvimento
+
+### Comandos de Início Rápido
 
 ```bash
-# Fresh setup
+# Configuração inicial
 npm install
 npm run dev
 
-# With Storybook
+# Com Storybook
 npm run storybook
 
-# Production build
+# Build de produção
 npm run build
 npm run preview
 ```
 
-### Commit Convention
+### Convenção de Commits
 
-This project follows [Padrões de Commits](https://github.com/iuricode/padroes-de-commits):
+Este projeto segue os [Padrões de Commits](https://github.com/iuricode/padroes-de-commits):
 
 ```bash
-# Feature
-git commit -m ":sparkles: feat: add new customer form"
+# Funcionalidade
+git commit -m ":sparkles: feat: adiciona formulário de novo cliente"
 
-# Bug fix
-git commit -m ":bug: fix: resolve login validation bug"
+# Correção de bug
+git commit -m ":bug: fix: resolve bug de validação no login"
 
-# Documentation
-git commit -m ":books: docs: update API documentation"
+# Documentação
+git commit -m ":books: docs: atualiza documentação da API"
 
-# Code style
-git commit -m ":ok_hand: style: format code with prettier"
+# Estilo de código
+git commit -m ":ok_hand: style: formata código com prettier"
 
-# Refactoring
-git commit -m ":recycle: refactor: reorganize store structure"
+# Refatoração
+git commit -m ":recycle: refactor: reorganiza estrutura das stores"
 
-# Tests
-git commit -m ":test_tube: test: add unit tests for user service"
+# Testes
+git commit -m ":test_tube: test: adiciona testes unitários para service de usuário"
 
-# Configuration/dependencies
-git commit -m ":wrench: chore: update dependencies"
+# Configuração/dependências
+git commit -m ":wrench: chore: atualiza dependências"
 
 # Performance
-git commit -m ":zap: perf: optimize data fetching"
+git commit -m ":zap: perf: otimiza busca de dados"
 
-# Work in progress
-git commit -m ":construction: wip: implementing authentication flow"
+# Trabalho em progresso
+git commit -m ":construction: wip: implementando fluxo de autenticação"
 ```
 
-### Git Workflow (GitFlow)
+### Fluxo Git (GitFlow)
 
-This project follows the GitFlow branching model with standard git commands.
+Este projeto segue o modelo de branches GitFlow com comandos git padrão.
 
-#### Branch Structure
+#### Estrutura de Branches
 
-- **main** - Production-ready code
-- **develop** - Integration branch for features
-- **feature/** - New features (`feature/feature-name`)
-- **bugfix/** - Bug fixes for develop (`bugfix/bug-name`)
-- **hotfix/** - Urgent production fixes (`hotfix/issue-name`)
-- **release/** - Release preparation (`release/version`)
+- **main** - Código pronto para produção
+- **develop** - Branch de integração para funcionalidades
+- **feature/** - Novas funcionalidades (`feature/nome-da-funcionalidade`)
+- **bugfix/** - Correções de bugs para develop (`bugfix/nome-do-bug`)
+- **hotfix/** - Correções urgentes de produção (`hotfix/nome-do-problema`)
+- **release/** - Preparação de release (`release/versao`)
 
-#### Feature Development
+#### Desenvolvimento de Funcionalidades
 
 ```bash
-# Start new feature from develop
+# Iniciar nova funcionalidade a partir de develop
 git checkout develop
 git pull origin develop
-git checkout -b feature/customer-management
+git checkout -b feature/gestao-clientes
 
-# Work on feature (commits run pre-commit hooks automatically)
+# Trabalhar na funcionalidade (commits executam hooks de pré-commit automaticamente)
 git add .
-git commit -m ":sparkles: feat: add customer list view"
-git commit -m ":sparkles: feat: add customer form validation"
+git commit -m ":sparkles: feat: adiciona visualização de lista de clientes"
+git commit -m ":sparkles: feat: adiciona validação de formulário de cliente"
 
-# Keep feature updated with develop
+# Manter funcionalidade atualizada com develop
 git checkout develop
 git pull origin develop
-git checkout feature/customer-management
+git checkout feature/gestao-clientes
 git merge develop
 
-# Push feature branch
-git push origin feature/customer-management
+# Enviar branch de funcionalidade
+git push origin feature/gestao-clientes
 
-# After PR approval, merge to develop (via PR or locally)
+# Após aprovação do PR, fazer merge para develop (via PR ou localmente)
 git checkout develop
 git pull origin develop
-git merge --no-ff feature/customer-management
+git merge --no-ff feature/gestao-clientes
 git push origin develop
 
-# Delete feature branch
-git branch -d feature/customer-management
-git push origin --delete feature/customer-management
+# Deletar branch de funcionalidade
+git branch -d feature/gestao-clientes
+git push origin --delete feature/gestao-clientes
 ```
 
-#### Bugfix Workflow
+#### Fluxo de Correção de Bugs
 
 ```bash
-# Create bugfix from develop
+# Criar bugfix a partir de develop
 git checkout develop
 git pull origin develop
-git checkout -b bugfix/login-validation
+git checkout -b bugfix/validacao-login
 
-# Fix and commit
+# Corrigir e commitar
 git add .
-git commit -m ":bug: fix: correct email validation regex"
+git commit -m ":bug: fix: corrige regex de validação de email"
 
-# Merge back to develop
+# Fazer merge de volta para develop
 git checkout develop
-git merge --no-ff bugfix/login-validation
+git merge --no-ff bugfix/validacao-login
 git push origin develop
 
-# Clean up
-git branch -d bugfix/login-validation
+# Limpar
+git branch -d bugfix/validacao-login
 ```
 
-#### Hotfix Workflow
+#### Fluxo de Hotfix
 
 ```bash
-# Create hotfix from main
+# Criar hotfix a partir de main
 git checkout main
 git pull origin main
-git checkout -b hotfix/critical-security-patch
+git checkout -b hotfix/patch-seguranca-critico
 
-# Fix and commit
+# Corrigir e commitar
 git add .
-git commit -m ":bug: fix: patch security vulnerability"
+git commit -m ":bug: fix: corrige vulnerabilidade de segurança"
 
-# Merge to main
+# Fazer merge para main
 git checkout main
-git merge --no-ff hotfix/critical-security-patch
-git tag -a v1.0.1 -m "Security patch v1.0.1"
+git merge --no-ff hotfix/patch-seguranca-critico
+git tag -a v1.0.1 -m "Patch de segurança v1.0.1"
 git push origin main --tags
 
-# Also merge to develop
+# Também fazer merge para develop
 git checkout develop
-git merge --no-ff hotfix/critical-security-patch
+git merge --no-ff hotfix/patch-seguranca-critico
 git push origin develop
 
-# Clean up
-git branch -d hotfix/critical-security-patch
+# Limpar
+git branch -d hotfix/patch-seguranca-critico
 ```
 
-#### Release Workflow
+#### Fluxo de Release
 
 ```bash
-# Create release branch from develop
+# Criar branch de release a partir de develop
 git checkout develop
 git pull origin develop
 git checkout -b release/1.0.0
 
-# Prepare release (version bumps, changelog, etc.)
-git commit -m ":bookmark: chore: bump version to 1.0.0"
-git commit -m ":books: docs: update CHANGELOG for v1.0.0"
+# Preparar release (atualização de versão, changelog, etc.)
+git commit -m ":bookmark: chore: atualiza versão para 1.0.0"
+git commit -m ":books: docs: atualiza CHANGELOG para v1.0.0"
 
-# Merge to main
+# Fazer merge para main
 git checkout main
 git merge --no-ff release/1.0.0
-git tag -a v1.0.0 -m "Release version 1.0.0"
+git tag -a v1.0.0 -m "Release versão 1.0.0"
 git push origin main --tags
 
-# Merge back to develop
+# Fazer merge de volta para develop
 git checkout develop
 git merge --no-ff release/1.0.0
 git push origin develop
 
-# Delete release branch
+# Deletar branch de release
 git branch -d release/1.0.0
 ```
 
-#### Quick Reference
+#### Referência Rápida
 
 ```bash
-# Check current branch
+# Verificar branch atual
 git branch
 
-# View all branches
+# Ver todas as branches
 git branch -a
 
-# Switch branches
-git checkout branch-name
+# Trocar de branch
+git checkout nome-da-branch
 
-# View commit history
+# Ver histórico de commits
 git log --oneline --graph --all
 
-# Undo last commit (keep changes)
+# Desfazer último commit (manter alterações)
 git reset --soft HEAD~1
 
-# Stash changes temporarily
+# Guardar alterações temporariamente
 git stash
 git stash pop
 
-# Skip hooks only in emergencies
-git commit --no-verify -m "message"
+# Pular hooks apenas em emergências
+git commit --no-verify -m "mensagem"
 ```
 
+### Hooks de Pré-commit
 
-### Pre-commit Hooks
+Verificações automatizadas antes de cada commit:
 
-Automated checks before each commit:
-- **ESLint** - Lints and auto-fixes JS/TS/Vue files
-- **Prettier** - Formats code consistently
-- **Stylelint** - Lints and fixes CSS/SCSS
-- **Type checking** - Validates TypeScript (manual check recommended)
+- **ESLint** - Faz lint e auto-correção de arquivos JS/TS/Vue
+- **Prettier** - Formata código consistentemente
+- **Stylelint** - Faz lint e correção de CSS/SCSS
+- **Verificação de tipos** - Valida TypeScript (verificação manual recomendada)
 
-**Configured via lint-staged:**
+**Configurado via lint-staged:**
+
 ```json
 {
   "*.{ts,tsx,vue,js,jsx,json,md,css,scss}": ["eslint --fix", "prettier --write"],
@@ -384,17 +393,16 @@ Automated checks before each commit:
 }
 ```
 
+## Configuração do IDE
 
-## IDE Setup
+**Recomendado:**
 
-**Recommended:**
 - [VS Code](https://code.visualstudio.com/)
-- [Vue - Official](https://marketplace.visualstudio.com/items?itemName=Vue.volar) extension (disable Vetur)
-- [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) extension
-- [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) extension
-- [Vue.js devtools](https://chromewebstore.google.com/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd) browser extension
+- Extensão [Vue - Official](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (desabilitar Vetur)
+- Extensão [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
+- Extensão [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
+- Extensão de navegador [Vue.js devtools](https://chromewebstore.google.com/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd)
 
-## License
+## Licença
 
-Private project
-
+Projeto privado
