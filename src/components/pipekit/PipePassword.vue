@@ -16,19 +16,19 @@ import './css/password.css'
 export default defineComponent({
   name: 'PipePassword',
   components: {
-    Password
+    Password,
   },
   props: {
     modelValue: {
       type: String,
-      default: undefined
-    }
+      default: undefined,
+    },
   },
   emits: ['update:modelValue'],
   methods: {
     handleUpdate(value: string | null | undefined) {
       this.$emit('update:modelValue', value ?? '')
-    }
-  }
+    },
+  },
 })
 </script>

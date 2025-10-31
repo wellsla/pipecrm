@@ -1,6 +1,13 @@
 import { createAuth0Client, Auth0Client } from '@auth0/auth0-spa-js'
 import type { GetTokenSilentlyOptions, RedirectLoginOptions, User } from '@auth0/auth0-spa-js'
-import type { App, Plugin } from 'vue'
+import type { App } from 'vue'
+
+export interface AuthUser extends User {
+  sub: string
+  name?: string
+  email?: string
+  picture?: string
+}
 
 export class AuthService {
   private client: Auth0Client | null = null
@@ -8,57 +15,44 @@ export class AuthService {
   public user: User | null = null
   public isLoading = true
 
-  async init() {
+  async init(): Promise<void> {
     this.client = await createAuth0Client({
       domain: import.meta.env.VITE_AUTH0_DOMAIN,
       clientId: import.meta.env.VITE_AUTH0_CLIENT_ID,
       authorizationParams: {
-        redirect_uri: window.location.origin + '/auth/callback',        
+        redirect_uri: window.location.origin + '/auth/callback',
       },
       cacheLocation: 'localstorage',
       useRefreshTokens: true,
     })
 
     this.isAuthenticated = await this.client.isAuthenticated()
-    this.user = this.isAuthenticated ? (await this.client.getUser()) ?? null : null
+    this.user = this.isAuthenticated ? ((await this.client.getUser()) as AuthUser) : null
     this.isLoading = false
   }
 
-  async handleRedirectCallback() {
+  async handleRedirectCallback(): Promise<void> {
     if (!this.client) return
     await this.client.handleRedirectCallback()
     this.isAuthenticated = await this.client.isAuthenticated()
-    this.user = this.isAuthenticated ? (await this.client.getUser()) ?? null : null
+    this.user = this.isAuthenticated ? ((await this.client.getUser()) as AuthUser) : null
   }
 
-  async loginWithRedirect(options?: RedirectLoginOptions) {
+  async loginWithRedirect(options?: RedirectLoginOptions): Promise<void> {
     await this.client?.loginWithRedirect(options)
   }
 
-  async logout() {
+  async logout(): Promise<void> {
     await this.client?.logout({ logoutParams: { returnTo: window.location.origin } })
   }
 
-  async getAccessTokenSilently(options?: GetTokenSilentlyOptions) {
+  async getAccessTokenSilently(options?: GetTokenSilentlyOptions): Promise<string | undefined> {
     return this.client?.getTokenSilently(options)
   }
 }
 
-interface AuthPlugin {
-  install(app: App, instance: AuthService): void
-}
-
-const authPlugin: Plugin & AuthPlugin = {
-  install(app: App, instance: AuthService): void {
+export default {
+  install(app: App, instance: AuthService) {
     app.config.globalProperties.$auth = instance
-    app.provide('auth', instance)
-  }
-}
-
-export default authPlugin
-
-declare module '@vue/runtime-core' {
-  interface ComponentCustomProperties {
-    $auth: AuthService
-  }
+  },
 }

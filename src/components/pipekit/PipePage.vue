@@ -9,7 +9,7 @@ import { defineComponent } from 'vue'
 import './css/page.css'
 
 export default defineComponent({
-  name: 'PipePage'
+  name: 'PipePage',
 })
 </script>
 

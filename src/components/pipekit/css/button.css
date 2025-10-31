@@ -5,7 +5,11 @@
   font-weight: 700;
   line-height: 1;
   font-family: 'Nunito Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  transition: background-color .2s ease, color .2s ease, border-color .2s ease, box-shadow .2s ease;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 /* Primary variant */
@@ -49,6 +53,9 @@
 }
 
 /* Ensure icon spacing matches PrimeVue defaults */
-.storybook-button.p-button .p-button-icon-left { margin-right: 0.5rem; }
-.storybook-button.p-button .p-button-icon-right { margin-left: 0.5rem; }
-
+.storybook-button.p-button .p-button-icon-left {
+  margin-right: 0.5rem;
+}
+.storybook-button.p-button .p-button-icon-right {
+  margin-left: 0.5rem;
+}

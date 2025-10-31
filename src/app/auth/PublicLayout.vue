@@ -14,26 +14,26 @@ export default defineComponent({
 </template>
 
 <style scoped>
-.wrap{ 
-  min-height:100vh; 
-  display:grid; 
-  grid-template-rows:auto 1fr auto; 
-  background:#FEFFF4; 
-  color:#3A4B59; }
-.brand{ 
-  padding:12px; 
-  font-weight:700; 
-  display:flex; 
-  gap:8px; 
-  align-items:center }
-main{ 
-  display:grid; 
-  place-items:center; 
-  padding:24px 
+.wrap {
+  min-height: 100vh;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
 }
-footer{ 
-  padding:12px; 
-  text-align:center; 
-  color:#3A4B59 
+.brand {
+  padding: 16px;
+  font-weight: 700;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+main {
+  display: grid;
+  place-items: center;
+  padding: 24px;
+}
+footer {
+  padding: 12px;
+  text-align: center;
+  color: #64748b;
 }
 </style>

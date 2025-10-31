@@ -1,19 +1,19 @@
 :root {
   /* App palette */
-  --color-text: #3A4B59;        /* Primary Dark */
-  --color-border: #B3B4BC;      /* Secondary Gray */
-  --color-bg: #FEFFF4;          /* Background Light */
-  --color-accent: #B8284B;      /* Accent Red */
-  --color-heading: #243747;     /* Deep Blue */
+  --color-text: #3a4b59; /* Primary Dark */
+  --color-border: #b3b4bc; /* Secondary Gray */
+  --color-bg: #fefff4; /* Background Light */
+  --color-accent: #b8284b; /* Accent Red */
+  --color-heading: #243747; /* Deep Blue */
 
   /* Legacy brand tokens (kept for compatibility) */
-  --brand-50:#eef6ff;
-  --brand-500:#0ea5e9;
-  --brand-700:#0369a1;
+  --brand-50: #eef6ff;
+  --brand-500: #0ea5e9;
+  --brand-700: #0369a1;
 
   /* Radius and spacing scale */
-  --radius:12px;
-  --space-2:8px;
-  --space-4:16px;
-  --space-6:24px;
+  --radius: 12px;
+  --space-2: 8px;
+  --space-4: 16px;
+  --space-6: 24px;
 }

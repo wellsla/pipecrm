@@ -1,9 +1,8 @@
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
-import { createAuth0 } from '@auth0/auth0-vue'
 
-import App from './App.vue'
 import router from '@/router'
+import App from './App.vue'
 
 import PrimeVue from 'primevue/config'
 import Lara from '@primeuix/themes/lara' //themes
@@ -12,25 +11,22 @@ import 'primeicons/primeicons.css' //icons
 import '@/assets/tokens.css' //design tokens
 import '@/assets/base.scss' //base styles
 
+import AuthPlugin, { AuthService } from '@/services/auth.service.ts'
+
 const bootstrap = async () => {
+  const auth = new AuthService()
+  await auth.init()
+
   const app = createApp(App)
   app.use(createPinia())
   app.use(router)
   app.use(PrimeVue, {
     ripple: true,
     theme: {
-      preset: Lara
-    }
-  })
-  app.use(createAuth0({
-    domain: import.meta.env.VITE_AUTH0_DOMAIN,
-    clientId: import.meta.env.VITE_AUTH0_CLIENT_ID,
-    authorizationParams: {
-      redirect_uri: window.location.origin + '/auth/callback',
+      preset: Lara,
     },
-    cacheLocation: 'localstorage'
-  }))
-  
+  })
+  app.use(AuthPlugin, auth)
   app.mount('#app')
 }
 bootstrap()

@@ -1,8 +1,8 @@
-import type { Meta, StoryObj } from '@storybook/vue3-vite';
+import type { Meta, StoryObj } from '@storybook/vue3-vite'
 
-import { fn } from 'storybook/test';
+import { fn } from 'storybook/test'
 
-import PipeButton from '@/components/pipekit/PipeButton.vue';
+import PipeButton from '@/components/pipekit/PipeButton.vue'
 
 const meta = {
   title: 'PipeKit/PipeButton',
@@ -16,35 +16,35 @@ const meta = {
     primary: false,
     onClick: fn(),
   },
-} satisfies Meta<typeof PipeButton>;
+} satisfies Meta<typeof PipeButton>
 
-export default meta;
-type Story = StoryObj<typeof meta>;
+export default meta
+type Story = StoryObj<typeof meta>
 
 export const Primary: Story = {
   args: {
     primary: true,
     label: 'Button',
   },
-};
+}
 
 export const Secondary: Story = {
   args: {
     primary: false,
     label: 'Button',
   },
-};
+}
 
 export const Large: Story = {
   args: {
     label: 'Button',
     size: 'large',
   },
-};
+}
 
 export const Small: Story = {
   args: {
     label: 'Button',
     size: 'small',
   },
-};
+}

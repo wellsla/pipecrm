@@ -15,19 +15,19 @@ import './css/input.css'
 export default defineComponent({
   name: 'PipeInput',
   components: {
-    InputText
+    InputText,
   },
   props: {
     modelValue: {
       type: String,
-      default: undefined
-    }
+      default: undefined,
+    },
   },
   emits: ['update:modelValue'],
   methods: {
     handleUpdate(value: string | null | undefined) {
       this.$emit('update:modelValue', value ?? '')
-    }
-  }
+    },
+  },
 })
 </script>

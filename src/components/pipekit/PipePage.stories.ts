@@ -1,8 +1,8 @@
-import type { Meta, StoryObj } from '@storybook/vue3-vite';
-import { ref } from 'vue';
+import type { Meta, StoryObj } from '@storybook/vue3-vite'
+import { ref } from 'vue'
 
-import PipePage from '@/components/pipekit/PipePage.vue';
-import PipeHeader from '@/components/pipekit/PipeHeader.vue';
+import PipePage from '@/components/pipekit/PipePage.vue'
+import PipeHeader from '@/components/pipekit/PipeHeader.vue'
 
 const meta = {
   title: 'PipeKit/PipePage',
@@ -11,28 +11,28 @@ const meta = {
     layout: 'fullscreen',
   },
   tags: ['autodocs'],
-} satisfies Meta<typeof PipePage>;
+} satisfies Meta<typeof PipePage>
 
-export default meta;
-type Story = StoryObj<typeof meta>;
+export default meta
+type Story = StoryObj<typeof meta>
 
 export const LoggedOut: Story = {
   render: () => ({
     components: { PipePage, PipeHeader },
     setup() {
-      const user = ref<{ name: string } | null>(null);
-      
+      const user = ref<{ name: string } | null>(null)
+
       const onLogin = () => {
-        user.value = { name: 'Jane Doe' };
-      };
+        user.value = { name: 'Jane Doe' }
+      }
       const onLogout = () => {
-        user.value = null;
-      };
+        user.value = null
+      }
       const onCreateAccount = () => {
-        user.value = { name: 'Jane Doe' };
-      };
-      
-      return { user, onLogin, onLogout, onCreateAccount };
+        user.value = { name: 'Jane Doe' }
+      }
+
+      return { user, onLogin, onLogout, onCreateAccount }
     },
     template: `
       <article>
@@ -50,25 +50,25 @@ export const LoggedOut: Story = {
       </article>
     `,
   }),
-};
+}
 
 export const LoggedIn: Story = {
   render: () => ({
     components: { PipePage, PipeHeader },
     setup() {
-      const user = ref<{ name: string } | null>({ name: 'Jane Doe' });
-      
+      const user = ref<{ name: string } | null>({ name: 'Jane Doe' })
+
       const onLogin = () => {
-        user.value = { name: 'Jane Doe' };
-      };
+        user.value = { name: 'Jane Doe' }
+      }
       const onLogout = () => {
-        user.value = null;
-      };
+        user.value = null
+      }
       const onCreateAccount = () => {
-        user.value = { name: 'Jane Doe' };
-      };
-      
-      return { user, onLogin, onLogout, onCreateAccount };
+        user.value = { name: 'Jane Doe' }
+      }
+
+      return { user, onLogin, onLogout, onCreateAccount }
     },
     template: `
       <article>
@@ -86,4 +86,4 @@ export const LoggedIn: Story = {
       </article>
     `,
   }),
-};
+}

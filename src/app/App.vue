@@ -1,75 +1,50 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
-import { useAuth0 } from '@auth0/auth0-vue'
 
 export default defineComponent({
   name: 'App',
   data() {
     return {
-      ready: false
+      ready: false,
     }
   },
-  computed: {
-    auth0() {
-      return useAuth0()
-    },
-    isAuthenticated() {
-      return this.auth0.isAuthenticated.value
-    },
-    user() {
-      return this.auth0.user.value
-    },
-    isLoading() {
-      return this.auth0.isLoading.value
-    }
-  },
-  async mounted() {
-    try {
-      if (this.isAuthenticated) {
-        await this.auth0.getAccessTokenSilently().catch(() => {})
-      }
-    } catch (error) {
-      console.warn('Erro ao buscar token de acesso:', error)
-    } finally {
+  created() {
+    const isAuth = window.__pipecrm_auth__
+    if (typeof isAuth === 'string') {
+      sessionStorage.setItem('__pipecrm_auth__', isAuth)
       this.ready = true
     }
-  }
+  },
 })
 </script>
 
 <template>
-  <!-- Estado inicial de carregamento -->
-  <div v-if="!ready || isLoading" class="loader-screen">
-    <div class="spinner"></div>
-    <p>Carregando PipeCRM...</p>
+  <div v-if="!ready" class="loader">
+    <div class="spin"></div>
+    <p>Carregando PipeCRM…</p>
   </div>
-
-  <!-- Quando carregado, router controla layout -->
   <router-view v-else />
 </template>
 
-
 <style scoped>
-.loader-screen {
+.loader {
   height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 1rem;
-  background: var(--color-bg);
-  color: var(--color-text);
-  font-weight: 500;
+  display: grid;
+  place-items: center;
+  gap: 12px;
+  color: #334155;
 }
-.spinner {
-  width: 3rem;
-  height: 3rem;
-  border: 4px solid var(--color-border);
-  border-top-color: var(--color-accent);
+.spin {
+  width: 42px;
+  height: 42px;
+  border: 4px solid #cbd5e1;
+  border-top-color: var(--brand-500);
   border-radius: 50%;
-  animation: spin 0.8s linear infinite;
+  animation: sp 0.8s linear infinite;
 }
-@keyframes spin {
-  to { transform: rotate(360deg); }
+@keyframes sp {
+  to {
+    transform: rotate(360deg);
+  }
 }
 </style>

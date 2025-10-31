@@ -1,7 +1,7 @@
-import type { Meta, StoryObj } from '@storybook/vue3-vite';
-import type { MenuItem } from 'primevue/menuitem';
+import type { Meta, StoryObj } from '@storybook/vue3-vite'
+import type { MenuItem } from 'primevue/menuitem'
 
-import PipeMenubar from '@/components/pipekit/PipeMenubar.vue';
+import PipeMenubar from '@/components/pipekit/PipeMenubar.vue'
 
 const meta = {
   title: 'PipeKit/PipeMenubar',
@@ -13,10 +13,10 @@ const meta = {
       control: 'object',
     },
   },
-} satisfies Meta<typeof PipeMenubar>;
+} satisfies Meta<typeof PipeMenubar>
 
-export default meta;
-type Story = StoryObj<typeof meta>;
+export default meta
+type Story = StoryObj<typeof meta>
 
 export const Simple: Story = {
   args: {
@@ -35,7 +35,7 @@ export const Simple: Story = {
       },
     ] as MenuItem[],
   },
-};
+}
 
 export const WithSubmenu: Story = {
   args: {
@@ -81,7 +81,7 @@ export const WithSubmenu: Story = {
       },
     ] as MenuItem[],
   },
-};
+}
 
 export const WithActions: Story = {
   args: {
@@ -90,7 +90,7 @@ export const WithActions: Story = {
         label: 'Dashboard',
         icon: 'pi pi-chart-line',
         command: () => {
-          alert('Navigate to Dashboard');
+          alert('Navigate to Dashboard')
         },
       },
       {
@@ -101,14 +101,14 @@ export const WithActions: Story = {
             label: 'Profile',
             icon: 'pi pi-user',
             command: () => {
-              alert('Open Profile Settings');
+              alert('Open Profile Settings')
             },
           },
           {
             label: 'Security',
             icon: 'pi pi-lock',
             command: () => {
-              alert('Open Security Settings');
+              alert('Open Security Settings')
             },
           },
         ],
@@ -117,9 +117,9 @@ export const WithActions: Story = {
         label: 'Logout',
         icon: 'pi pi-sign-out',
         command: () => {
-          alert('Logout clicked');
+          alert('Logout clicked')
         },
       },
     ] as MenuItem[],
   },
-};
+}

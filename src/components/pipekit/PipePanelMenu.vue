@@ -11,13 +11,13 @@ import type { MenuItem } from 'primevue/menuitem'
 export default defineComponent({
   name: 'PipePanelMenu',
   components: {
-    PanelMenu
+    PanelMenu,
   },
   props: {
     model: {
       type: Array as PropType<MenuItem[]>,
-      default: undefined
-    }
-  }
+      default: undefined,
+    },
+  },
 })
 </script>

@@ -9,29 +9,29 @@ export default defineComponent({
   components: {
     PipeMenubar,
     PipeButton,
-    PipePanelMenu
+    PipePanelMenu,
   },
   data() {
     return {
       sidebarOpen: true,
       menu: [
-        {label:'Vendas', icon:'pi pi-chart-line', items: []},
-        {label:'Atendimento', icon:'pi pi-comments', items: []},
-        {label:'Automação', icon:'pi pi-bolt', items: []}
-      ]
+        { label: 'Vendas', icon: 'pi pi-chart-line', items: [] },
+        { label: 'Atendimento', icon: 'pi pi-comments', items: [] },
+        { label: 'Automação', icon: 'pi pi-bolt', items: [] },
+      ],
     }
   },
   computed: {
     userName(): string {
       return this.$auth.user?.name || 'Usuário'
-    }
+    },
   },
   methods: {
     async doLogout() {
       sessionStorage.setItem('__pipecrm_auth__', '0')
       await this.$auth.logout()
-    }
-  }
+    },
+  },
 })
 </script>
 
@@ -61,28 +61,28 @@ export default defineComponent({
 </template>
 
 <style scoped>
-.layout{ 
-  display:grid; 
-  grid-template-rows:56px 1fr; 
-  height:100vh 
+.layout {
+  display: grid;
+  grid-template-rows: 56px 1fr;
+  height: 100vh;
 }
-.body{ 
-  display:grid; 
-  grid-template-columns:260px 1fr; 
-  gap:12px;
-  padding:12px 
+.body {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: 12px;
+  padding: 12px;
 }
-.sidebar{ 
-  background:#fff; 
-  border:1px solid #e2e8f0; 
-  border-radius:12px; 
-  padding:8px 
+.sidebar {
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 8px;
 }
-.content{ 
-  background:#fff;
-  border:1px solid #e2e8f0; 
-  border-radius:12px; 
-  padding:12px; 
-  overflow:auto 
+.content {
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 12px;
+  overflow: auto;
 }
 </style>

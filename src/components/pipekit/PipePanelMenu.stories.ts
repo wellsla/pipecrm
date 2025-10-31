@@ -1,7 +1,7 @@
-import type { Meta, StoryObj } from '@storybook/vue3-vite';
-import type { MenuItem } from 'primevue/menuitem';
+import type { Meta, StoryObj } from '@storybook/vue3-vite'
+import type { MenuItem } from 'primevue/menuitem'
 
-import PipePanelMenu from '@/components/pipekit/PipePanelMenu.vue';
+import PipePanelMenu from '@/components/pipekit/PipePanelMenu.vue'
 
 const meta = {
   title: 'PipeKit/PipePanelMenu',
@@ -13,10 +13,10 @@ const meta = {
       control: 'object',
     },
   },
-} satisfies Meta<typeof PipePanelMenu>;
+} satisfies Meta<typeof PipePanelMenu>
 
-export default meta;
-type Story = StoryObj<typeof meta>;
+export default meta
+type Story = StoryObj<typeof meta>
 
 export const Simple: Story = {
   args: {
@@ -35,7 +35,7 @@ export const Simple: Story = {
       },
     ] as MenuItem[],
   },
-};
+}
 
 export const SalesMenu: Story = {
   args: {
@@ -92,7 +92,7 @@ export const SalesMenu: Story = {
       },
     ] as MenuItem[],
   },
-};
+}
 
 export const NestedMenu: Story = {
   args: {
@@ -147,7 +147,7 @@ export const NestedMenu: Story = {
       },
     ] as MenuItem[],
   },
-};
+}
 
 export const WithActions: Story = {
   args: {
@@ -156,7 +156,7 @@ export const WithActions: Story = {
         label: 'Dashboard',
         icon: 'pi pi-home',
         command: () => {
-          alert('Navigate to Dashboard');
+          alert('Navigate to Dashboard')
         },
       },
       {
@@ -167,14 +167,14 @@ export const WithActions: Story = {
             label: 'View All',
             icon: 'pi pi-list',
             command: () => {
-              alert('View All Contacts');
+              alert('View All Contacts')
             },
           },
           {
             label: 'Add New',
             icon: 'pi pi-plus',
             command: () => {
-              alert('Add New Contact');
+              alert('Add New Contact')
             },
           },
         ],
@@ -183,9 +183,9 @@ export const WithActions: Story = {
         label: 'Settings',
         icon: 'pi pi-cog',
         command: () => {
-          alert('Open Settings');
+          alert('Open Settings')
         },
       },
     ] as MenuItem[],
   },
-};
+}

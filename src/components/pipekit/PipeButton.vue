@@ -16,25 +16,25 @@ import './css/button.css'
 export default defineComponent({
   name: 'PipeButton',
   components: {
-    PrimeButton
+    PrimeButton,
   },
   props: {
     label: {
       type: String,
-      default: undefined
+      default: undefined,
     },
     primary: {
       type: Boolean,
-      default: false
+      default: false,
     },
     size: {
       type: String as PropType<'small' | 'medium' | 'large'>,
-      default: 'medium'
+      default: 'medium',
     },
     backgroundColor: {
       type: String,
-      default: undefined
-    }
+      default: undefined,
+    },
   },
   emits: ['click'],
   computed: {
@@ -50,7 +50,7 @@ export default defineComponent({
       return {
         backgroundColor: this.backgroundColor,
       }
-    }
-  }
+    },
+  },
 })
 </script>
