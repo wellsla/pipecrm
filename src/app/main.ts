@@ -11,10 +11,10 @@ import 'primeicons/primeicons.css' //icons
 import '@/assets/tokens.css' //design tokens
 import '@/assets/base.scss' //base styles
 
-import AuthPlugin, { AuthService } from '@/services/auth.service.ts'
+import AuthPlugin, { SupaAuthService } from '@/services/auth.service'
 
 const bootstrap = async () => {
-  const auth = new AuthService()
+  const auth = new SupaAuthService()
   await auth.init()
 
   const app = createApp(App)
