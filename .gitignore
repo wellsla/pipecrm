@@ -32,3 +32,6 @@ docs/
 
 *storybook.log
 storybook-static
+
+# Eslint
+.eslintcache
