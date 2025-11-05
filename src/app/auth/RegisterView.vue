@@ -1,18 +1,86 @@
 <script lang="ts">
-import { defineComponent } from 'vue'
+import PipeInput from '@/components/pipekit/PipeInput.vue'
+import PipePassword from '@/components/pipekit/PipePassword.vue'
+import PipeButton from '@/components/pipekit/PipeButton.vue'
 
-export default defineComponent({
+export default {
   name: 'RegisterView',
+  components: {
+    PipeInput,
+    PipePassword,
+    PipeButton,
+  },
   data() {
     return {
-      message: 'Register View',
+      name: '',
+      email: '',
+      password: '',
+      loading: false,
+      error: '',
+      ok: false,
     }
   },
-})
+  methods: {
+    async signup() {
+      this.loading = true
+      this.error = ''
+      this.ok = false
+
+      try {
+        await this.$auth.signUp(this.email, this.password, this.name)
+        this.ok = true
+      } catch (err: unknown) {
+        this.error = `Erro ao registrar: ${(err as Error).message}`
+      } finally {
+        this.loading = false
+      }
+    },
+    goLogin() {
+      this.$router.push('/auth/login')
+    },
+  },
+}
 </script>
 
 <template>
-  <div style="padding: 24px">{{ message }}</div>
+  <div class="card">
+    <h2>Criar conta</h2>
+    <div class="col">
+      <label for="name">Nome</label>
+      <PipeInput id="name" v-model="name" placeholder="Seu nome completo" />
+      <label for="email">Email</label>
+      <PipeInput id="email" v-model="email" placeholder="voce@empresa.com" />
+      <label for="password">Senha</label>
+      <PipePassword id="password" v-model="password" toggleMask :feedback="false" />
+      <PipeButton :loading="loading" label="Registrar" icon="pi pi-user-plus" @click="signup" />
+      <p v-if="ok" style="color: #065f46">Verifique seu e-mail para confirmar a conta.</p>
+      <p v-if="error" style="color: #b91c1c">{{ error }}</p>
+    </div>
+    <div class="links">
+      <a @click.prevent="goLogin">Já tem uma conta? Faça login</a>
+    </div>
+  </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+h2 {
+  margin-bottom: 12px;
+}
+.col > label {
+  font-size: 12px;
+  color: var(--text-500);
+}
+.p-password,
+.p-inputtext {
+  width: 100%;
+}
+.p-button {
+  width: 100%;
+}
+.p-button + .p-button {
+  margin-top: 8px;
+}
+.links {
+  margin-top: 8px;
+}
+</style>

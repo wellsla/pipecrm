@@ -1,8 +1,7 @@
 <script lang="ts">
-import { defineComponent } from 'vue'
-export default defineComponent({
+export default {
   name: 'PublicLayout',
-})
+}
 </script>
 
 <template>
@@ -14,6 +13,17 @@ export default defineComponent({
 </template>
 
 <style scoped>
+main {
+  display: grid;
+  place-items: center;
+  padding: 24px;
+}
+footer {
+  padding: 12px;
+  text-align: center;
+  color: var(--text-500);
+}
+
 .wrap {
   min-height: 100vh;
   display: grid;
@@ -23,17 +33,17 @@ export default defineComponent({
   padding: 16px;
   font-weight: 700;
   display: flex;
-  gap: 8px;
   align-items: center;
+  gap: 8px;
+  color: var(--text-700);
 }
-main {
-  display: grid;
-  place-items: center;
-  padding: 24px;
+.card {
+  width: 100%;
+  max-width: 440px;
 }
-footer {
-  padding: 12px;
+.links {
+  margin-top: 8px;
   text-align: center;
-  color: #64748b;
+  cursor: pointer;
 }
 </style>

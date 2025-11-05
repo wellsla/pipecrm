@@ -29,7 +29,8 @@ export default defineComponent({
   methods: {
     async doLogout() {
       sessionStorage.setItem('__pipecrm_auth__', '0')
-      await this.$auth.logout()
+      await this.$auth.signOut()
+      this.$router.push('/auth/login')
     },
   },
 })

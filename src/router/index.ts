@@ -7,6 +7,7 @@ import ForgotPasswordView from '@/app/auth/ForgotPasswordView.vue'
 import AuthCallback from '@/app/auth/AuthCallback.vue'
 
 import DefaultLayout from '@/app/layouts/DefaultLayout.vue'
+import HomeView from '@/features/home/HomeView.vue'
 
 const routes: RouteRecordRaw[] = [
   // Public
@@ -22,20 +23,34 @@ const routes: RouteRecordRaw[] = [
     ],
   },
   // Protected
-  { path: '/', component: DefaultLayout, meta: { requiresAuth: true }, children: [] },
+  {
+    path: '/',
+    component: DefaultLayout,
+    meta: { requiresAuth: true },
+    children: [
+      { path: '', redirect: '/home' },
+      { path: 'home', component: HomeView },
+    ],
+  },
 ]
 
 const router = createRouter({ history: createWebHistory(), routes })
 
 router.beforeEach((to) => {
   const authFlag = sessionStorage.getItem('__pipecrm_auth__') === '1'
-  if (to.meta.requiresAuth && !authFlag) {
-    return {
-      path: '/auth/login',
-      query: {
-        redirect: to.fullPath,
-      },
-    }
+
+  const requiresAuth = to.matched.some((record) => record.meta.requiresAuth === true)
+
+  if (requiresAuth && !authFlag) {
+    return { path: '/auth/login', query: { redirect: to.fullPath } }
+  }
+
+  if (to.path.startsWith('/auth') && authFlag) {
+    return { path: '/home' }
+  }
+
+  if (to.path === '/') {
+    return authFlag ? { path: '/home' } : { path: '/auth/login' }
   }
 })
 
