@@ -78,26 +78,3 @@ export default {
     </div>
   </div>
 </template>
-
-<style scoped>
-.card {
-  width: 100%;
-  max-width: 420px;
-  border: 1px solid var(--color-border);
-  border-radius: 12px;
-  background: var(--color-bg);
-  padding: 16px;
-}
-.col {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  margin-top: 8px;
-}
-.links {
-  margin-top: 16px;
-  font-size: 14px;
-  text-align: center;
-  cursor: pointer;
-}
-</style>

@@ -1,8 +1,7 @@
 <script lang="ts">
-import { defineComponent } from 'vue'
-export default defineComponent({
+export default {
   name: 'PublicLayout',
-})
+}
 </script>
 
 <template>
@@ -13,7 +12,18 @@ export default defineComponent({
   </div>
 </template>
 
-<style scoped>
+<style>
+main {
+  display: grid;
+  place-items: center;
+  padding: 24px;
+}
+footer {
+  padding: 12px;
+  text-align: center;
+  color: #64748b;
+}
+
 .wrap {
   min-height: 100vh;
   display: grid;
@@ -26,14 +36,26 @@ export default defineComponent({
   gap: 8px;
   align-items: center;
 }
-main {
-  display: grid;
-  place-items: center;
-  padding: 24px;
+
+/* Auth cards */
+.card {
+  width: 100%;
+  max-width: 420px;
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  background: var(--color-bg);
+  padding: 16px;
 }
-footer {
-  padding: 12px;
+.col {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 8px;
+}
+.links {
+  margin-top: 16px;
+  font-size: 14px;
   text-align: center;
-  color: #64748b;
+  cursor: pointer;
 }
 </style>
