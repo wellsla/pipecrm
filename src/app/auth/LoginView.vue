@@ -14,7 +14,7 @@ export default {
     return {
       email: '',
       password: '',
-      redirect: (this.$route.query.redirect as string) || '/sales',
+      redirect: (this.$route.query.redirect as string) || '/',
       loading: false,
       error: '',
     }
@@ -27,17 +27,15 @@ export default {
         sessionStorage.setItem('__pipecrm_auth__', '0')
         await this.$auth.signInWithPassword(this.email, this.password)
         sessionStorage.setItem('__pipecrm_auth__', '1')
-        this.$router.push(this.redirect)
+        this.$router.replace(this.redirect)
       } catch (err: unknown) {
         this.error = `Erro ao entrar: ${(err as Error).message}`
-        this.loading = false
       } finally {
         this.loading = false
       }
     },
     async loginGoogle() {
       await this.$auth.signInWithGoogle()
-      // Supabase redireciona
     },
     goRegister() {
       this.$router.push('/auth/register')
@@ -78,3 +76,26 @@ export default {
     </div>
   </div>
 </template>
+
+<style scoped>
+h2 {
+  margin-bottom: 12px;
+}
+.col > label {
+  font-size: 12px;
+  color: var(--text-500);
+}
+.p-password,
+.p-inputtext {
+  width: 100%;
+}
+.p-button {
+  width: 100%;
+}
+.p-button + .p-button {
+  margin-top: 8px;
+}
+.links {
+  margin-top: 8px;
+}
+</style>

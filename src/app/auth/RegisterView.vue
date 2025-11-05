@@ -46,12 +46,12 @@ export default {
   <div class="card">
     <h2>Criar conta</h2>
     <div class="col">
-      <label>Nome</label>
-      <PipeInput v-model="name" placeholder="Seu nome completo" />
-      <label>Email</label>
-      <PipeInput v-model="email" placeholder="voce@empresa.com" />
-      <label>Senha</label>
-      <PipePassword v-model="password" placeholder="Digite sua senha" />
+      <label for="name">Nome</label>
+      <PipeInput id="name" v-model="name" placeholder="Seu nome completo" />
+      <label for="email">Email</label>
+      <PipeInput id="email" v-model="email" placeholder="voce@empresa.com" />
+      <label for="password">Senha</label>
+      <PipePassword id="password" v-model="password" toggleMask :feedback="false" />
       <PipeButton :loading="loading" label="Registrar" icon="pi pi-user-plus" @click="signup" />
       <p v-if="ok" style="color: #065f46">Verifique seu e-mail para confirmar a conta.</p>
       <p v-if="error" style="color: #b91c1c">{{ error }}</p>
@@ -61,3 +61,26 @@ export default {
     </div>
   </div>
 </template>
+
+<style scoped>
+h2 {
+  margin-bottom: 12px;
+}
+.col > label {
+  font-size: 12px;
+  color: var(--text-500);
+}
+.p-password,
+.p-inputtext {
+  width: 100%;
+}
+.p-button {
+  width: 100%;
+}
+.p-button + .p-button {
+  margin-top: 8px;
+}
+.links {
+  margin-top: 8px;
+}
+</style>

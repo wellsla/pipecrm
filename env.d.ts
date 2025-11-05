@@ -10,6 +10,12 @@ declare module '@vue/runtime-core' {
   }
 }
 
+declare module 'vue-router' {
+  interface RouteMeta {
+    requiresAuth?: boolean
+  }
+}
+
 declare global {
   interface Window {
     __pipecrm_auth__?: string

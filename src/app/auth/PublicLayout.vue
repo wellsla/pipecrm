@@ -12,7 +12,7 @@ export default {
   </div>
 </template>
 
-<style>
+<style scoped>
 main {
   display: grid;
   place-items: center;
@@ -21,7 +21,7 @@ main {
 footer {
   padding: 12px;
   text-align: center;
-  color: #64748b;
+  color: var(--text-500);
 }
 
 .wrap {
@@ -33,28 +33,16 @@ footer {
   padding: 16px;
   font-weight: 700;
   display: flex;
-  gap: 8px;
   align-items: center;
+  gap: 8px;
+  color: var(--text-700);
 }
-
-/* Auth cards */
 .card {
   width: 100%;
-  max-width: 420px;
-  border: 1px solid var(--color-border);
-  border-radius: 12px;
-  background: var(--color-bg);
-  padding: 16px;
-}
-.col {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  margin-top: 8px;
+  max-width: 440px;
 }
 .links {
-  margin-top: 16px;
-  font-size: 14px;
+  margin-top: 8px;
   text-align: center;
   cursor: pointer;
 }

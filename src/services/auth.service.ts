@@ -42,7 +42,10 @@ export class SupaAuthService {
   }
 
   async signInWithGoogle(): Promise<void> {
-    const { error } = await supabase.auth.signInWithOAuth({ provider: 'google' })
+    const { error } = await supabase.auth.signInWithOAuth({
+      provider: 'google',
+      options: { redirectTo: `${location.origin}/auth/callback` },
+    })
     if (error) throw error
   }
 
@@ -62,8 +65,13 @@ export class SupaAuthService {
 
   async resetPassword(email: string): Promise<void> {
     const { error } = await supabase.auth.resetPasswordForEmail(email, {
-      redirectTo: window.location.origin + '/auth/login',
+      redirectTo: `${location.origin}/auth/login`,
     })
+    if (error) throw error
+  }
+
+  async updatePassword(newPassword: string): Promise<void> {
+    const { error } = await supabase.auth.updateUser({ password: newPassword })
     if (error) throw error
   }
 

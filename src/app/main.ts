@@ -10,6 +10,7 @@ import Lara from '@primeuix/themes/lara' //themes
 import 'primeicons/primeicons.css' //icons
 import '@/assets/tokens.css' //design tokens
 import '@/assets/base.scss' //base styles
+import '@/assets/prime-overrides.scss' //primevue overrides
 
 import AuthPlugin, { SupaAuthService } from '@/services/auth.service'
 

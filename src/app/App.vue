@@ -1,12 +1,5 @@
 <script lang="ts">
-export default {
-  name: 'App',
-  data() {
-    return {
-      ready: false,
-    }
-  },
-}
+export default { name: 'App' }
 </script>
 
 <template>
