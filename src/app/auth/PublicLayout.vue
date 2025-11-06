@@ -12,7 +12,7 @@ export default {
   </div>
 </template>
 
-<style scoped>
+<style>
 main {
   display: grid;
   place-items: center;

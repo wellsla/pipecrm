@@ -49,23 +49,18 @@ export class SupaAuthService {
     if (error) throw error
   }
 
-  async signUp(email: string, password: string, name?: string): Promise<void> {
-    const { data, error } = await supabase.auth.signUp({ email, password })
+  async signUp(email: string, password: string, fullName?: string): Promise<void> {
+    const { error } = await supabase.auth.signUp({
+      email,
+      password,
+      options: { data: { full_name: fullName } },
+    })
     if (error) throw error
-
-    if (data.user?.id) {
-      await supabase.from('profiles').upsert({
-        id: data.user.id,
-        email,
-        name: name || null,
-        avatar_url: null,
-      })
-    }
   }
 
   async resetPassword(email: string): Promise<void> {
     const { error } = await supabase.auth.resetPasswordForEmail(email, {
-      redirectTo: `${location.origin}/auth/login`,
+      redirectTo: `${location.origin}/auth/login?type=recovery`,
     })
     if (error) throw error
   }
@@ -77,6 +72,29 @@ export class SupaAuthService {
 
   async signOut(): Promise<void> {
     const { error } = await supabase.auth.signOut()
+    if (error) throw error
+    sessionStorage.removeItem('__pipecrm_auth__')
+  }
+
+  async getProfile(): Promise<AuthProfile | null> {
+    if (!this._user?.id) return null
+
+    const { data, error } = await supabase
+      .from('profiles')
+      .select('*')
+      .eq('id', this._user.id)
+      .single()
+
+    if (error) return null
+
+    return data
+  }
+
+  async updateProfile(updates: Partial<AuthProfile>): Promise<void> {
+    if (!this._user?.id) throw new Error('Usuário não autenticado')
+
+    const { error } = await supabase.from('profiles').update(updates).eq('id', this._user.id)
+
     if (error) throw error
   }
 }
