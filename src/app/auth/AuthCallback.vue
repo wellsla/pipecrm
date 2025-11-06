@@ -44,7 +44,7 @@ export default {
 
         await this.$auth.init()
 
-        const redirect = (this.$route.query.redirect as string) || '/'
+        const redirect = (this.$route.query.redirect as string) || '/home'
         window.history.replaceState({}, '', '/auth/callback')
         await this.$router.replace(redirect)
       } else {

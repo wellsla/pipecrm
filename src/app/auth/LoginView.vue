@@ -14,7 +14,7 @@ export default {
     return {
       email: '',
       password: '',
-      redirect: (this.$route.query.redirect as string) || '/',
+      redirect: (this.$route.query.redirect as string) || '/home',
       loading: false,
       error: '',
     }
