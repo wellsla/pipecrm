@@ -1,11 +1,9 @@
 <script lang="ts">
-import PipeInput from '@/components/pipekit/PipeInput.vue'
-import PipeButton from '@/components/pipekit/PipeButton.vue'
+import PipeButton from '@/components/ui/button/PipeButton.vue'
 
 export default {
   name: 'ForgotPasswordView',
   components: {
-    PipeInput,
     PipeButton,
   },
   data() {
@@ -38,8 +36,6 @@ export default {
   <div class="card">
     <h2>Recuperar senha</h2>
     <div class="col">
-      <label for="email">Email</label>
-      <PipeInput id="email" v-model="email" placeholder="Digite seu email" />
       <PipeButton label="Enviar email de recuperação" icon="pi pi-envelope" @click="reset" />
       <p v-if="sent" style="color: #065f46">
         Email de recuperação enviado. Verifique sua caixa de entrada.

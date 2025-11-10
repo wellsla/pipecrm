@@ -1,13 +1,9 @@
 <script lang="ts">
-import PipeInput from '@/components/pipekit/PipeInput.vue'
-import PipePassword from '@/components/pipekit/PipePassword.vue'
-import PipeButton from '@/components/pipekit/PipeButton.vue'
+import PipeButton from '@/components/ui/button/PipeButton.vue'
 
 export default {
   name: 'RegisterView',
   components: {
-    PipeInput,
-    PipePassword,
     PipeButton,
   },
   data() {
@@ -46,12 +42,6 @@ export default {
   <div class="card">
     <h2>Criar conta</h2>
     <div class="col">
-      <label for="name">Nome</label>
-      <PipeInput id="name" v-model="name" placeholder="Seu nome completo" />
-      <label for="email">Email</label>
-      <PipeInput id="email" v-model="email" placeholder="voce@empresa.com" />
-      <label for="password">Senha</label>
-      <PipePassword id="password" v-model="password" toggleMask :feedback="false" />
       <PipeButton :loading="loading" label="Registrar" icon="pi pi-user-plus" @click="signup" />
       <p v-if="ok" style="color: #065f46">Verifique seu e-mail para confirmar a conta.</p>
       <p v-if="error" style="color: #b91c1c">{{ error }}</p>
