@@ -2,18 +2,22 @@ import type { Meta, StoryObj } from '@storybook/vue3-vite'
 
 import { fn } from 'storybook/test'
 
-import PipeButton from '@/components/pipekit/PipeButton.vue'
+import PipeButton from '@/components/ui/button/PipeButton.vue'
 
-const meta = {
-  title: 'PipeKit/PipeButton',
+const meta: Meta<typeof PipeButton> = {
+  title: 'Ui/Button/PipeButton',
   component: PipeButton,
   tags: ['autodocs'],
   argTypes: {
+    label: { control: 'text' },
+    icon: { control: 'text' },
+    severity: {
+      control: 'select',
+      options: ['primary', 'secondary', 'success', 'info', 'warning', 'help', 'danger'],
+    },
     size: { control: 'select', options: ['small', 'medium', 'large'] },
-    backgroundColor: { control: 'color' },
   },
   args: {
-    primary: false,
     onClick: fn(),
   },
 } satisfies Meta<typeof PipeButton>
@@ -23,15 +27,15 @@ type Story = StoryObj<typeof meta>
 
 export const Primary: Story = {
   args: {
-    primary: true,
     label: 'Button',
+    severity: 'primary',
   },
 }
 
 export const Secondary: Story = {
   args: {
-    primary: false,
     label: 'Button',
+    severity: 'secondary',
   },
 }
 
@@ -46,5 +50,12 @@ export const Small: Story = {
   args: {
     label: 'Button',
     size: 'small',
+  },
+}
+
+export const Icon: Story = {
+  args: {
+    severity: 'success',
+    icon: 'pi pi-check',
   },
 }

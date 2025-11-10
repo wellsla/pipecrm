@@ -5,12 +5,10 @@ import router from '@/router'
 import App from './App.vue'
 
 import PrimeVue from 'primevue/config'
-import Lara from '@primeuix/themes/lara' //themes
+import PipePreset from '@/assets/pipe-preset' //themes
 
 import 'primeicons/primeicons.css' //icons
-import '@/assets/tokens.css' //design tokens
 import '@/assets/base.scss' //base styles
-import '@/assets/prime-overrides.scss' //primevue overrides
 
 import AuthPlugin, { SupaAuthService } from '@/services/auth.service'
 
@@ -24,7 +22,10 @@ const bootstrap = async () => {
   app.use(PrimeVue, {
     ripple: true,
     theme: {
-      preset: Lara,
+      preset: PipePreset,
+      options: {
+        darkModeSelector: '.app-dark-mode',
+      },
     },
   })
   app.use(AuthPlugin, auth)

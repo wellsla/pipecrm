@@ -1,13 +1,9 @@
 <script lang="ts">
-import PipeInput from '@/components/pipekit/PipeInput.vue'
-import PipePassword from '@/components/pipekit/PipePassword.vue'
-import PipeButton from '@/components/pipekit/PipeButton.vue'
+import PipeButton from '@/components/ui/button/PipeButton.vue'
 
 export default {
   name: 'LoginView',
   components: {
-    PipeInput,
-    PipePassword,
     PipeButton,
   },
   data() {
@@ -51,20 +47,16 @@ export default {
   <div class="card">
     <h2>Entrar</h2>
     <div class="col">
-      <label for="email">Email</label>
-      <PipeInput id="email" v-model="email" placeholder="voce@empresa.com" />
-      <label for="password">Senha</label>
-      <PipePassword id="password" v-model="password" toggleMask :feedback="false" />
       <PipeButton
         :loading="loading"
         label="Entrar"
-        icon="pi pi-sign-in"
-        primary
+        icon="sign-in"
+        severity="primary"
         @click="loginEmail"
       />
       <PipeButton
         label="Entrar com Google"
-        icon="pi pi-google"
+        icon="google"
         severity="secondary"
         @click="loginGoogle"
       />

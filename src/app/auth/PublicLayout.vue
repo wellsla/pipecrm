@@ -1,12 +1,17 @@
 <script lang="ts">
+import PipeHeader from '@/components/header/PipeHeader.vue'
+
 export default {
   name: 'PublicLayout',
+  components: {
+    PipeHeader,
+  },
 }
 </script>
 
 <template>
   <div class="wrap">
-    <header class="brand">PipeCRM</header>
+    <PipeHeader />
     <main><router-view /></main>
     <footer>© {{ new Date().getFullYear() }} PipeCRM</footer>
   </div>
