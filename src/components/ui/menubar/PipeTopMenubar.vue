@@ -1,4 +1,6 @@
 <script lang="ts">
+import type { MenuItem } from 'primevue/menuitem'
+
 import PrimeMenubar from 'primevue/menubar'
 import PipeButton from '@/components/ui/button/PipeButton.vue'
 
@@ -10,7 +12,7 @@ export default {
   },
   props: {
     items: {
-      type: Array,
+      type: Array as () => MenuItem[],
       required: true,
     },
   },
@@ -34,7 +36,7 @@ export default {
       <a v-ripple class="flex items-center" href="#"><span>PipeCRM</span></a>
       <slot name="start" />
     </template>
-    <template #items="{}">
+    <template #item="{}">
       <slot />
     </template>
     <template #end>

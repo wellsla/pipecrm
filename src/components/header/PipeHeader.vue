@@ -1,4 +1,6 @@
 <script lang="ts">
+import type { MenuItem } from 'primevue/menuitem'
+
 import PipeTopMenubar from '../ui/menubar/PipeTopMenubar.vue'
 
 export default {
@@ -6,11 +8,18 @@ export default {
   components: {
     PipeTopMenubar,
   },
+  props: {
+    items: {
+      type: Array as () => MenuItem[],
+      required: false,
+      default: () => [],
+    },
+  },
 }
 </script>
 
 <template>
   <header>
-    <PipeTopMenubar :items="[]" />
+    <PipeTopMenubar :items="items" />
   </header>
 </template>
