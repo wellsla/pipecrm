@@ -12,20 +12,6 @@ const meta = {
     items: {
       control: 'object',
       description: 'Array de itens do menu',
-      // itemTypes: {
-      //   label: { controls: ['text', 'function'] },
-      //   icon: { control: 'text' },
-      //   command: { control: 'function', action: 'command' },
-      //   url: { control: 'text' },
-      //   items: { control: 'object' },
-      //   disabled: { controls: ['boolean', 'function'] },
-      //   visible: { controls: ['boolean', 'function'] },
-      //   target: { control: 'text' },
-      //   separator: { control: 'boolean' },
-      //   style: { control: 'object' },
-      //   class: { control: 'text' },
-      //   key: { control: 'text' },
-      // },
     },
   },
   args: {
@@ -64,39 +50,30 @@ export const WithItems: Story = {
     slots: {
       item: {
         template: `
-          <PipeTopMenubar :items="args.items">
-            <template #item="{ item }">
-              <a v-ripple class="flex items-center cursor-pointer">
-                <span v-if="item.icon" :class="item.icon"></span>
-                <span>{{ item.label }}</span>
-              </a>
-            </template>
-          </PipeTopMenubar>
-      `,
+          <template #item="{ item }">
+            <a v-ripple class="flex items-center cursor-pointer">
+              <span v-if="item.icon" :class="item.icon"></span>
+              <span>{{ item.label }}</span>
+            </a>
+          </template>
+        `,
       },
     },
   },
 }
 
 export const WithLogout: Story = {
-  args: {
-    items: [] as MenuItem[],
-  },
   parameters: {
     slots: {
       end: {
         components: { PipeButton },
-        template: `
-          <PipeTopMenubar :items="args.items">
-            <template #end>
-              <PipeButton
-                size="small"
-                class="ml-2"
-                icon="pi pi-sign-out"
-                @click="console.log('Logout clicked!')"
-              />
-            </template>
-          </PipeTopMenubar>
+        template: `        
+          <PipeButton
+            size="small"
+            class="ml-2"
+            icon="pi pi-sign-out"
+            @click="console.log('Logout clicked!')"
+          />          
         `,
       },
     },

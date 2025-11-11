@@ -24,6 +24,7 @@ const config: StorybookConfig = {
     }
 
     config.server = config.server || {}
+
     config.server.fs = {
       ...(config.server.fs || {}),
       allow: [path.resolve(__dirname, '..')],
