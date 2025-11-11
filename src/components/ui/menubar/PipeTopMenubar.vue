@@ -40,7 +40,11 @@ export default {
       <slot name="item" :item="item" :props="props" :hasSubmenu="hasSubmenu" :root="root" />
     </template>
     <template #end>
-      <PipeButton size="small" :icon="darkMode ? 'pi pi-sun' : 'pi pi-moon'" @click="toggleTheme" />
+      <PipeButton
+        size="small"
+        :icon="{ class: darkMode ? 'pi pi-sun' : 'pi pi-moon' }"
+        @click="toggleTheme"
+      />
       <slot name="end" />
     </template>
   </PrimeMenubar>

@@ -4,7 +4,7 @@ import type { MenuItem } from 'primevue/menuitem'
 import PipeTopMenubar from './PipeTopMenubar.vue'
 import PipeButton from '../button/PipeButton.vue'
 
-const meta = {
+const meta: Meta<typeof PipeTopMenubar> = {
   title: 'Ui/Menubar/PipeTopMenubar',
   component: PipeTopMenubar,
   tags: ['autodocs'],
@@ -71,7 +71,7 @@ export const WithLogout: Story = {
           <PipeButton
             size="small"
             class="ml-2"
-            icon="pi pi-sign-out"
+            :icon="{ class: 'pi pi-sign-out' }"
             @click="console.log('Logout clicked!')"
           />          
         `,

@@ -50,13 +50,13 @@ export default {
       <PipeButton
         :loading="loading"
         label="Entrar"
-        icon="sign-in"
+        :icon="{ class: 'pi pi-sign-in' }"
         severity="primary"
         @click="loginEmail"
       />
       <PipeButton
         label="Entrar com Google"
-        icon="google"
+        :icon="{ class: 'pi pi-google' }"
         severity="secondary"
         @click="loginGoogle"
       />
