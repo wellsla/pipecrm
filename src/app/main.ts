@@ -6,6 +6,7 @@ import App from './App.vue'
 
 import PrimeVue from 'primevue/config'
 import PipePreset from '@/assets/pipe-preset' //themes
+import Ripple from 'primevue/ripple'
 
 import 'primeicons/primeicons.css' //icons
 import '@/assets/base.scss' //base styles
@@ -28,6 +29,7 @@ const bootstrap = async () => {
       },
     },
   })
+  app.directive('ripple', Ripple)
   app.use(AuthPlugin, auth)
   app.mount('#app')
 }

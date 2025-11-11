@@ -1,8 +1,10 @@
+@import 'tailwindcss';
+
 :root {
   /* App palette */
   --pipe-color-text: #3a4b59;
   --pipe-color-border: #b3b4bc;
-  --pipe-color-bg: #fefff4;
+  --pipe-color-bg: #ffffff;
   --pipe-color-heading: #243747;
 
   --pipe-color-primary: #601528;
@@ -18,7 +20,7 @@
 
 .app-dark-mode {
   /* App palette */
-  --pipe-dark-color-text: #f3fff4;
+  --pipe-dark-color-text: #ffffff;
   --pipe-dark-color-border: #1c242b;
   --pipe-dark-color-bg: #3a4b59;
   --pipe-dark-color-heading: #2e3c47;

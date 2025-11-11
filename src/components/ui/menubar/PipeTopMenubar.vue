@@ -31,13 +31,13 @@ export default {
 </script>
 
 <template>
-  <PrimeMenubar :model="items">
+  <PrimeMenubar :model="items" class="rounded-t-none!">
     <template #start>
-      <a v-ripple class="flex items-center" href="#"><span>PipeCRM</span></a>
+      <a v-ripple class="cursor-pointer" href="#"><h1 class="text-xl font-bold">PipeCRM</h1></a>
       <slot name="start" />
     </template>
-    <template #item="{}">
-      <slot />
+    <template #item="{ item, props, hasSubmenu, root }">
+      <slot name="item" :item="item" :props="props" :hasSubmenu="hasSubmenu" :root="root" />
     </template>
     <template #end>
       <PipeButton size="small" :icon="darkMode ? 'pi pi-sun' : 'pi pi-moon'" @click="toggleTheme" />

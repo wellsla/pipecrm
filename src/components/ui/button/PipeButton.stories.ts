@@ -14,6 +14,7 @@ const meta: Meta<typeof PipeButton> = {
     severity: {
       control: 'select',
       options: ['primary', 'secondary', 'success', 'info', 'warning', 'help', 'danger'],
+      defaultValue: 'primary',
     },
     size: { control: 'select', options: ['small', 'medium', 'large'] },
   },
@@ -25,12 +26,7 @@ const meta: Meta<typeof PipeButton> = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-export const Primary: Story = {
-  args: {
-    label: 'Button',
-    severity: 'primary',
-  },
-}
+export const Primary: Story = {}
 
 export const Secondary: Story = {
   args: {

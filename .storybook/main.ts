@@ -13,6 +13,7 @@ const config: StorybookConfig = {
     '@storybook/addon-docs',
     '@storybook/addon-vitest',
     '@chromatic-com/storybook',
+    'storybook-addon-vue-slots',
   ],
   viteFinal: async (config) => {
     config.resolve = config.resolve || {}

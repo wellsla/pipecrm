@@ -4,6 +4,7 @@ import { withThemeByClassName } from '@storybook/addon-themes'
 
 import PrimeVue from 'primevue/config'
 import PipePreset from '@/assets/pipe-preset'
+import Ripple from 'primevue/ripple'
 
 import 'primeicons/primeicons.css'
 import '@/assets/main.css'
@@ -20,6 +21,7 @@ setup((app) => {
       },
     },
   })
+  app.directive('ripple', Ripple)
 })
 
 const preview: Preview = {
