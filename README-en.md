@@ -125,28 +125,35 @@ npx eslint --ext .js,.vue src
 ```
 pipecrm/
 ├── src/
-│   ├── app/                    # Application core
-│   │   ├── layouts/            # Layout components
-│   │   └── App.vue             # Root component
+│   ├── App.vue                 # Root application component
+│   ├── main.ts                 # Application entry point
+│   ├── assets/                 # Static resources and global styles
+│   │   ├── tokens.css          # Design tokens (colors, typography)
+│   │   ├── base.scss           # Base styles and resets
+│   │   └── pipe-preset.ts      # Custom PrimeVue theme preset
+│   ├── components/             # Reusable components
+│   │   ├── header/             # Header component
+│   │   └── ui/                 # Design System (PipeKit)
+│   │       ├── button/         # Button component + stories
+│   │       ├── menubar/        # Menu component + stories
+│   │       └── text/           # Text components + stories
 │   ├── features/               # Feature modules (feature-first)
-│   │   └── [feature]/
-│   │       ├── views/          # Feature pages
-│   │       ├── store/          # Pinia stores
-│   │       ├── services/       # API services
-│   │       └── components/     # Feature components
-│   ├── components/
-│   │   └── pipekit/            # PipeKit Design System (PrimeVue wrappers)
-│   │       ├── PipeButton.vue
-│   │       ├── PipeHeader.vue
-│   │       ├── PipePage.vue
-│   │       ├── PipeMenubar.vue
-│   │       ├── PipePanelMenu.vue
-│   │       ├── PipeInput.vue
-│   │       ├── PipePassword.vue
-│   │       ├── css/            # Component styles
-│   │       └── *.stories.ts    # Storybook stories
+│   │   ├── home/               # Feature: Home/Dashboard
+│   │   └── leads/              # Feature: Leads Management
+│   ├── views/                  # Application pages and layouts
+│   │   ├── auth/               # Authentication pages
+│   │   │   ├── LoginView.vue
+│   │   │   ├── RegisterView.vue
+│   │   │   ├── ForgotPasswordView.vue
+│   │   │   └── AuthCallback.vue
+│   │   └── layouts/            # Page layouts
+│   │       ├── DefaultLayout.vue
+│   │       └── PublicLayout.vue
 │   ├── router/                 # Vue Router configuration
-│   └── stores/                 # Global Pinia stores
+│   │   └── index.ts
+│   └── services/               # API services and integrations
+│       ├── auth.service.ts     # Supabase authentication service
+│       └── supabase.client.ts  # Supabase client
 ├── public/                     # Static assets
 └── .storybook/                 # Storybook configuration
 ```
@@ -162,11 +169,21 @@ PipeKit is our custom design system built on top of PrimeVue, providing:
 
 ### Color Palette
 
-- **Primary Dark**: `#3A4B59` - Main text and UI elements
-- **Secondary Gray**: `#B3B4BC` - Borders and dividers
-- **Background Light**: `#FEFFF4` - Page backgrounds
-- **Accent Red**: `#B8284B` - CTAs and highlights
-- **Deep Blue**: `#243747` - Headings and emphasis
+**Light Mode:**
+
+- **Primary**: `#a02842` (base) - Primary actions and CTAs
+- **Secondary**: `#607d8b` - Secondary elements
+- **Text**: `#3a4b59` - Main text
+- **Background**: `#ffffff` - Page background
+- **Border**: `#b3b4bc` - Borders and dividers
+
+**Dark Mode:**
+
+- **Primary**: `#d94771` (base) - Primary actions (lighter)
+- **Secondary**: `#37474f` - Secondary elements
+- **Text**: `#ffffff` - Main text
+- **Background**: `#3a4b59` - Page background
+- **Border**: `#1c242b` - Borders and dividers
 
 ## Development Workflow
 
