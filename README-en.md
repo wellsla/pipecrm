@@ -20,7 +20,7 @@ A modern CRM application built with Vue 3, TypeScript, and PrimeVue following fe
 - **PrimeVue + PrimeIcons** - UI component library (Lara theme + custom tokens)
 - **PipeKit** - Custom PrimeVue wrappers documented in Storybook (stories colocated next to components)
 - **ESLint + Prettier** - Code linting and formatting
-- **Husky + lint-staged** - Pre-commit hooks
+- Pre-commit hooks: run linters/formatters manually or via CI
 - **Conventional Commits** - Standardized commit messages
 - **Vitest** - Unit testing with browser mode
 
@@ -89,7 +89,6 @@ Stories are colocated with PipeKit components under `src/components/pipekit` usi
 | `npm run format`          | Format code with Prettier           |
 | `npm run storybook`       | Start Storybook dev server          |
 | `npm run build-storybook` | Build Storybook for deployment      |
-| `npm run prepare`         | Setup Husky git hooks               |
 
 ### Quality Assurance Commands
 
@@ -107,26 +106,20 @@ npm run type-check
 npm run lint && npm run format && npm run type-check
 ```
 
-### Husky & Lint-Staged
 
-Pre-commit hooks are automatically configured via Husky. To manually trigger:
+### Pre-commit hooks
+
+Pre-commit hooks were removed from the repository. Run checks locally or in CI:
 
 ```bash
-# Initialize Husky (runs automatically after npm install)
-npm run prepare
+# Run linters and formatters manually
+npm run lint
+npm run format
+npm run type-check
 
-# Test lint-staged manually
-npx lint-staged
-
-# Skip pre-commit hooks (not recommended)
-git commit --no-verify -m "commit message"
+# Or run eslint manually
+npx eslint --ext .js,.vue src
 ```
-
-**What runs on commit:**
-
-- ESLint auto-fix on `.ts, .tsx, .vue, .js, .jsx, .json, .md, .css, .scss` files
-- Prettier formatting on staged files
-- Stylelint fix on `.css` files
 
 ## Project Structure
 

@@ -22,7 +22,7 @@ Uma aplicação CRM moderna construída com Vue 3, TypeScript e PrimeVue seguind
 - **PrimeVue + PrimeIcons** - Biblioteca de componentes UI (tema Lara + tokens customizados)
 - **PipeKit** - Wrappers customizados do PrimeVue documentados no Storybook (stories colocadas junto aos componentes)
 - **ESLint + Prettier** - Linting e formatação de código
-- **Husky + lint-staged** - Hooks de pré-commit
+- Pre-commit hooks: run linters/formatters manually or via CI
 - **Conventional Commits** - Mensagens de commit padronizadas
 - **Vitest** - Testes unitários com modo browser
 
@@ -91,7 +91,6 @@ As stories são colocadas junto aos componentes PipeKit em `src/components/pipek
 | `npm run format`          | Formata código com Prettier                     |
 | `npm run storybook`       | Inicia servidor de desenvolvimento do Storybook |
 | `npm run build-storybook` | Faz build do Storybook para deploy              |
-| `npm run prepare`         | Configura git hooks do Husky                    |
 
 ### Comandos de Garantia de Qualidade
 
@@ -109,26 +108,20 @@ npm run type-check
 npm run lint && npm run format && npm run type-check
 ```
 
-### Husky & Lint-Staged
 
-Os hooks de pré-commit são configurados automaticamente via Husky. Para acionar manualmente:
+### Pre-commit hooks
+
+Hooks de pré-commit foram removidos do repositório. Execute as verificações localmente ou configure-as no seu CI:
 
 ```bash
-# Inicializar Husky (executa automaticamente após npm install)
-npm run prepare
+# Run linters and formatters manually
+npm run lint
+npm run format
+npm run type-check
 
-# Testar lint-staged manualmente
-npx lint-staged
-
-# Pular hooks de pré-commit (não recomendado)
-git commit --no-verify -m "mensagem de commit"
+# Or run linting only on changed files with npx (manual)
+npx eslint --ext .js,.vue src
 ```
-
-**O que é executado no commit:**
-
-- ESLint auto-correção em arquivos `.ts, .tsx, .vue, .js, .jsx, .json, .md, .css, .scss`
-- Formatação Prettier em arquivos staged
-- Correção Stylelint em arquivos `.css`
 
 ## Estrutura do Projeto
 
