@@ -42,7 +42,12 @@ export default {
   <div class="card">
     <h2>Criar conta</h2>
     <div class="col">
-      <PipeButton :loading="loading" label="Registrar" icon="pi pi-user-plus" @click="signup" />
+      <PipeButton
+        :loading="loading"
+        label="Registrar"
+        :icon="{ class: 'pi pi-user-plus' }"
+        @click="signup"
+      />
       <p v-if="ok" style="color: #065f46">Verifique seu e-mail para confirmar a conta.</p>
       <p v-if="error" style="color: #b91c1c">{{ error }}</p>
     </div>

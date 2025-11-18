@@ -1,12 +1,12 @@
 import { createRouter, createWebHistory, type RouteRecordRaw } from 'vue-router'
 
-import PublicLayout from '@/app/auth/PublicLayout.vue'
-import LoginView from '@/app/auth/LoginView.vue'
-import RegisterView from '@/app/auth/RegisterView.vue'
-import ForgotPasswordView from '@/app/auth/ForgotPasswordView.vue'
-import AuthCallback from '@/app/auth/AuthCallback.vue'
+import PublicLayout from '@/views/layouts/PublicLayout.vue'
+import LoginView from '@/views/auth/LoginView.vue'
+import RegisterView from '@/views/auth/RegisterView.vue'
+import ForgotPasswordView from '@/views/auth/ForgotPasswordView.vue'
+import AuthCallback from '@/views/auth/AuthCallback.vue'
 
-import DefaultLayout from '@/app/layouts/DefaultLayout.vue'
+import DefaultLayout from '@/views/layouts/DefaultLayout.vue'
 import HomeView from '@/features/home/HomeView.vue'
 
 const routes: RouteRecordRaw[] = [

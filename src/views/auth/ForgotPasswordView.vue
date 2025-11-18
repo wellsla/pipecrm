@@ -36,7 +36,11 @@ export default {
   <div class="card">
     <h2>Recuperar senha</h2>
     <div class="col">
-      <PipeButton label="Enviar email de recuperação" icon="pi pi-envelope" @click="reset" />
+      <PipeButton
+        label="Enviar email de recuperação"
+        :icon="{ class: 'pi pi-envelope' }"
+        @click="reset"
+      />
       <p v-if="sent" style="color: #065f46">
         Email de recuperação enviado. Verifique sua caixa de entrada.
       </p>
