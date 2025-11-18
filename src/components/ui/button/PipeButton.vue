@@ -1,104 +1,74 @@
-<script lang="ts">
-import type { PropType } from 'vue'
+<script setup lang="ts">
+import { computed, useAttrs } from 'vue'
+
 import PrimeButton from 'primevue/button'
 
-export default {
-  name: 'PipeButton',
-  components: {
-    PrimeButton,
-  },
-  props: {
-    label: {
-      type: String,
-      default: undefined,
-    },
-    icon: {
-      type: Object as PropType<{ class: string; position?: 'left' | 'right' | 'top' | 'bottom' }>,
-      default: undefined,
-    },
-    severity: {
-      type: String as PropType<
-        'primary' | 'secondary' | 'success' | 'info' | 'warn' | 'danger' | 'help' | 'contrast'
-      >,
-      default: 'primary',
-    },
-    variant: {
-      type: String as PropType<'text' | 'outlined' | 'link'>,
-      default: undefined,
-    },
-    size: {
-      type: String as PropType<'small' | 'large'>,
-      default: undefined,
-    },
-    badge: {
-      type: Object as PropType<{
-        value: string
-        severity?:
-          | 'primary'
-          | 'secondary'
-          | 'success'
-          | 'info'
-          | 'warn'
-          | 'danger'
-          | 'help'
-          | 'contrast'
-      }>,
-      default: undefined,
-    },
-    externalLink: {
-      type: Boolean,
-      default: false,
-    },
-    condition: {
-      type: String as PropType<'loading' | 'disabled' | 'raised' | 'rounded' | 'asChild'>,
-      default: undefined,
-    },
-    href: {
-      type: String,
-      default: undefined,
-    },
-  },
-  emits: ['click'],
-  computed: {
-    isLoading() {
-      return this.condition === 'loading' ? true : false
-    },
-    isDisabled() {
-      return this.condition === 'disabled' ? true : false
-    },
-    isRaised() {
-      return this.condition === 'raised' ? true : false
-    },
-    isRounded() {
-      return this.condition === 'rounded' ? true : false
-    },
-    isAsChild() {
-      return this.condition === 'asChild' ? true : false
-    },
-  },
+interface PipeButtonProps {
+  label?: string
+  icon?: { class: string; position?: 'left' | 'right' | 'top' | 'bottom' }
+  severity?: 'primary' | 'secondary' | 'success' | 'info' | 'warn' | 'danger' | 'help' | 'contrast'
+  variant?: 'text' | 'outlined' | 'link'
+  size?: 'small' | 'large'
+  badge?: {
+    value: string
+    severity?:
+      | 'primary'
+      | 'secondary'
+      | 'success'
+      | 'info'
+      | 'warn'
+      | 'danger'
+      | 'help'
+      | 'contrast'
+  }
+  externalLink?: boolean
+  condition?: 'loading' | 'disabled' | 'raised' | 'rounded' | 'asChild'
+  href?: string
 }
+
+const props = defineProps<PipeButtonProps>()
+const propsWithDefaults = withDefaults(props, {
+  severity: 'primary',
+  externalLink: false,
+})
+
+const emits = defineEmits<{
+  (e: 'click', event: MouseEvent): void
+}>()
+
+const attrs = useAttrs()
+
+const handleClick = (event: MouseEvent) => {
+  emits('click', event)
+}
+
+const isLoading = computed(() => props.condition === 'loading')
+const isDisabled = computed(() => props.condition === 'disabled')
+const isRaised = computed(() => props.condition === 'raised')
+const isRounded = computed(() => props.condition === 'rounded')
+const isAsChild = computed(() => props.condition === 'asChild')
 </script>
 
 <template>
   <PrimeButton
-    v-bind="$attrs"
-    :label="label"
-    :icon="icon?.class"
-    :icon-pos="icon?.position"
-    :severity="severity"
-    :variant="variant"
-    :size="size"
-    :badge="badge?.value"
-    :badge-severity="badge?.severity"
-    :href="href"
-    :as="externalLink ? 'a' : undefined"
-    :rel="externalLink ? 'noopener' : undefined"
+    v-bind="attrs"
+    :label="propsWithDefaults.label"
+    :icon="propsWithDefaults.icon?.class"
+    :icon-pos="propsWithDefaults.icon?.position"
+    :severity="propsWithDefaults.severity"
+    :variant="propsWithDefaults.variant"
+    :size="propsWithDefaults.size"
+    :badge="propsWithDefaults.badge?.value"
+    :badge-severity="propsWithDefaults.badge?.severity"
+    :href="propsWithDefaults.href"
+    :as="propsWithDefaults.externalLink ? 'a' : undefined"
+    :rel="propsWithDefaults.externalLink ? 'noopener' : undefined"
     :loading="isLoading"
     :disabled="isDisabled"
     :raised="isRaised"
     :rounded="isRounded"
     :as-child="isAsChild"
-    @click="$emit('click', $event)"
+    @click="handleClick"
   >
     <slot />
   </PrimeButton>

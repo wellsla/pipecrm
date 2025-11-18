@@ -1,25 +1,20 @@
-<script lang="ts">
+<script setup lang="ts">
 import type { MenuItem } from 'primevue/menuitem'
 
 import PipeTopMenubar from '../ui/menubar/PipeTopMenubar.vue'
 
-export default {
-  name: 'PipeHeader',
-  components: {
-    PipeTopMenubar,
-  },
-  props: {
-    items: {
-      type: Array as () => MenuItem[],
-      required: false,
-      default: () => [],
-    },
-  },
+interface PipeHeaderProps {
+  items?: MenuItem[]
 }
+
+const props = defineProps<PipeHeaderProps>()
+const propsWithDefaults = withDefaults(props, {
+  items: () => [] as MenuItem[],
+})
 </script>
 
 <template>
   <header>
-    <PipeTopMenubar :items="items" />
+    <PipeTopMenubar :items="propsWithDefaults.items" />
   </header>
 </template>

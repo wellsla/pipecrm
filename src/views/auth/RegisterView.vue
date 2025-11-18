@@ -1,81 +1,66 @@
-<script lang="ts">
+<script setup lang="ts">
+import { reactive } from 'vue'
+import { useRouter } from 'vue-router'
+
 import PipeButton from '@/components/ui/button/PipeButton.vue'
 
-export default {
-  name: 'RegisterView',
-  components: {
-    PipeButton,
-  },
-  data() {
-    return {
-      name: '',
-      email: '',
-      password: '',
-      loading: false,
-      error: '',
-      ok: false,
-    }
-  },
-  methods: {
-    async signup() {
-      this.loading = true
-      this.error = ''
-      this.ok = false
+interface RegisterForm {
+  email: string
+  password: string
+  isLoading: boolean
+  message: string
+  status?: 'success' | 'error'
+}
 
-      try {
-        await this.$auth.signUp(this.email, this.password, this.name)
-        this.ok = true
-      } catch (err: unknown) {
-        this.error = `Erro ao registrar: ${(err as Error).message}`
-      } finally {
-        this.loading = false
-      }
-    },
-    goLogin() {
-      this.$router.push('/auth/login')
-    },
-  },
+const router = useRouter()
+
+const registerForm = reactive<RegisterForm>({
+  email: '',
+  password: '',
+  isLoading: false,
+  message: '',
+  status: undefined,
+})
+
+const signUp = async () => {
+  registerForm.isLoading = true
+  registerForm.message = ''
+  registerForm.status = undefined
+
+  try {
+    await new Promise((resolve) => setTimeout(resolve, 1000)) // Simula chamada assíncrona
+    registerForm.status = 'success'
+    registerForm.message = 'Verifique seu e-mail para confirmar sua conta.'
+  } catch (error) {
+    const errorMessage = (error as Error).message
+    registerForm.status = 'error'
+    registerForm.message = `Ocorreu um erro ao criar a conta: ${errorMessage}`
+  } finally {
+    registerForm.isLoading = false
+  }
+}
+
+const goLogin = () => {
+  router.push(router.currentRoute.value.query.redirect as string)
 }
 </script>
 
 <template>
-  <div class="card">
+  <div>
     <h2>Criar conta</h2>
-    <div class="col">
+    <div>
       <PipeButton
-        :loading="loading"
+        :loading="registerForm.isLoading"
         label="Registrar"
         :icon="{ class: 'pi pi-user-plus' }"
-        @click="signup"
+        @click="signUp"
       />
-      <p v-if="ok" style="color: #065f46">Verifique seu e-mail para confirmar a conta.</p>
-      <p v-if="error" style="color: #b91c1c">{{ error }}</p>
+      <p v-if="registerForm.status">
+        {{ registerForm.message }}
+      </p>
     </div>
-    <div class="links">
+    <div>
       <a @click.prevent="goLogin">Já tem uma conta? Faça login</a>
     </div>
   </div>
 </template>
-
-<style scoped>
-h2 {
-  margin-bottom: 12px;
-}
-.col > label {
-  font-size: 12px;
-  color: var(--text-500);
-}
-.p-password,
-.p-inputtext {
-  width: 100%;
-}
-.p-button {
-  width: 100%;
-}
-.p-button + .p-button {
-  margin-top: 8px;
-}
-.links {
-  margin-top: 8px;
-}
-</style>

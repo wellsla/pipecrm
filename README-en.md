@@ -20,7 +20,7 @@ A modern CRM application built with Vue 3, TypeScript, and PrimeVue following fe
 - **PrimeVue + PrimeIcons** - UI component library (Lara theme + custom tokens)
 - **PipeKit** - Custom PrimeVue wrappers documented in Storybook (stories colocated next to components)
 - **ESLint + Prettier** - Code linting and formatting
-- Pre-commit hooks: run linters/formatters manually or via CI
+- **Pre-commit hooks:** - Run linters/formatters manually or via CI
 - **Conventional Commits** - Standardized commit messages
 - **Vitest** - Unit testing with browser mode
 
@@ -133,22 +133,19 @@ pipecrm/
 │   │   └── pipe-preset.ts      # Custom PrimeVue theme preset
 │   ├── components/             # Reusable components
 │   │   ├── header/             # Header component
-│   │   └── ui/                 # Design System (PipeKit)
-│   │       ├── button/         # Button component + stories
-│   │       ├── menubar/        # Menu component + stories
-│   │       └── text/           # Text components + stories
-│   ├── features/               # Feature modules (feature-first)
-│   │   ├── home/               # Feature: Home/Dashboard
-│   │   └── leads/              # Feature: Leads Management
+│   │   └── ui/                 # Design System (components + stories)
+│   │       ├── button/
+│   │       ├── menubar/
+│   │       └── text/
+│   ├── composables/            # Reusable Vue 3 composables
+│   ├── stores/                 # Pinia stores (organized by domain/feature)
+│   │   ├── modules/            # Module-based stores
+│   │   └── index.ts            # Store registration
 │   ├── views/                  # Application pages and layouts
 │   │   ├── auth/               # Authentication pages
-│   │   │   ├── LoginView.vue
-│   │   │   ├── RegisterView.vue
-│   │   │   ├── ForgotPasswordView.vue
-│   │   │   └── AuthCallback.vue
+│   │   ├── features/           # Feature modules (feature-first)
+│   │   │   └── home/
 │   │   └── layouts/            # Page layouts
-│   │       ├── DefaultLayout.vue
-│   │       └── PublicLayout.vue
 │   ├── router/                 # Vue Router configuration
 │   │   └── index.ts
 │   └── services/               # API services and integrations

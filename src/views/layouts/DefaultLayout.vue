@@ -1,99 +1,64 @@
-<script lang="ts">
-import { defineComponent } from 'vue'
+<script setup lang="ts">
+import { ref, reactive } from 'vue'
+import { useRouter } from 'vue-router'
 
-export default defineComponent({
-  name: 'DefaultLayout',
-  components: {},
-  data() {
-    return {
-      sidebarOpen: true,
-      menu: [
-        {
-          label: 'Vendas',
-          icon: 'pi pi-chart-line',
-          items: [
-            {
-              label: 'Pipelines',
-              icon: 'pi pi-columns',
-              command: () => this.$router.push('/sales'),
-            },
-            { label: 'Leads', icon: 'pi pi-columns', command: () => this.$router.push('/leads') },
-          ],
-        },
-      ],
-    }
+interface MenuItem {
+  label: string
+  icon: string
+  items?: MenuItem[]
+  command?: () => void
+}
+
+const router = useRouter()
+
+const sidebarOpen = ref<boolean>(true)
+const menu = reactive<MenuItem[]>([
+  {
+    label: 'Vendas',
+    icon: 'pi pi-chart-line',
+    items: [
+      {
+        label: 'Pipelines',
+        icon: 'pi pi-columns',
+        command: () => router.push('/sales'),
+      },
+      {
+        label: 'Leads',
+        icon: 'pi pi-columns',
+        command: () => router.push('/leads'),
+      },
+    ],
   },
-  computed: {
-    userName(): string {
-      return this.$auth.user?.user_metadata?.name ?? this.$auth.user?.email ?? 'Usuário'
-    },
-  },
-  methods: {
-    async doLogout() {
-      sessionStorage.setItem('__pipecrm_auth__', '0')
-      await this.$auth.signOut()
-      this.$router.replace('/auth/login')
-    },
-  },
-  created() {
-    const saved = localStorage.getItem('pipecrm-theme') || 'light'
-    document.documentElement.setAttribute('data-theme', saved)
-  },
-})
+])
 </script>
 
 <template>
-  <div class="layout">
-    <header class="topbar"></header>
-    <div class="body">
-      <aside v-show="sidebarOpen" class="sidebar"></aside>
+  <div>
+    <header></header>
+    <div>
+      <!-- Temporário, apenas para testes -->
+      <aside v-show="sidebarOpen">
+        <nav>
+          <ul>
+            <li v-for="section in menu" :key="section.label">
+              <div>
+                <i :class="section.icon"></i>
+                <span>{{ section.label }}</span>
+              </div>
+              <ul>
+                <li v-for="item in section.items" :key="item.label" @click="item.command">
+                  <i :class="item.icon"></i>
+                  <span>{{ item.label }}</span>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </nav>
+      </aside>
+      <!--  -->
     </div>
-    <main class="content">
+    <main>
       <router-view />
     </main>
   </div>
 </template>
-
-<style scoped>
-.layout {
-  display: grid;
-  grid-template-rows: 56px 1fr;
-  height: 100vh;
-}
-.topbar :deep(.p-menubar) {
-  border: none;
-  border-radius: 0;
-  box-shadow: var(--shadow-sm);
-}
-.body {
-  display: grid;
-  grid-template-columns: 260px 1fr;
-  gap: 12px;
-  padding: 12px;
-}
-.sidebar {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 8px;
-}
-.content {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 16px;
-  overflow: auto;
-}
-.user {
-  margin-right: 8px;
-  color: var(--text-700);
-}
-@media (max-width: 1024px) {
-  .body {
-    grid-template-columns: 1fr;
-  }
-  .sidebar {
-    display: none;
-  }
-}
-</style>

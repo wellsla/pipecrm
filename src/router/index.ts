@@ -4,10 +4,10 @@ import PublicLayout from '@/views/layouts/PublicLayout.vue'
 import LoginView from '@/views/auth/LoginView.vue'
 import RegisterView from '@/views/auth/RegisterView.vue'
 import ForgotPasswordView from '@/views/auth/ForgotPasswordView.vue'
-import AuthCallback from '@/views/auth/AuthCallback.vue'
+import AuthCallback from '@/views/auth/AuthCallbackView.vue'
 
 import DefaultLayout from '@/views/layouts/DefaultLayout.vue'
-import HomeView from '@/features/home/HomeView.vue'
+import HomeView from '@/views/features/home/HomeView.vue'
 
 const routes: RouteRecordRaw[] = [
   // Public

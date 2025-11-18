@@ -22,7 +22,7 @@ Uma aplicação CRM moderna construída com Vue 3, TypeScript e PrimeVue seguind
 - **PrimeVue + PrimeIcons** - Biblioteca de componentes UI (tema Lara + tokens customizados)
 - **PipeKit** - Wrappers customizados do PrimeVue documentados no Storybook (stories colocadas junto aos componentes)
 - **ESLint + Prettier** - Linting e formatação de código
-- Pre-commit hooks: run linters/formatters manually or via CI
+- **Pre-commit hooks** - Rode linters/formatadores manualmente ou via CI
 - **Conventional Commits** - Mensagens de commit padronizadas
 - **Vitest** - Testes unitários com modo browser
 
@@ -135,22 +135,19 @@ pipecrm/
 │   │   └── pipe-preset.ts      # Preset de tema PrimeVue customizado
 │   ├── components/             # Componentes reutilizáveis
 │   │   ├── header/             # Componente de cabeçalho
-│   │   └── ui/                 # Sistema de Design (PipeKit)
-│   │       ├── button/         # Componente de botão + stories
-│   │       ├── menubar/        # Componente de menu + stories
-│   │       └── text/           # Componentes de texto + stories
-│   ├── features/               # Módulos de funcionalidades (feature-first)
-│   │   ├── home/               # Feature: Home/Dashboard
-│   │   └── leads/              # Feature: Gestão de Leads
+│   │   └── ui/                 # Sistema de Design (componentes + stories)
+│   │       ├── button/
+│   │       ├── menubar/
+│   │       └── text/
+│   ├── composables/            # Composables Vue 3 reutilizáveis
+│   ├── stores/                 # Stores Pinia (organizadas por domínio/feature)
+│   │   ├── modules/            # Stores organizadas por módulos
+│   │   └── index.ts            # Registro das stores
 │   ├── views/                  # Páginas e layouts da aplicação
 │   │   ├── auth/               # Páginas de autenticação
-│   │   │   ├── LoginView.vue
-│   │   │   ├── RegisterView.vue
-│   │   │   ├── ForgotPasswordView.vue
-│   │   │   └── AuthCallback.vue
+│   │   ├── features/           # Módulos de funcionalidades (feature-first)
+│   │   │   └── home/
 │   │   └── layouts/            # Layouts de página
-│   │       ├── DefaultLayout.vue
-│   │       └── PublicLayout.vue
 │   ├── router/                 # Configuração do Vue Router
 │   │   └── index.ts
 │   └── services/               # Serviços de API e integrações
