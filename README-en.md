@@ -106,7 +106,6 @@ npm run type-check
 npm run lint && npm run format && npm run type-check
 ```
 
-
 ### Pre-commit hooks
 
 Pre-commit hooks were removed from the repository. Run checks locally or in CI:
