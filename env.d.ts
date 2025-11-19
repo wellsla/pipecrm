@@ -22,4 +22,11 @@ declare global {
   }
 }
 
+// Allow importing css/scss/etc in TypeScript (side-effect imports)
+declare module '*.css'
+declare module '*.scss'
+declare module '*.sass'
+declare module '*.less'
+declare module '*.svg'
+
 export {}
