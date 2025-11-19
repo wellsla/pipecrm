@@ -384,15 +384,6 @@ Automated checks before each commit:
 - **Stylelint** - Lints and fixes CSS/SCSS
 - **Type checking** - Validates TypeScript (manual check recommended)
 
-**Configured via lint-staged:**
-
-```json
-{
-  "*.{ts,tsx,vue,js,jsx,json,md,css,scss}": ["eslint --fix", "prettier --write"],
-  "*.css": "stylelint --fix"
-}
-```
-
 ## IDE Setup
 
 **Recommended:**

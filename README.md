@@ -114,12 +114,12 @@ npm run lint && npm run format && npm run type-check
 Hooks de pré-commit foram removidos do repositório. Execute as verificações localmente ou configure-as no seu CI:
 
 ```bash
-# Run linters and formatters manually
+# Rodar todas as verificações manualmente
 npm run lint
 npm run format
 npm run type-check
 
-# Or run linting only on changed files with npx (manual)
+# Ou rodar linting apenas nos arquivos modificados com npx (manual)
 npx eslint --ext .js,.vue src
 ```
 
@@ -387,15 +387,6 @@ Verificações automatizadas antes de cada commit:
 - **Prettier** - Formata código consistentemente
 - **Stylelint** - Faz lint e correção de CSS/SCSS
 - **Verificação de tipos** - Valida TypeScript (verificação manual recomendada)
-
-**Configurado via lint-staged:**
-
-```json
-{
-  "*.{ts,tsx,vue,js,jsx,json,md,css,scss}": ["eslint --fix", "prettier --write"],
-  "*.css": "stylelint --fix"
-}
-```
 
 ## Configuração do IDE
 
