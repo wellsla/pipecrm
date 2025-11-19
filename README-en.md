@@ -6,7 +6,7 @@ A modern CRM application built with Vue 3, TypeScript, and PrimeVue following fe
 
 ### Core
 
-- **Vue 3** (Options API) - Progressive JavaScript framework
+- **Vue 3** (Composition API) - Progressive JavaScript framework
 - **TypeScript** - Type safety and better developer experience
 - **Vite** - Fast build tool and dev server
 
