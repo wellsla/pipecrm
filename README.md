@@ -24,7 +24,6 @@ Uma aplicação CRM moderna construída com Vue 3, TypeScript e PrimeVue seguind
 - **ESLint + Prettier** - Linting e formatação de código
 - **Pre-commit hooks** - Rode linters/formatadores manualmente ou via CI
 - **Conventional Commits** - Mensagens de commit padronizadas
-- **Vitest** - Testes unitários com modo browser
 
 ## Princípios de Arquitetura
 
@@ -220,9 +219,6 @@ git commit -m ":ok_hand: style: formata código com prettier"
 
 # Refatoração
 git commit -m ":recycle: refactor: reorganiza estrutura das stores"
-
-# Testes
-git commit -m ":test_tube: test: adiciona testes unitários para service de usuário"
 
 # Configuração/dependências
 git commit -m ":wrench: chore: atualiza dependências"
