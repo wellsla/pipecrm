@@ -2,7 +2,7 @@ import { definePreset } from '@primeuix/themes'
 
 import Lara from '@primeuix/themes/lara' //themes
 
-import '@/assets/main.css' // custom global styles
+import '@/assets/tokens.css' // custom global styles
 
 export default definePreset(Lara, {
   semantic: {

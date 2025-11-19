@@ -78,6 +78,15 @@ O Storybook estará disponível em `http://localhost:6006/`
 
 As stories são colocadas junto aos componentes PipeKit em `src/components/pipekit` usando `*.stories.ts`.
 
+Nota: se você encontrar um erro do tipo "ERESOLVE could not resolve" ao instalar dependências por conta de `storybook-addon-vue-slots` (peer dependency exigindo uma versão antiga do Storybook), você pode contornar o problema com:
+
+```bash
+# Instala ignorando conflitos de peer dependencies (recomendado apenas como workaround temporário)
+npm install --legacy-peer-deps
+```
+
+Após a instalação, rode `npm run storybook` para validar que as stories funcionam conforme esperado.
+
 ## Scripts
 
 | Comando                   | Descrição                                       |

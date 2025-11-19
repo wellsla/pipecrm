@@ -7,14 +7,13 @@ interface PipeHeaderProps {
   items?: MenuItem[]
 }
 
-const props = defineProps<PipeHeaderProps>()
-const propsWithDefaults = withDefaults(props, {
+const props = withDefaults(defineProps<PipeHeaderProps>(), {
   items: () => [] as MenuItem[],
 })
 </script>
 
 <template>
   <header>
-    <PipeTopMenubar :items="propsWithDefaults.items" />
+    <PipeTopMenubar :items="props.items" />
   </header>
 </template>

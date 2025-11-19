@@ -37,20 +37,20 @@ const routes: RouteRecordRaw[] = [
 const router = createRouter({ history: createWebHistory(), routes })
 
 router.beforeEach((to) => {
-  const authFlag = sessionStorage.getItem('__pipecrm_auth__') === '1'
+  const isAuthenticated = sessionStorage.getItem('__pipecrm_auth__') === '1'
 
   const requiresAuth = to.matched.some((record) => record.meta.requiresAuth === true)
 
-  if (requiresAuth && !authFlag) {
+  if (requiresAuth && !isAuthenticated) {
     return { path: '/auth/login', query: { redirect: to.fullPath } }
   }
 
-  if (to.path.startsWith('/auth') && authFlag) {
+  if (to.path.startsWith('/auth') && isAuthenticated) {
     return { path: '/home' }
   }
 
   if (to.path === '/') {
-    return authFlag ? { path: '/home' } : { path: '/auth/login' }
+    return isAuthenticated ? { path: '/home' } : { path: '/auth/login' }
   }
 })
 

@@ -7,7 +7,7 @@ import PipePreset from '@/assets/pipe-preset'
 import Ripple from 'primevue/ripple'
 
 import 'primeicons/primeicons.css'
-import '@/assets/main.css'
+import '@/assets/tokens.css'
 import '@/assets/base.scss'
 
 setup((app) => {

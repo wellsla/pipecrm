@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { reactive } from 'vue'
-import { useRouter } from 'vue-router'
+import { useRouter, useRoute } from 'vue-router'
 
 import PipeButton from '@/components/ui/button/PipeButton.vue'
 
@@ -13,6 +13,7 @@ interface RegisterForm {
 }
 
 const router = useRouter()
+const route = useRoute()
 
 const registerForm = reactive<RegisterForm>({
   email: '',
@@ -41,7 +42,7 @@ const signUp = async () => {
 }
 
 const goLogin = () => {
-  router.push(router.currentRoute.value.query.redirect as string)
+  router.push(route.redirectedFrom?.fullPath as string)
 }
 </script>
 

@@ -20,8 +20,7 @@ interface PipeInputTextProps {
   }
 }
 
-const props = defineProps<PipeInputTextProps>()
-const propsWithDefaults = withDefaults(props, {
+const props = withDefaults(defineProps<PipeInputTextProps>(), {
   type: 'text',
 })
 
@@ -30,26 +29,26 @@ const modelValue = defineModel<string>({ default: '' })
 const attrs = useAttrs()
 
 const wrapper = computed(() => {
-  if (propsWithDefaults.iftaLabel) {
+  if (props.iftaLabel) {
     return PrimeIftaLabel
-  } else if (propsWithDefaults.floatLabel) {
+  } else if (props.floatLabel) {
     return PrimeFloatLabel
   }
   return 'div'
 })
 
 const wrapperProps = computed(() => {
-  if (propsWithDefaults.floatLabel) {
-    return { variant: propsWithDefaults.floatLabel.variant }
+  if (props.floatLabel) {
+    return { variant: props.floatLabel.variant }
   }
   return {}
 })
 
 const currentLabel = computed(() => {
-  if (propsWithDefaults.floatLabel) {
-    return propsWithDefaults.floatLabel.label
-  } else if (propsWithDefaults.iftaLabel) {
-    return propsWithDefaults.iftaLabel.label
+  if (props.floatLabel) {
+    return props.floatLabel.label
+  } else if (props.iftaLabel) {
+    return props.iftaLabel.label
   }
   return undefined
 })
@@ -60,10 +59,10 @@ const currentLabel = computed(() => {
     <PrimeInputText
       v-model="modelValue"
       v-bind="attrs"
-      :id="propsWithDefaults.id"
-      :type="propsWithDefaults.type"
-      :placeholder="propsWithDefaults.placeholder"
-      :size="propsWithDefaults.size"
+      :id="props.id"
+      :type="props.type"
+      :placeholder="props.placeholder"
+      :size="props.size"
     />
     <label v-if="currentLabel" :for="id">{{ currentLabel }}</label>
   </component>

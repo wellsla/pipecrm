@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, useAttrs } from 'vue'
+import { defineProps, withDefaults, computed, useAttrs } from 'vue'
 
 import PrimeButton from 'primevue/button'
 
@@ -26,8 +26,7 @@ interface PipeButtonProps {
   href?: string
 }
 
-const props = defineProps<PipeButtonProps>()
-const propsWithDefaults = withDefaults(props, {
+const props = withDefaults(defineProps<PipeButtonProps>(), {
   severity: 'primary',
   externalLink: false,
 })
@@ -52,17 +51,17 @@ const isAsChild = computed(() => props.condition === 'asChild')
 <template>
   <PrimeButton
     v-bind="attrs"
-    :label="propsWithDefaults.label"
-    :icon="propsWithDefaults.icon?.class"
-    :icon-pos="propsWithDefaults.icon?.position"
-    :severity="propsWithDefaults.severity"
-    :variant="propsWithDefaults.variant"
-    :size="propsWithDefaults.size"
-    :badge="propsWithDefaults.badge?.value"
-    :badge-severity="propsWithDefaults.badge?.severity"
-    :href="propsWithDefaults.href"
-    :as="propsWithDefaults.externalLink ? 'a' : undefined"
-    :rel="propsWithDefaults.externalLink ? 'noopener' : undefined"
+    :label="props.label"
+    :icon="props.icon?.class"
+    :icon-pos="props.icon?.position"
+    :severity="props.severity"
+    :variant="props.variant"
+    :size="props.size"
+    :badge="props.badge?.value"
+    :badge-severity="props.badge?.severity"
+    :href="props.href"
+    :as="props.externalLink ? 'a' : undefined"
+    :rel="props.externalLink ? 'noopener' : undefined"
     :loading="isLoading"
     :disabled="isDisabled"
     :raised="isRaised"

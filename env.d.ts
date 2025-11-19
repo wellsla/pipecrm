@@ -29,4 +29,7 @@ declare module '*.sass'
 declare module '*.less'
 declare module '*.svg'
 
+// Allow imports using the path alias '@/*' (resolved by tsconfig paths)
+declare module '@/*'
+
 export {}
