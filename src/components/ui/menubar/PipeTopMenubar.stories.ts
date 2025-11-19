@@ -1,4 +1,5 @@
-import type { Meta, StoryObj } from '@storybook/vue3-vite'
+import type { Meta, StoryObj } from '@storybook/vue3'
+
 import type { MenuItem } from 'primevue/menuitem'
 
 import PipeTopMenubar from './PipeTopMenubar.vue'

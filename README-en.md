@@ -74,7 +74,7 @@ npm run storybook
 
 Storybook will be available at `http://localhost:6006/`
 
-Stories are colocated with PipeKit components under `src/components/pipekit` using `*.stories.ts`.
+Stories are colocated with PipeKit components under `src/components` using `*.stories.ts`.
 
 ## Scripts
 
