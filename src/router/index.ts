@@ -37,7 +37,7 @@ const routes: RouteRecordRaw[] = [
 const router = createRouter({ history: createWebHistory(), routes })
 
 router.beforeEach((to) => {
-  const isAuthenticated = sessionStorage.getItem('__pipecrm_auth__') === '1'
+  const isAuthenticated = false // TODO: Replace with real auth check
 
   const requiresAuth = to.matched.some((record) => record.meta.requiresAuth === true)
 

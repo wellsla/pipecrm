@@ -31,9 +31,7 @@ export class SupaAuthService {
     supabase.auth.onAuthStateChange((_event, sess) => {
       this._session = sess
       this._user = sess?.user ?? null
-      sessionStorage.setItem('__pipecrm_auth__', this.isAuthenticated ? '1' : '0')
     })
-    sessionStorage.setItem('__pipecrm_auth__', this.isAuthenticated ? '1' : '0')
   }
 
   async signInWithPassword(email: string, password: string): Promise<void> {
@@ -73,7 +71,6 @@ export class SupaAuthService {
   async signOut(): Promise<void> {
     const { error } = await supabase.auth.signOut()
     if (error) throw error
-    sessionStorage.removeItem('__pipecrm_auth__')
   }
 
   async getProfile(): Promise<AuthProfile | null> {

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { defineProps, withDefaults, computed, useAttrs } from 'vue'
+import { computed, useAttrs } from 'vue'
 
 import PrimeButton from 'primevue/button'
 

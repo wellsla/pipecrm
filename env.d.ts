@@ -16,12 +16,6 @@ declare module 'vue-router' {
   }
 }
 
-declare global {
-  interface Window {
-    __pipecrm_auth__?: string
-  }
-}
-
 // Allow importing css/scss/etc in TypeScript (side-effect imports)
 declare module '*.css'
 declare module '*.scss'

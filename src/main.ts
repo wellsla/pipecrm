@@ -10,6 +10,7 @@ import Ripple from 'primevue/ripple'
 
 import 'primeicons/primeicons.css' //icons
 import '@/assets/base.scss' //base styles
+import '@/assets/tokens.css' // custom global styles
 
 import AuthPlugin, { SupaAuthService } from '@/services/auth.service'
 
