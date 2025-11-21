@@ -20,32 +20,32 @@
 ## 📋 Pré-requisitos
 
 - Node.js 20+ ou 22+
-- npm
+- Yarn 4+
 
 ## 🛠️ Instalação
 
 ```bash
-npm install
+yarn install
 ```
 
 ## 💻 Desenvolvimento
 
 ```bash
 # Servidor de desenvolvimento
-npm run dev
+yarn dev
 
 # Build de produção
-npm run build
+yarn build
 
 # Preview do build
-npm run preview
+yarn preview
 
 # Lint e formatação
-npm run lint
-npm run format
+yarn lint
+yarn format
 
 # Storybook
-npm run storybook
+yarn storybook
 ```
 
 ## 📁 Estrutura do Projeto
