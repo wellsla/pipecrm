@@ -8,7 +8,7 @@ import Ripple from 'primevue/ripple'
 
 import 'primeicons/primeicons.css'
 import '@/assets/tokens.css'
-import '@/assets/base.scss'
+import '@/assets/base.css'
 
 setup((app) => {
   app.use(PrimeVue, {

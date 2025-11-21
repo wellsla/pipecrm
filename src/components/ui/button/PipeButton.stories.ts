@@ -1,6 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/vue3'
-
-import { fn } from '@storybook/test'
+import type { Meta, StoryObj } from '@storybook/vue3-vite'
 
 import PipeButton from '@/components/ui/button/PipeButton.vue'
 
@@ -52,7 +50,9 @@ const meta: Meta<typeof PipeButton> = {
     },
   },
   args: {
-    onClick: fn(),
+    onClick: () => {
+      alert('Botão clicado!')
+    },
     label: 'Button',
     severity: 'primary',
     size: 'small',

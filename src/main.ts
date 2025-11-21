@@ -1,6 +1,5 @@
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
-import { createSentryPiniaPlugin } from '@sentry/vue'
 
 import router from '@/router'
 import App from '@/App.vue'
@@ -32,11 +31,11 @@ const bootstrap = async () => {
     tracePropagationTargets: ['localhost', /^https:\/\/fuczfkuspyusuloqjmod\.supabase\.co\/api/],
     replaysSessionSampleRate: 0.1,
     replaysOnErrorSampleRate: 1.0,
-    enableLogs: true,
+    _experiments: { enableLogs: true },
   })
 
   const pinia = createPinia()
-  pinia.use(createSentryPiniaPlugin())
+  pinia.use(Sentry.createSentryPiniaPlugin())
 
   app.use(pinia)
   app.use(router)
