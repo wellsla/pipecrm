@@ -1,15 +1,18 @@
 {
-  "extends": "@vue/tsconfig/tsconfig.dom.json",
-  "include": ["env.d.ts", "src/**/*", "src/**/*.vue", ".storybook/**/*"],
-  "exclude": ["src/**/__tests__/*"],
   "compilerOptions": {
-    "moduleResolution": "Bundler",
-    "strict": true,
-    "composite": true,
+    "target": "ES2020",
+    "module": "ESNext",
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
     "jsx": "preserve",
-    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
+    "strict": true,
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
     "paths": {
       "@/*": ["./src/*"]
     }
-  }
+  },
+  "include": ["src/**/*", "src/**/*.vue", "env.d.ts"],
+  "exclude": ["node_modules", "dist"]
 }

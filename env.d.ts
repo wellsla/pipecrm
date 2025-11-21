@@ -16,14 +16,4 @@ declare module 'vue-router' {
   }
 }
 
-// Allow importing css/scss/etc in TypeScript (side-effect imports)
-declare module '*.css'
-declare module '*.scss'
-declare module '*.sass'
-declare module '*.less'
-declare module '*.svg'
-
-// Allow imports using the path alias '@/*' (resolved by tsconfig paths)
-declare module '@/*'
-
 export {}

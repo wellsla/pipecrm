@@ -1,399 +1,116 @@
 # PipeCRM
 
-A modern CRM application built with Vue 3, TypeScript, and PrimeVue following feature-first architecture.
+> Modern mini CRM built with Vue 3, TypeScript and PrimeVue
 
-## Tech Stack
+[🇧🇷 Versão em Português](./README.md)
 
-### Core
+## 🚀 Tech Stack
 
-- **Vue 3** (Composition API) - Progressive JavaScript framework
-- **TypeScript** - Type safety and better developer experience
-- **Vite** - Fast build tool and dev server
+- **Vue 3** + **TypeScript** - Reactive framework with strong typing
+- **Vite** - Lightning-fast build tool and dev server
+- **Pinia** - Simple and intuitive state management
+- **Vue Router** - Client-side routing
+- **PrimeVue** - Enterprise UI component library
+- **Tailwind CSS** - Utility-first CSS framework
+- **Supabase** - Backend as a Service (authentication + REST API)
+- **Zod** - TypeScript-first schema validation
+- **Sentry** - Monitoring and observability
+- **Storybook** - Component documentation
 
-### State & Routing
+## 📋 Prerequisites
 
-- **Pinia** - State management (stores organized by domain/feature)
-- **Vue Router** - Client-side routing (feature-based routes with minimal guards)
+- Node.js 20+ or 22+
+- npm
 
-### UI & Design System
-
-- **PrimeVue + PrimeIcons** - UI component library (Lara theme + custom tokens)
-- **PipeKit** - Custom PrimeVue wrappers documented in Storybook (stories colocated next to components)
-- **ESLint + Prettier** - Code linting and formatting
-- **Pre-commit hooks:** - Run linters/formatters manually or via CI
-- **Conventional Commits** - Standardized commit messages
-
-## Architecture Principles
-
-- **Service** - API communication layer
-- **Components** - Feature-specific components
-
-### Layer Separation
-
-- **UI Layer** - Components (presentational, isolated)
-- **State Layer** - Pinia stores (business logic, state management)
-- **API Layer** - Services (HTTP requests, data transformation)
-
-### Developer Experience
-
-- **Path Aliases** - `@/*` for clean imports
-- **Standardized Scripts** - Consistent npm commands
-- **Pre-commit Hooks** - Automated linting and formatting
-- **Type Safety** - Full TypeScript coverage
-
-## Prerequisites
-
-- Node.js `^20.19.0` or `>=22.12.0`
-- npm (or pnpm/yarn)
-
-## Getting Started
-
-### Install Dependencies
+## 🛠️ Installation
 
 ```bash
 npm install
 ```
 
-### Development
-
-Run the development server:
+## 💻 Development
 
 ```bash
+# Development server
 npm run dev
-```
 
-The app will be available at `http://localhost:5173/`
+# Production build
+npm run build
 
-### Storybook (PipeKit Design System)
+# Preview build
+npm run preview
 
-View and test components in isolation:
+# Lint and format
+npm run lint
+npm run format
 
-```bash
+# Storybook
 npm run storybook
 ```
 
-Storybook will be available at `http://localhost:6006/`
-
-Stories are colocated with PipeKit components under `src/components` using `*.stories.ts`.
-
-## Scripts
-
-| Command                   | Description                         |
-| ------------------------- | ----------------------------------- |
-| `npm run dev`             | Start development server with HMR   |
-| `npm run build`           | Type-check and build for production |
-| `npm run preview`         | Preview production build locally    |
-| `npm run type-check`      | Run TypeScript type checking        |
-| `npm run lint`            | Lint and auto-fix code with ESLint  |
-| `npm run format`          | Format code with Prettier           |
-| `npm run storybook`       | Start Storybook dev server          |
-| `npm run build-storybook` | Build Storybook for deployment      |
-
-### Quality Assurance Commands
-
-```bash
-# Run linting
-npm run lint
-
-# Format all files
-npm run format
-
-# Type checking
-npm run type-check
-
-# Run all checks (before committing)
-npm run lint && npm run format && npm run type-check
-```
-
-### Pre-commit hooks
-
-Pre-commit hooks were removed from the repository. Run checks locally or in CI:
-
-```bash
-# Run linters and formatters manually
-npm run lint
-npm run format
-npm run type-check
-
-# Or run eslint manually
-npx eslint --ext .js,.vue src
-```
-
-## Project Structure
+## 📁 Project Structure
 
 ```
-pipecrm/
-├── src/
-│   ├── App.vue                 # Root application component
-│   ├── main.ts                 # Application entry point
-│   ├── assets/                 # Static resources and global styles
-│   │   ├── tokens.css          # Design tokens (colors, typography)
-│   │   ├── base.scss           # Base styles and resets
-│   │   └── pipe-preset.ts      # Custom PrimeVue theme preset
-│   ├── components/             # Reusable components
-│   │   ├── header/             # Header component
-│   │   └── ui/                 # Design System (components + stories)
-│   │       ├── button/
-│   │       ├── menubar/
-│   │       └── text/
-│   ├── composables/            # Reusable Vue 3 composables
-│   ├── stores/                 # Pinia stores (organized by domain/feature)
-│   │   ├── modules/            # Module-based stores
-│   │   └── index.ts            # Store registration
-│   ├── views/                  # Application pages and layouts
-│   │   ├── auth/               # Authentication pages
-│   │   ├── features/           # Feature modules (feature-first)
-│   │   │   └── home/
-│   │   └── layouts/            # Page layouts
-│   ├── router/                 # Vue Router configuration
-│   │   └── index.ts
-│   └── services/               # API services and integrations
-│       ├── auth.service.ts     # Supabase authentication service
-│       └── supabase.client.ts  # Supabase client
-├── public/                     # Static assets
-└── .storybook/                 # Storybook configuration
+src/
+├── assets/           # Global styles and design tokens
+├── components/       # Reusable components
+│   ├── header/
+│   └── ui/          # Design system (+ Storybook stories)
+├── composables/     # Vue composables
+├── router/          # Route configuration
+├── services/        # API services
+├── stores/          # Pinia stores
+└── views/           # Application pages
+    ├── auth/
+    ├── features/
+    └── layouts/
 ```
 
-## Design System (PipeKit)
-
-PipeKit is our custom design system built on top of PrimeVue, providing:
-
-- Consistent component wrappers
-- Custom theme tokens (Lara base)
-- Full Storybook documentation
-- Accessibility compliance
+## 🎨 Design System
 
 ### Color Palette
 
 **Light Mode:**
 
-- **Primary**: `#a02842` (base) - Primary actions and CTAs
-- **Secondary**: `#607d8b` - Secondary elements
-- **Text**: `#3a4b59` - Main text
-- **Background**: `#ffffff` - Page background
-- **Border**: `#b3b4bc` - Borders and dividers
+- Primary: `#a02842`
+- Secondary: `#607d8b`
+- Background: `#ffffff`
 
 **Dark Mode:**
 
-- **Primary**: `#d94771` (base) - Primary actions (lighter)
-- **Secondary**: `#37474f` - Secondary elements
-- **Text**: `#ffffff` - Main text
-- **Background**: `#3a4b59` - Page background
-- **Border**: `#1c242b` - Borders and dividers
+- Primary: `#d94771`
+- Secondary: `#37474f`
+- Background: `#3a4b59`
 
-## Development Workflow
+## 🔄 CI/CD
 
-### Quick Start Commands
+Automated GitHub Actions:
 
-```bash
-# Fresh setup
-npm install
-npm run dev
+- **Lint** - Code verification on every push
+- **Build** - Compilation and artifacts
+- **Deploy** - Automatic deployment on `main` branch
 
-# With Storybook
-npm run storybook
-
-# Production build
-npm run build
-npm run preview
-```
-
-### Commit Convention
-
-This project follows [Commit Standards](https://github.com/iuricode/padroes-de-commits):
+## 📝 Commit Convention
 
 ```bash
-# Feature
-git commit -m ":sparkles: feat: add new customer form"
-
-# Bug fix
-git commit -m ":bug: fix: resolve login validation bug"
-
-# Documentation
-git commit -m ":books: docs: update API documentation"
-
-# Code style
-git commit -m ":ok_hand: style: format code with prettier"
-
-# Refactoring
-git commit -m ":recycle: refactor: reorganize store structure"
-
-# Configuration/dependencies
-git commit -m ":wrench: chore: update dependencies"
-
-# Performance
-git commit -m ":zap: perf: optimize data fetching"
-
-# Work in progress
-git commit -m ":construction: wip: implementing authentication flow"
+:sparkles: feat: new feature
+:bug: fix: bug fix
+:recycle: refactor: code refactoring
+:books: docs: documentation
+:wrench: chore: configuration/dependencies
 ```
 
-### Git Workflow (GitFlow)
+## 🌐 Branches
 
-This project follows the GitFlow branching model with standard git commands.
+- `main` - Production
+- `develop` - Development
+- `feature/*` - New features
 
-#### Branch Structure
+## 🔧 Recommended IDE
 
-- **main** - Production-ready code
-- **develop** - Integration branch for features
-- **feature/** - New features (`feature/feature-name`)
-- **bugfix/** - Bug fixes for develop (`bugfix/bug-name`)
-- **hotfix/** - Urgent production fixes (`hotfix/issue-name`)
-- **release/** - Release preparation (`release/version`)
+- VS Code
+- Extensions: Vue - Official, ESLint, Prettier, Tailwind CSS IntelliSense
 
-#### Feature Development
-
-```bash
-# Start new feature from develop
-git checkout develop
-git pull origin develop
-git checkout -b feature/customer-management
-
-# Work on feature (commits run pre-commit hooks automatically)
-git add .
-git commit -m ":sparkles: feat: add customer list view"
-git commit -m ":sparkles: feat: add customer form validation"
-
-# Keep feature updated with develop
-git checkout develop
-git pull origin develop
-git checkout feature/customer-management
-git merge develop
-
-# Push feature branch
-git push origin feature/customer-management
-
-# After PR approval, merge to develop (via PR or locally)
-git checkout develop
-git pull origin develop
-git merge --no-ff feature/customer-management
-git push origin develop
-
-# Delete feature branch
-git branch -d feature/customer-management
-git push origin --delete feature/customer-management
-```
-
-#### Bugfix Workflow
-
-```bash
-# Create bugfix from develop
-git checkout develop
-git pull origin develop
-git checkout -b bugfix/login-validation
-
-# Fix and commit
-git add .
-git commit -m ":bug: fix: correct email validation regex"
-
-# Merge back to develop
-git checkout develop
-git merge --no-ff bugfix/login-validation
-git push origin develop
-
-# Clean up
-git branch -d bugfix/login-validation
-```
-
-#### Hotfix Workflow
-
-```bash
-# Create hotfix from main
-git checkout main
-git pull origin main
-git checkout -b hotfix/critical-security-patch
-
-# Fix and commit
-git add .
-git commit -m ":bug: fix: patch security vulnerability"
-
-# Merge to main
-git checkout main
-git merge --no-ff hotfix/critical-security-patch
-git tag -a v1.0.1 -m "Security patch v1.0.1"
-git push origin main --tags
-
-# Also merge to develop
-git checkout develop
-git merge --no-ff hotfix/critical-security-patch
-git push origin develop
-
-# Clean up
-git branch -d hotfix/critical-security-patch
-```
-
-#### Release Workflow
-
-```bash
-# Create release branch from develop
-git checkout develop
-git pull origin develop
-git checkout -b release/1.0.0
-
-# Prepare release (version bumps, changelog, etc.)
-git commit -m ":bookmark: chore: bump version to 1.0.0"
-git commit -m ":books: docs: update CHANGELOG for v1.0.0"
-
-# Merge to main
-git checkout main
-git merge --no-ff release/1.0.0
-git tag -a v1.0.0 -m "Release version 1.0.0"
-git push origin main --tags
-
-# Merge back to develop
-git checkout develop
-git merge --no-ff release/1.0.0
-git push origin develop
-
-# Delete release branch
-git branch -d release/1.0.0
-```
-
-#### Quick Reference
-
-```bash
-# Check current branch
-git branch
-
-# View all branches
-git branch -a
-
-# Switch branches
-git checkout branch-name
-
-# View commit history
-git log --oneline --graph --all
-
-# Undo last commit (keep changes)
-git reset --soft HEAD~1
-
-# Stash changes temporarily
-git stash
-git stash pop
-
-# Skip hooks only in emergencies
-git commit --no-verify -m "message"
-```
-
-### Pre-commit Hooks
-
-Automated checks before each commit:
-
-- **ESLint** - Lints and auto-fixes JS/TS/Vue files
-- **Prettier** - Formats code consistently
-- **Stylelint** - Lints and fixes CSS/SCSS
-- **Type checking** - Validates TypeScript (manual check recommended)
-
-## IDE Setup
-
-**Recommended:**
-
-- [VS Code](https://code.visualstudio.com/)
-- [Vue - Official](https://marketplace.visualstudio.com/items?itemName=Vue.volar) extension (disable Vetur)
-- [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) extension
-- [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) extension
-- [Vue.js devtools](https://chromewebstore.google.com/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd) browser extension
-
-## License
+## 📄 License
 
 Public project inspired by [PipeRunCRM](https://crmpiperun.com/)

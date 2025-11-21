@@ -1,27 +1,17 @@
-import { globalIgnores } from 'eslint/config'
-import { defineConfigWithVueTs, vueTsConfigs } from '@vue/eslint-config-typescript'
 import pluginVue from 'eslint-plugin-vue'
+import vueTsEslintConfig from '@vue/eslint-config-typescript'
 import skipFormatting from '@vue/eslint-config-prettier/skip-formatting'
 
-export default defineConfigWithVueTs(
+export default [
   {
-    name: 'app/files-to-lint',
-    files: ['**/*.{ts,mts,tsx,vue}'],
+    ignores: ['dist/**', 'node_modules/**', '.storybook/**'],
   },
-
-  globalIgnores(['**/dist/**', '**/dist-ssr/**', '**/coverage/**']),
-
-  pluginVue.configs['flat/essential'],
-  vueTsConfigs.recommended,
+  ...pluginVue.configs['flat/essential'],
+  ...vueTsEslintConfig(),
   skipFormatting,
-
-  // Stories are colocated under components/pipekit
   {
-    name: 'pipekit-stories/overrides',
-    files: ['src/components/pipekit/**/*.stories.{ts,tsx,vue}'],
     rules: {
       'vue/multi-word-component-names': 'off',
-      '@typescript-eslint/no-explicit-any': 'off',
     },
   },
-)
+]
