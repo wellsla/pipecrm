@@ -1,9 +1,9 @@
-import type { Meta, StoryObj } from '@storybook/vue3-vite'
+import type { Meta, StoryObj } from '@storybook/vue3-vite';
 
-import type { MenuItem } from 'primevue/menuitem'
+import type { MenuItem } from 'primevue/menuitem';
 
-import PipeTopMenubar from './PipeTopMenubar.vue'
-import PipeButton from '../button/PipeButton.vue'
+import PipeTopMenubar from './PipeTopMenubar.vue';
+import PipeButton from '../button/PipeButton.vue';
 
 const meta: Meta<typeof PipeTopMenubar> = {
   title: 'Ui/Menubar/PipeTopMenubar',
@@ -32,13 +32,13 @@ const meta: Meta<typeof PipeTopMenubar> = {
       },
     },
   },
-} satisfies Meta<typeof PipeTopMenubar>
+} satisfies Meta<typeof PipeTopMenubar>;
 
-export default meta
+export default meta;
 
-type Story = StoryObj<typeof meta>
+type Story = StoryObj<typeof meta>;
 
-export const Normal: Story = {}
+export const Normal: Story = {};
 
 export const WithItems: Story = {
   args: {
@@ -61,7 +61,7 @@ export const WithItems: Story = {
       },
     },
   },
-}
+};
 
 export const WithLogout: Story = {
   parameters: {
@@ -79,4 +79,4 @@ export const WithLogout: Story = {
       },
     },
   },
-}
+};

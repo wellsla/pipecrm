@@ -1,6 +1,6 @@
 /// <reference types="vite/client" />
 import type { Router, RouteLocationNormalizedLoaded } from 'vue-router'
-import { AuthService } from '@/services/supabase.client'
+import { AuthService } from '@/core/db/supabase.client'
 
 declare module '@vue/runtime-core' {
   interface ComponentCustomProperties {

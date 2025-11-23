@@ -1,54 +1,182 @@
 @import 'tailwindcss';
 @import 'tailwindcss-primeui';
 
-:root {
-  /* Light mode - Primary darker */
-  --pipe-primary-50: #ffe4eb;
-  --pipe-primary-100: #ffccd9;
-  --pipe-primary-200: #ff99b3;
-  --pipe-primary-300: #ff668c;
-  --pipe-primary-400: #e6335f;
-  --pipe-primary-500: #a02842; /* darker base */
-  --pipe-primary-700: #7a1f33;
-  --pipe-primary-800: #531424;
-  --pipe-primary-900: #2d0a13;
-  --pipe-primary-950: #14050a;
+/* PipeCRM Design System - Simplificado */
 
-  /* Light mode - Secondary */
-  --pipe-secondary-50: #f4f7f8;
-  --pipe-secondary-100: #e8f0f2;
-  --pipe-secondary-200: #d2e1e6;
-  --pipe-secondary-300: #a8c6cf;
-  --pipe-secondary-400: #7fa8b6;
-  --pipe-secondary-500: #607d8b;
-  --pipe-secondary-700: #44606a;
-  --pipe-secondary-800: #33464f;
-  --pipe-secondary-900: #1f2b30;
-  --pipe-secondary-950: #0f1719;
+:root {
+  /* Cor primária - Magenta (mantém mesma ordem para acessibilidade consistente) */
+  --magenta-50: #410919;
+  --magenta-100: #741935;
+  --magenta-200: #891b3a;
+  --magenta-300: #a51f42;
+  --magenta-400: #c72951;
+  --magenta-500: #e03761;
+  --magenta-600: #f47093;
+  --magenta-700: #f9a5b7;
+  --magenta-800: #fccdd6;
+  --magenta-900: #fde6ea;
+  --magenta-950: #fef2f4;
+
+  /* Danger (Errors) */
+  --danger-50: #fef2f2;
+  --danger-100: #fee2e2;
+  --danger-200: #fecaca;
+  --danger-300: #fca5a5;
+  --danger-400: #f87171;
+  --danger-500: #ef4444;
+  --danger-600: #dc2626;
+  --danger-700: #b91c1c;
+  --danger-800: #991b1b;
+  --danger-900: #7f1d1d;
+  --danger-950: #450a0a;
+
+  /* Superfícies (Light) */
+  --surface-ground: #ffffff; /* base da aplicação */
+  --surface-alt: #f7f8f9; /* seções suaves */
+  --surface-card: #ffffff; /* cards */
+  --surface-overlay: #ffffff; /* overlays / popovers */
+  --surface-header: #ffffff; /* header/topbar */
+  --surface-border: #e5e7eb;
+
+  /* Texto (Light) */
+  --text-primary: #111827; /* gray-900 */
+  --text-secondary: #374151; /* gray-700 */
+  --text-muted: #6b7280; /* gray-500 */
+  --text-inverse: #ffffff;
+  --text-on-alt: #1f2937;
+  --focus-ring: var(--magenta-500);
+
+  /* Neutros (Light) */
+  --neutral-50: #f9fafb;
+  --neutral-100: #f3f4f6;
+  --neutral-200: #e5e7eb;
+  --neutral-300: #d1d5db;
+  --neutral-400: #9ca3af;
+  --neutral-500: #6b7280;
+  --neutral-600: #4b5563;
+  --neutral-700: #374151;
+  --neutral-800: #1f2937;
+  --neutral-900: #111827;
+  --neutral-950: #0a0d12;
+
+  /* Gradients / Hero */
+  --hero-gradient-start: var(--magenta-600);
+  --hero-gradient-mid: var(--magenta-500);
+  --hero-gradient-end: var(--magenta-700);
 }
 
-.app-dark-mode {
-  /* Dark mode - Primary lighter */
-  --pipe-primary-50: #ffe9f0;
-  --pipe-primary-100: #ffd4e2;
-  --pipe-primary-200: #ffb3cc;
-  --pipe-primary-300: #ff8cb3;
-  --pipe-primary-400: #ff6699;
-  --pipe-primary-500: #d94771; /* lighter base */
-  --pipe-primary-700: #a63556;
-  --pipe-primary-800: #73243c;
-  --pipe-primary-900: #401221;
-  --pipe-primary-950: #200911;
+.dark {
+  /* Cor primária - Magenta */
+  --magenta-50: #fef2f4;
+  --magenta-100: #fde6ea;
+  --magenta-200: #fccdd6;
+  --magenta-300: #f9a5b7;
+  --magenta-400: #f47093;
+  --magenta-500: #e03761;
+  --magenta-600: #c72951;
+  --magenta-700: #a51f42;
+  --magenta-800: #891b3a;
+  --magenta-900: #741935;
+  --magenta-950: #410919;
 
-  /* Dark mode - Secondary */
-  --pipe-secondary-50: #e9eff2;
-  --pipe-secondary-100: #d6e3e8;
-  --pipe-secondary-200: #b6cbd3;
-  --pipe-secondary-300: #8faeb7;
-  --pipe-secondary-400: #6b8f9a;
-  --pipe-secondary-500: #37474f;
-  --pipe-secondary-700: #263238;
-  --pipe-secondary-800: #1b262a;
-  --pipe-secondary-900: #101517;
-  --pipe-secondary-950: #060808;
+  /* Danger (Dark) */
+  --danger-50: #450a0a;
+  --danger-100: #7f1d1d;
+  --danger-200: #991b1b;
+  --danger-300: #b91c1c;
+  --danger-400: #dc2626;
+  --danger-500: #ef4444;
+  --danger-600: #f87171;
+  --danger-700: #fca5a5;
+  --danger-800: #fecaca;
+  --danger-900: #fee2e2;
+  --danger-950: #fef2f2;
+
+  /* Superfícies (Dark) */
+  --surface-ground: #0f1012;
+  --surface-alt: #121416;
+  --surface-card: #181b1e;
+  --surface-overlay: #1d2125;
+  --surface-header: #121416;
+  --surface-border: #2f3336;
+
+  /* Texto (Dark) */
+  --text-primary: #f9fafb;
+  --text-secondary: #f3f4f6;
+  --text-muted: #9ca3af;
+  --text-inverse: #ffffff;
+  --text-on-alt: #f3f4f6;
+  --focus-ring: var(--magenta-400);
+
+  /* Neutros (Dark) */
+  --neutral-50: #0a0d12;
+  --neutral-100: #111827;
+  --neutral-200: #1f2937;
+  --neutral-300: #374151;
+  --neutral-400: #4b5563;
+  --neutral-500: #6b7280;
+  --neutral-600: #9ca3af;
+  --neutral-700: #d1d5db;
+  --neutral-800: #e5e7eb;
+  --neutral-900: #f3f4f6;
+  --neutral-950: #f9fafb;
+
+  /* Gradients / Hero */
+  --hero-gradient-start: var(--magenta-600);
+  --hero-gradient-mid: var(--magenta-500);
+  --hero-gradient-end: var(--magenta-700);
+}
+
+.bg-hero-gradient {
+  background: linear-gradient(
+    135deg,
+    var(--hero-gradient-start),
+    var(--hero-gradient-mid) 55%,
+    var(--hero-gradient-end)
+  );
+}
+
+/* Semantic helpers */
+.surface-app {
+  background: var(--surface-ground);
+}
+.surface-header {
+  background: var(--surface-header);
+}
+.surface-card {
+  background: var(--surface-card);
+}
+.surface-alt {
+  background: var(--surface-alt);
+}
+.surface-overlay {
+  background: var(--surface-overlay);
+}
+.text-main {
+  color: var(--text-primary);
+}
+.text-secondary {
+  color: var(--text-secondary);
+}
+.text-muted {
+  color: var(--text-muted);
+}
+.text-inverse {
+  color: var(--text-inverse);
+}
+.text-danger {
+  color: var(--danger-600);
+}
+.border-base {
+  border-color: var(--surface-border);
+}
+.border-danger {
+  border-color: var(--danger-300);
+}
+.focus-ring {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 2px;
+}
+.bg-danger-soft {
+  background: var(--danger-50);
 }
