@@ -286,6 +286,10 @@ Based on [Commit Standards](https://github.com/iuricode/padroes-de-commits).
 - Tailwind CSS IntelliSense
 - Error Lens
 
+## 🙌 Inspiration
+
+This project is inspired by the products from PipeRun. Learn more at: [crmpiperun.com](https://crmpiperun.com/)
+
 ## 📄 License
 
 Open source educational project.
