@@ -1,12 +1,17 @@
-import type { Meta, StoryObj } from '@storybook/vue3-vite'
+import type { Meta, StoryObj } from '@storybook/vue3-vite';
 
-import PipeButton from '@/components/ui/button/PipeButton.vue'
+import PipeButton from '@/components/ui/button/PipeButton.vue';
 
 const meta: Meta<typeof PipeButton> = {
   title: 'Ui/Button/PipeButton',
   component: PipeButton,
   tags: ['autodocs'],
   argTypes: {
+    id: {
+      control: 'text',
+      description: 'ID único do botão',
+      required: true,
+    },
     label: {
       control: 'text',
       description: 'Texto do botão',
@@ -30,11 +35,10 @@ const meta: Meta<typeof PipeButton> = {
       options: ['small', 'large'],
       description: 'Tamanho do botão',
     },
-    condition: {
-      control: 'select',
-      options: [undefined, 'loading', 'disabled', 'raised', 'rounded', 'asChild'],
+    conditions: {
+      control: 'object',
       description:
-        'Estado/condição especial que controla disabled, raised, rounded ou comportamento como child',
+        'Estado/condição especial do botão. Ex: { disabled: true, loading: false, raised: true }',
     },
     badge: {
       control: 'object',
@@ -50,159 +54,160 @@ const meta: Meta<typeof PipeButton> = {
     },
   },
   args: {
-    onClick: () => {
-      alert('Botão clicado!')
-    },
-    label: 'Button',
+    id: 'button-1',
+    label: 'Botão',
     severity: 'primary',
     size: 'small',
+    onClick: () => {
+      alert('Botão clicado!');
+    },
   },
   parameters: {
     layout: 'centered',
   },
-} satisfies Meta<typeof PipeButton>
+} satisfies Meta<typeof PipeButton>;
 
-export default meta
-type Story = StoryObj<typeof meta>
+export default meta;
+type Story = StoryObj<typeof meta>;
 
-export const Primary: Story = {}
+export const Primary: Story = {};
 
 // Severities
 export const Secondary: Story = {
-  args: { severity: 'secondary', label: 'Secondary' },
-}
+  args: { severity: 'secondary', label: 'Secundário' },
+};
 
 export const Success: Story = {
-  args: { severity: 'success', label: 'Success' },
-}
+  args: { severity: 'success', label: 'Sucesso' },
+};
 
 export const Info: Story = {
-  args: { severity: 'info', label: 'Info' },
-}
+  args: { severity: 'info', label: 'Informação' },
+};
 
 export const Warning: Story = {
-  args: { severity: 'warn', label: 'Warning' },
-}
+  args: { severity: 'warn', label: 'Aviso' },
+};
 
 export const Danger: Story = {
-  args: { severity: 'danger', label: 'Danger' },
-}
+  args: { severity: 'danger', label: 'Perigo' },
+};
 
 export const Contrast: Story = {
-  args: { severity: 'contrast', label: 'Contrast' },
-}
+  args: { severity: 'contrast', label: 'Contraste' },
+};
 
 // Variants
 export const TextVariant: Story = {
   args: {
-    label: 'Text Button',
+    label: 'Botão de Texto',
     variant: 'text',
   },
-}
+};
 
 export const OutlinedVariant: Story = {
   args: {
-    label: 'Outlined Button',
+    label: 'Botão Contornado',
     variant: 'outlined',
   },
-}
+};
 
 // Icons
 export const WithIconLeft: Story = {
   args: {
-    label: 'Save',
+    label: 'Salvar',
     icon: { class: 'pi pi-save', position: 'left' },
   },
-}
+};
 
 export const IconOnly: Story = {
   args: {
     label: '',
     icon: { class: 'pi pi-user' },
   },
-}
+};
 
 // Conditions
 export const Raised: Story = {
   args: {
-    label: 'Raised',
-    condition: 'raised',
+    label: 'Elevado',
+    conditions: { raised: true },
   },
-}
+};
 
 export const Rounded: Story = {
   args: {
-    label: 'Rounded',
-    condition: 'rounded',
+    label: 'Arredondado',
+    conditions: { rounded: true },
   },
-}
+};
 
 export const Disabled: Story = {
   args: {
-    label: 'Disabled',
-    condition: 'disabled',
+    label: 'Desabilitado',
+    conditions: { disabled: true },
   },
-}
+};
 
 export const Loading: Story = {
   args: {
-    label: 'Loading...',
-    condition: 'loading',
+    label: 'Carregando...',
+    conditions: { loading: true },
   },
-}
+};
 
 // Badge
 export const WithBadge: Story = {
   args: {
-    label: 'Notifications',
+    label: 'Notificações',
     icon: { class: 'pi pi-bell' },
     badge: {
       value: '5',
       severity: 'danger',
     },
   },
-}
+};
 
 export const WithBadgeOutlined: Story = {
   args: {
-    label: 'Messages',
+    label: 'Mensagens',
     icon: { class: 'pi pi-envelope' },
     badge: {
       value: '2',
       severity: 'info',
     },
   },
-}
+};
 
 // Links
 export const AsInternalLink: Story = {
   args: {
-    label: 'Go to /dashboard',
+    label: 'Ir para /dashboard',
     href: '/dashboard',
     variant: 'link',
   },
-}
+};
 
 export const AsExternalLink: Story = {
   args: {
-    label: 'Open PrimeVue',
+    label: 'Abrir PrimeVue',
     externalLink: true,
     href: 'https://primevue.org',
   },
-}
+};
 
 // Children
 export const AsChildExample: Story = {
   args: {
-    condition: 'asChild',
+    conditions: { asChild: true },
   },
   parameters: {
     slots: {
       default: {
         template: `          
-          <span>Custom Child Content</span>          
+          <span>Conteúdo Personalizado</span>          
         `,
       },
     },
   },
-}
+};

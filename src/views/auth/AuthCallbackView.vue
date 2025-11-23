@@ -1,54 +1,34 @@
 <script setup lang="ts">
-import { reactive, onBeforeMount } from 'vue'
-import { useRouter } from 'vue-router'
+import { onMounted } from 'vue';
+import { useRouter } from 'vue-router';
+import { useAuthStore } from '@/stores/auth/auth.store';
 
-interface AuthCallBackForm {
-  isLoading: boolean
-  message: string
-  status?: 'success' | 'error'
-}
+const router = useRouter();
+const auth = useAuthStore();
 
-const router = useRouter()
+onMounted(async () => {
+  await auth.handleAuthCallback();
 
-const authCallbackForm = reactive<AuthCallBackForm>({
-  isLoading: true,
-  message: '',
-  status: undefined,
-})
-
-onBeforeMount(async () => {
-  authCallbackForm.isLoading = true
-  authCallbackForm.message = 'Processando autenticação...'
-
-  try {
-    await new Promise((resolve) => setTimeout(resolve, 1000)) // Simula chamada assíncrona
-    authCallbackForm.status = 'success'
-    authCallbackForm.message = 'Autenticação bem-sucedida! Redirecionando...'
-    setTimeout(() => {
-      router.replace(router.currentRoute.value.query.redirect as string)
-    }, 2000)
-  } catch (error) {
-    authCallbackForm.status = 'error'
-    const errorMessage = (error as Error).message
-    authCallbackForm.message = `Erro na autenticação: ${errorMessage}, redirecionando para o login…`
-    setTimeout(() => {
-      router.replace(router.currentRoute.value.query.redirect as string)
-    }, 2000)
-  } finally {
-    authCallbackForm.isLoading = false
+  if (auth.isAuthenticated) {
+    router.replace('/');
+  } else if (auth.errorMessage) {
+    router.replace({ name: 'Login', query: { error: 'auth_callback_failed' } });
+  } else {
+    router.replace({ name: 'Login' });
   }
-})
+});
 </script>
 
 <template>
-  <div>
-    <i
-      :class="{
-        'pi pi-spin pi-spinner': authCallbackForm.isLoading && !authCallbackForm.status,
-        'pi pi-times-circle': authCallbackForm.status === 'error',
-        'pi pi-check-circle': authCallbackForm.status === 'success',
-      }"
-    ></i>
-    <p>{{ authCallbackForm.message }}</p>
+  <div class="flex min-h-screen items-center justify-center">
+    <div class="text-center">
+      <div
+        class="mb-6 inline-flex h-16 w-16 items-center justify-center rounded-full"
+      >
+        <i class="pi pi-spin pi-spinner text-3xl"></i>
+      </div>
+      <h2 class="mb-2 text-xl font-bold tracking-tight">Autenticando...</h2>
+      <p class="text-sm font-medium">Por favor, aguarde um momento</p>
+    </div>
   </div>
 </template>

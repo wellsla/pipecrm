@@ -1,57 +1,79 @@
-import { createApp } from 'vue'
-import { createPinia } from 'pinia'
+import { createApp } from 'vue';
+import { createPinia } from 'pinia';
+import { supabase } from '@/core/db/supabase.client';
+import { createSentryPiniaPlugin } from '@sentry/vue';
+import { initSentry, trackError } from './core/errors/error.tracking';
+import { isAppError } from './core/errors/app/error.mapping';
+import { useAuthStore } from '@/stores/auth/auth.store';
+ 
+import router from '@/router';
+import App from '@/App.vue';
 
-import router from '@/router'
-import App from '@/App.vue'
+import PrimeVue from 'primevue/config';
+import PipePreset from '@/assets/pipe-preset';
+import Ripple from 'primevue/ripple';
 
-import PrimeVue from 'primevue/config'
-import PipePreset from '@/assets/pipe-preset'
-import Ripple from 'primevue/ripple'
-
-import 'primeicons/primeicons.css'
-import '@/assets/base.css'
-import '@/assets/tokens.css'
-
-import AuthPlugin, { SupaAuthService } from '@/services/auth.service'
-
-import * as Sentry from '@sentry/vue'
+import 'primeicons/primeicons.css';
+import '@/assets/tokens.css';
 
 const bootstrap = async () => {
-  const auth = new SupaAuthService()
-  await auth.init()
+  const app = createApp(App);
 
-  const app = createApp(App)
+  initSentry(app);
 
-  Sentry.init({
-    app,
-    dsn: 'https://cd27fcf9332c343b567e990ddf91d411@o4510399356862464.ingest.us.sentry.io/4510399358500864',
-    sendDefaultPii: true,
-    integrations: [Sentry.browserTracingIntegration({ router }), Sentry.replayIntegration()],
-    tracesSampleRate: 1.0,
-    tracePropagationTargets: ['localhost', /^https:\/\/fuczfkuspyusuloqjmod\.supabase\.co\/api/],
-    replaysSessionSampleRate: 0.1,
-    replaysOnErrorSampleRate: 1.0,
-    _experiments: { enableLogs: true },
-  })
+  const pinia = createPinia();
+  pinia.use(createSentryPiniaPlugin());
 
-  const pinia = createPinia()
-  pinia.use(Sentry.createSentryPiniaPlugin())
-
-  app.use(pinia)
-  app.use(router)
+  app.use(pinia);
+  app.use(router);
   app.use(PrimeVue, {
     ripple: true,
     theme: {
       preset: PipePreset,
       options: {
-        darkModeSelector: '.app-dark-mode',
+        darkModeSelector: '.dark',
       },
     },
-  })
-  app.use(AuthPlugin, auth)
+  });
 
-  app.directive('ripple', Ripple)
+  app.directive('ripple', Ripple);
 
-  app.mount('#app')
-}
-bootstrap()
+  app.provide('supabase', supabase);
+
+  app.config.errorHandler = (error, instance, info) => {
+    if (!isAppError(error)) {
+      trackError(error, `vue.errorHandler: ${info}`);
+    }
+
+    console.error('Vue errorHandler:', { error, instance, info });
+  }
+
+  // Restore auth session on app load
+  const auth = useAuthStore();
+  const { data: { session } } = await supabase.auth.getSession();
+  
+  if (session?.user) {
+    auth.setUser({
+      id: session.user.id,
+      email: session.user.email ?? '',
+      isAdmin: false,
+    });
+  }
+
+  // Listen for auth changes
+  supabase.auth.onAuthStateChange((_event, session) => {
+    if (session?.user) {
+      auth.setUser({
+        id: session.user.id,
+        email: session.user.email ?? '',
+        isAdmin: false,
+      });
+    } else {
+      auth.setUser(null);
+    }
+  });
+
+  app.mount('#app');
+};
+
+bootstrap();
