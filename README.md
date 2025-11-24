@@ -127,31 +127,62 @@ Toggle automático via `PipeHeader`:
 src/
 ├── assets/              # Design system e estilos globais
 │   ├── tokens.css           # Design tokens (cores, superfícies, texto)
+│   ├── base.css             # Estilos base e resets
 │   └── pipe-preset.ts       # PrimeVue preset customizado
 │
 ├── components/          # Componentes reutilizáveis
+│   ├── auth/                # Componentes de autenticação
+│   │   ├── PipeAuthForm.vue
+│   │   └── PipeAuthForm.stories.ts
+│   ├── footer/              # Rodapé
+│   │   └── PipeFooter.vue
 │   ├── header/              # PipeHeader (navegação + dark mode)
+│   │   └── PipeHeader.vue
+│   ├── modules/             # Componentes específicos de módulos
+│   │   ├── activity/            # Atividades de negócios
+│   │   │   ├── PipeActivityCard.vue
+│   │   │   ├── PipeActivityForm.vue
+│   │   │   ├── PipeActivityTimeline.vue
+│   │   │   └── *.stories.ts
+│   │   ├── company/             # Empresas
+│   │   │   ├── PipeCompanyCard.vue
+│   │   │   ├── PipeCompanyForm.vue
+│   │   │   └── *.stories.ts
+│   │   ├── contact/             # Contatos
+│   │   │   ├── PipeContactCard.vue
+│   │   │   ├── PipeContactForm.vue
+│   │   │   └── *.stories.ts
+│   │   ├── dashboard/           # Dashboard/Métricas
+│   │   │   ├── PipeMetricCard.vue
+│   │   │   └── *.stories.ts
+│   │   └── deal/                # Negócios/Deals
+│   │       └── PipeDealForm.vue
 │   └── ui/                  # Sistema de design componentizado
-│       ├── auth-form/           # PipeAuthForm + Storybook stories
 │       ├── button/              # PipeButton + Storybook stories
-│       ├── inline-message/      # PipeInlineMessage + Storybook stories
+│       ├── card/                # PipeCard + Storybook stories
+│       ├── dialog/              # PipeDialog + Storybook stories
 │       ├── input/               # PipeInput + Storybook stories
-│       ├── menubar/             # PipeTopMenubar + Storybook stories
 │       └── message/             # PipeMessage + Storybook stories
 │
 ├── composables/         # Vue composables (lógica reutilizável)
+│   ├── useActivities.ts     # Composable de atividades
 │   ├── useAsyncAction.ts    # Gerenciamento de ações assíncronas
+│   ├── useCompanies.ts      # Composable de empresas
+│   ├── useContacts.ts       # Composable de contatos
+│   ├── useDashboard.ts      # Composable do dashboard
+│   ├── useDeals.ts          # Composable de negócios
 │   └── useFormState.ts      # Estado de formulários
-│
-├── db/                  # Migrations SQL
-│   └── migrations/          # SQL migrations do banco de dados
 │
 ├── core/                # Infraestrutura central
 │   ├── db/                  # Supabase client e types
 │   │   ├── supabase.client.ts   # Cliente Supabase singleton
 │   │   ├── supabase.types.ts    # Types gerados do schema
-│   │   └── SCHEMA.md            # Documentação do schema
+│   │   ├── SCHEMA.md            # Documentação do schema
+│   │   └── migrations/          # SQL migrations do banco de dados
+│   │       ├── 2025_11_24_09_43_complete_schema_rebuild.sql
+│   │       └── 2025_11_24_10_00_fix_auth_users_insert_policy.sql
 │   └── errors/              # Error handling centralizado
+│       ├── error.mapping.ts     # Mapeamento centralizado de erros
 │       ├── error.tracking.ts    # Sentry integration
 │       ├── app/                 # AppError types e mapping
 │       ├── form/                # Validation helpers
@@ -167,14 +198,28 @@ src/
 │   │   ├── auth.service.ts      # Lógica de auth (Supabase)
 │   │   ├── auth.schemas.ts      # Schemas Zod (validação)
 │   │   └── auth.types.ts        # TypeScript interfaces
-│   └── errors/              # Error mapping services
-│       ├── error.mapper.ts      # Mapeamento centralizado
-│       └── error.tracking.ts    # Tracking de erros
+│   └── modules/             # Serviços de módulos
+│       ├── activities/          # Serviço de atividades
+│       │   ├── activities.service.ts
+│       │   └── activities.types.ts
+│       ├── companies/           # Serviço de empresas
+│       │   ├── companies.service.ts
+│       │   └── companies.types.ts
+│       ├── contacts/            # Serviço de contatos
+│       │   ├── contacts.service.ts
+│       │   └── contacts.types.ts
+│       ├── dashboard/           # Serviço de métricas
+│       │   ├── dashboard.service.ts
+│       │   └── dashboard.types.ts
+│       ├── deals/               # Serviço de negócios
+│       │   ├── deals.service.ts
+│       │   └── deals.types.ts
+│       └── pipelines/           # Serviço de pipelines
+│           └── pipeline.service.ts
 │
 ├── stores/              # Pinia stores (state management)
-│   ├── auth/                # Auth store (user, session)
-│   │   └── auth.store.ts
-│   └── modules/             # Feature stores
+│   └── auth/                # Auth store (user, session)
+│       └── auth.store.ts
 │
 ├── views/               # Páginas da aplicação
 │   ├── auth/                # Telas de autenticação
@@ -184,12 +229,20 @@ src/
 │   │   ├── RegisterView.vue
 │   │   ├── ResetPasswordView.vue
 │   │   └── TwoFactorView.vue
+│   ├── home/                # Home/Dashboard inicial
+│   │   └── HomeView.vue
 │   ├── layouts/             # Layouts globais
 │   │   ├── DefaultLayout.vue    # Layout autenticado
 │   │   └── PublicLayout.vue     # Layout público
-│   ├── home/                # Dashboard
-│   │   └── HomeView.vue
-│   └── modules/             # Feature views
+│   └── modules/             # Views de módulos
+│       ├── companies/           # View de empresas
+│       │   └── CompaniesView.vue
+│       ├── contacts/            # View de contatos
+│       │   └── ContactsView.vue
+│       ├── dashboard/           # View do dashboard
+│       │   └── DashboardView.vue
+│       └── pipeline/            # View do pipeline
+│           └── PipelineView.vue
 │
 ├── App.vue              # Root component
 └── main.ts              # Entry point (Sentry, Pinia, Router, PrimeVue)
