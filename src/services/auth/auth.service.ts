@@ -265,6 +265,32 @@ export class AuthService {
     }
   }
 
+  public async initializeSession(): Promise<AuthUser | null> {
+    try {
+      const {
+        data: { session },
+        error,
+      } = await supabase.auth.getSession();
+
+      if (error) {
+        throw mapSupabaseAuthError(error);
+      }
+
+      if (!session || !session.user) {
+        return null;
+      }
+
+      return {
+        id: session.user.id,
+        email: session.user.email ?? '',
+        isAdmin: false,
+      };
+    } catch (error: unknown) {
+      const appError = this.handleError(error, 'auth.initializeSession');
+      throw appError;
+    }
+  }
+
   private handleError(error: unknown, context: string): AppError {
     let appError: AppError;
 

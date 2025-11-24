@@ -8,14 +8,17 @@ import type { AuthUser } from '@/services/auth/auth.types';
 import type { AppError } from '@/core/errors/app/error.types';
 
 export const useAuthStore = defineStore('auth', () => {
+  // states
   const user = ref<AuthUser | null>(null);
   const loading = ref<boolean>(false);
   const error = ref<AppError | null>(null);
   const requiresMfa = ref<boolean>(false);
 
+  // getters
   const isAuthenticated = computed<boolean>(() => user.value !== null);
   const errorMessage = computed<string | null>(() => error.value?.message ?? null);
 
+  // actions
   const clearError = (): void => {
     error.value = null;
   };
@@ -143,6 +146,21 @@ export const useAuthStore = defineStore('auth', () => {
     }
   };
 
+  const initializeSession = async (): Promise<void> => {
+    loading.value = true;
+    error.value = null;
+
+    try {
+      const authUser = await authService.initializeSession();
+      user.value = authUser;
+    } catch (err: unknown) {
+      error.value = isAppError(err) ? err : mapUnknownError(err);
+      user.value = null;
+    } finally {
+      loading.value = false;
+    }
+  };
+
   return {
     // state
     user,
@@ -165,5 +183,6 @@ export const useAuthStore = defineStore('auth', () => {
     resetPassword,
     handleAuthCallback,
     signOut,
+    initializeSession,
   };
 });

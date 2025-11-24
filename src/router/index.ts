@@ -54,6 +54,21 @@ const routes: RouteRecordRaw[] = [
         name: 'Home',
         component: () => import('@/views/home/HomeView.vue'),
       },
+      {
+        path: 'pipeline',
+        name: 'Pipeline',
+        component: () => import('@/views/modules/pipeline/PipelineView.vue'),
+      },
+      {
+        path: 'contacts',
+        name: 'Contacts',
+        component: () => import('@/views/modules/contacts/ContactsView.vue'),
+      },
+      {
+        path: 'companies',
+        name: 'Companies',
+        component: () => import('@/views/modules/companies/CompaniesView.vue'),
+      },
     ],
   },
   {
@@ -67,11 +82,16 @@ const router = createRouter({
   routes,
 });
 
+// Initialize session before any navigation
+let sessionInitialized = false;
+
 router.beforeEach(async (to, _from, next) => {
   const auth = useAuthStore();
 
-  if (!auth.user && !_from.name) {
-    await new Promise(resolve => setTimeout(resolve, 100));
+  // Initialize session on first navigation
+  if (!sessionInitialized) {
+    await auth.initializeSession();
+    sessionInitialized = true;
   }
 
   const isAuthenticated = auth.isAuthenticated;

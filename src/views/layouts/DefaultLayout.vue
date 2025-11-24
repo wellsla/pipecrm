@@ -1,21 +1,19 @@
 <script setup lang="ts">
 import { useRouter, useRoute } from 'vue-router';
+import type { MenuItem } from 'primevue/menuitem';
 
 import PipeHeader from '@/components/header/PipeHeader.vue';
 import PipeFooter from '@/components/footer/PipeFooter.vue';
-
-interface MenuItem {
-  label: string;
-  icon: string;
-  route: string;
-  badge?: string;
-}
+import PipeButton from '@/components/ui/button/PipeButton.vue';
 
 const router = useRouter();
 const route = useRoute();
 
 const menuItems: MenuItem[] = [
   { label: 'Dashboard', icon: 'pi pi-home', route: '/home' },
+  { label: 'Pipeline', icon: 'pi pi-sitemap', route: '/pipeline' },
+  { label: 'Contatos', icon: 'pi pi-users', route: '/contacts' },
+  { label: 'Empresas', icon: 'pi pi-building', route: '/companies' },
 ];
 
 function navigateTo(r: string) {
@@ -31,21 +29,16 @@ function navigateTo(r: string) {
       <!-- Desktop Sidebar -->
       <aside class="hidden w-64 flex-col border-r md:flex">
         <nav class="flex flex-1 flex-col gap-1 p-4">
-          <button
+          <PipeButton
             v-for="item in menuItems"
+            :id="`${(item.label as string).toLowerCase()}-menu-button`"
             :key="item.route"
+            :label="item.label as string"
+            :icon="{ class: item.icon as string, position: 'left' }"
+            :badge="{ value: item.badge, severity: 'info' }"
             class="group flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition"
             @click="navigateTo(item.route)"
-          >
-            <i :class="['text-base', item.icon]"></i>
-            <span class="truncate flex-1 text-left">{{ item.label }}</span>
-            <span
-              v-if="item.badge"
-              class="rounded-full px-2 py-0.5 text-xs font-semibold"
-            >
-              {{ item.badge }}
-            </span>
-          </button>
+          />
         </nav>
         <div class="border-t p-4 text-xs">v0.1.0</div>
       </aside>

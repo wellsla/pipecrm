@@ -100,6 +100,9 @@ npx supabase login
 
 # Generate TypeScript types from schema
 npx supabase gen types typescript --project-id "your-project-id" > src/core/db/supabase.types.ts
+
+# Apply migrations (via Supabase Dashboard SQL Editor)
+# Copy the content from files in src/db/migrations/ and execute in SQL Editor
 ```
 
 Create a `.env` file in the project root:
@@ -140,12 +143,14 @@ src/
 │   ├── useAsyncAction.ts    # Async action management
 │   └── useFormState.ts      # Form state
 │
+├── db/                  # SQL migrations
+│   └── migrations/          # Database SQL migrations
+│
 ├── core/                # Core infrastructure
 │   ├── db/                  # Supabase client and types
 │   │   ├── supabase.client.ts   # Supabase singleton client
 │   │   ├── supabase.types.ts    # Generated schema types
-│   │   ├── SCHEMA.md            # Schema documentation
-│   │   └── migrations/          # SQL migrations
+│   │   └── SCHEMA.md            # Schema documentation
 │   └── errors/              # Centralized error handling
 │       ├── error.tracking.ts    # Sentry integration
 │       ├── app/                 # AppError types and mapping
@@ -293,7 +298,3 @@ This project is inspired by the products from PipeRun. Learn more at: [crmpiperu
 ## 📄 License
 
 Open source educational project.
-
----
-
-**Built with ❤️ using Vue 3 + TypeScript + PrimeVue**
