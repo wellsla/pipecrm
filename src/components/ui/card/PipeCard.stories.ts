@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/vue3';
 import PipeCard from './PipeCard.vue';
-import type { DealWithRelations } from '@/types/deals.types';
+import type { DealWithRelations } from '@/services/modules/deals/deals.types';
 
 const meta = {
   title: 'UI/PipeCard',

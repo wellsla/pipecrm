@@ -10,7 +10,7 @@ import type {
   Company,
   CompanyInsert,
   CompanyUpdate,
-} from '@/types/companies.types';
+} from '@/services/modules/companies/companies.types';
 
 const {
   companies,

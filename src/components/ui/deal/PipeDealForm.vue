@@ -6,7 +6,10 @@ import PipeInput from '@/components/ui/input/PipeInput.vue';
 import PipeButton from '@/components/ui/button/PipeButton.vue';
 import Dropdown from 'primevue/dropdown';
 import InputNumber from 'primevue/inputnumber';
-import type { DealInsert, DealUpdate } from '@/types/deals.types';
+import type {
+  DealInsert,
+  DealUpdate,
+} from '@/services/modules/deals/deals.types';
 
 interface Props {
   modelValue: (Partial<DealInsert> & { id?: string }) | null;

@@ -6,7 +6,7 @@ import PipeDialog from '@/components/ui/dialog/PipeDialog.vue';
 import PipeMessage from '@/components/ui/message/PipeMessage.vue';
 import PipeContactForm from '@/components/ui/contact/PipeContactForm.vue';
 import PipeButton from '@/components/ui/button/PipeButton.vue';
-import type { Contact } from '@/types/contacts.types';
+import type { Contact } from '@/services/modules/contacts/contacts.types';
 
 const {
   contacts,
@@ -47,7 +47,10 @@ function openEdit(c: Contact) {
   showFormDialog.value = true;
 }
 
-import type { ContactInsert, ContactUpdate } from '@/types/contacts.types';
+import type {
+  ContactInsert,
+  ContactUpdate,
+} from '@/services/modules/contacts/contacts.types';
 
 async function handleFormSubmit(payload: ContactInsert | ContactUpdate) {
   try {

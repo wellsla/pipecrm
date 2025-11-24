@@ -55,8 +55,8 @@
 
 <script setup lang="ts">
 import { computed } from 'vue';
-import type { DealActivity } from '@/types/activities.types';
-import { ActivityType } from '@/types/activities.types';
+import type { DealActivity } from '@/services/modules/activities/activities.types';
+import { ActivityType } from '@/services/modules/activities/activities.types';
 import PipeButton from '@/components/ui/button/PipeButton.vue';
 
 interface Props {

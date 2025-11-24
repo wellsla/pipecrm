@@ -66,8 +66,8 @@ import type {
   DealActivity,
   DealActivityInsert,
   DealActivityUpdate,
-} from '@/types/activities.types';
-import { ActivityType } from '@/types/activities.types';
+} from '@/services/modules/activities/activities.types';
+import { ActivityType } from '@/services/modules/activities/activities.types';
 import type { Database } from '@/core/db/supabase.types';
 import PipeButton from '@/components/ui/button/PipeButton.vue';
 import PipeMessage from '@/components/ui/message/PipeMessage.vue';

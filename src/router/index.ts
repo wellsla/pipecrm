@@ -39,7 +39,6 @@ const routes: RouteRecordRaw[] = [
       },
     ],
   },
-
   {
     path: '/',
     component: () => import('@/views/layouts/DefaultLayout.vue'),
@@ -47,12 +46,12 @@ const routes: RouteRecordRaw[] = [
     children: [
       {
         path: '',
-        redirect: '/home',
+        redirect: '/dashboard',
       },
       {
-        path: 'home',
-        name: 'Home',
-        component: () => import('@/views/home/HomeView.vue'),
+        path: 'dashboard',
+        name: 'Dashboard',
+        component: () => import('@/views/dashboard/DashboardView.vue'),
       },
       {
         path: 'pipeline',

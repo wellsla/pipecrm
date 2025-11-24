@@ -2,7 +2,7 @@ import { ref } from 'vue'
 import { dashboardService } from '@/services/modules/dashboard/dashboard.service'
 import { trackError } from '@/core/errors/error.tracking'
 import { mapSupabasePostgrestError } from '@/core/errors/supabase/error.mapping'
-import type { DashboardMetrics } from '@/types/dashboard.types'
+import type { DashboardMetrics } from '@/services/modules/dashboard/dashboard.types'
 import type { PostgrestError } from '@supabase/supabase-js'
 
 /**

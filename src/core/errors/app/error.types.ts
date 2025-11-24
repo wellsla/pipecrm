@@ -18,6 +18,7 @@ export type AppErrorOrigin =
   | 'UI'
   | 'ENVIRONMENT'
   | 'UNKNOWN'
+  | 'CLIENT'
 
 export interface AppError {
   code: AppErrorCode

@@ -12,7 +12,7 @@ import type {
   DealWithRelations,
   DealInsert,
   DealUpdate,
-} from '@/types/deals.types';
+} from '@/services/modules/deals/deals.types';
 
 const currentPipelineId = ref<string | null>(null);
 const {

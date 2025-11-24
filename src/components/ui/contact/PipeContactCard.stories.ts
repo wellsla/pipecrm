@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/vue3';
 import PipeContactCard from './PipeContactCard.vue';
-import type { Contact } from '@/types/contacts.types';
+import type { Contact } from '@/services/modules/contacts/contacts.types';
 
 const meta = {
   title: 'UI/PipeContactCard',

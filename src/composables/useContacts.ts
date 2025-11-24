@@ -2,7 +2,7 @@ import { ref } from 'vue';
 import { contactsService } from '@/services/modules/contacts/contacts.service';
 import { trackError } from '@/core/errors/error.tracking';
 import { mapSupabasePostgrestError } from '@/core/errors/supabase/error.mapping';
-import type { Contact, ContactInsert, ContactUpdate } from '@/types/contacts.types';
+import type { Contact, ContactInsert, ContactUpdate } from '@/services/modules/contacts/contacts.types';
 import type { PostgrestError } from '@supabase/supabase-js';
 
 export function useContacts() {

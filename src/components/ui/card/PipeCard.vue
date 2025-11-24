@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import type { DealWithRelations } from '@/types/deals.types';
+import type { DealWithRelations } from '@/services/modules/deals/deals.types';
 
 interface Props {
   deal: DealWithRelations;

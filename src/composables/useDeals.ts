@@ -2,7 +2,7 @@ import { ref, computed } from 'vue';
 import { dealsService } from '@/services/modules/deals/deals.service';
 import { trackError } from '@/core/errors/error.tracking';
 import { mapSupabasePostgrestError } from '@/core/errors/supabase/error.mapping';
-import type { DealInsert, DealUpdate, DealWithRelations, Stage } from '@/types/deals.types';
+import type { DealInsert, DealUpdate, DealWithRelations, Stage } from '@/services/modules/deals/deals.types';
 import type { PostgrestError } from '@supabase/supabase-js';
 
 export function useDeals(pipelineId?: string) {

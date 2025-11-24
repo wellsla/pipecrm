@@ -2,7 +2,7 @@ import { ref } from 'vue';
 import { companiesService } from '@/services/modules/companies/companies.service';
 import { trackError } from '@/core/errors/error.tracking';
 import { mapSupabasePostgrestError } from '@/core/errors/supabase/error.mapping';
-import type { Company, CompanyInsert, CompanyUpdate } from '@/types/companies.types';
+import type { Company, CompanyInsert, CompanyUpdate } from '@/services/modules/companies/companies.types';
 import type { PostgrestError } from '@supabase/supabase-js';
 
 export function useCompanies() {

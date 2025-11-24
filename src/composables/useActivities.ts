@@ -2,7 +2,7 @@ import { ref } from 'vue'
 import { activitiesService } from '@/services/modules/activities/activities.service'
 import { trackError } from '@/core/errors/error.tracking'
 import { mapSupabasePostgrestError } from '@/core/errors/supabase/error.mapping'
-import type { DealActivity, DealActivityInsert, DealActivityUpdate } from '@/types/activities.types'
+import type { DealActivity, DealActivityInsert, DealActivityUpdate } from '@/services/modules/activities/activities.types'
 import type { PostgrestError } from '@supabase/supabase-js'
 
 /**

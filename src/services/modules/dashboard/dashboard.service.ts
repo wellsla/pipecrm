@@ -1,5 +1,5 @@
 import { supabase } from '@/core/db/supabase.client'
-import type { DashboardMetrics } from '@/types/dashboard.types'
+import type { DashboardMetrics } from '@/services/modules/dashboard/dashboard.types'
 
 /**
  * Dashboard Service

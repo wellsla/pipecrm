@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { Contact } from '@/types/contacts.types';
+import type { Contact } from '@/services/modules/contacts/contacts.types';
 
 interface Props {
   contact: Contact;

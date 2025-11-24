@@ -101,7 +101,7 @@ import type {
   DealActivity,
   DealActivityInsert,
   DealActivityUpdate,
-} from '@/types/activities.types';
+} from '@/services/modules/activities/activities.types';
 import PipeButton from '@/components/ui/button/PipeButton.vue';
 import PipeDialog from '@/components/ui/dialog/PipeDialog.vue';
 import PipeMessage from '@/components/ui/message/PipeMessage.vue';

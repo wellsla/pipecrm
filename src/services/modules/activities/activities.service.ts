@@ -1,5 +1,5 @@
 import { supabase } from '@/core/db/supabase.client'
-import type { DealActivityInsert, DealActivityUpdate } from '@/types/activities.types'
+import type { DealActivityInsert, DealActivityUpdate } from '@/services/modules/activities/activities.types'
 
 /**
  * Activities Service

@@ -4,7 +4,7 @@ import type {
   Company,
   CompanyInsert,
   CompanyUpdate,
-} from '@/types/companies.types';
+} from '@/services/modules/companies/companies.types';
 import PipeInput from '@/components/ui/input/PipeInput.vue';
 import PipeMessage from '@/components/ui/message/PipeMessage.vue';
 import PipeButton from '@/components/ui/button/PipeButton.vue';
