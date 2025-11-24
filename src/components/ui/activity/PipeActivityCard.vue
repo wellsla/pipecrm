@@ -27,7 +27,7 @@
 
       <!-- Description -->
       <p class="text-sm text-gray-700 line-clamp-2">
-        {{ activity.content || 'No content' }}
+        {{ activity.content || 'Sem conteúdo' }}
       </p>
     </div>
 
@@ -109,11 +109,11 @@ const formattedDate = computed(() => {
   const diffMs = now.getTime() - date.getTime();
   const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
 
-  if (diffDays === 0) return 'Today';
-  if (diffDays === 1) return 'Yesterday';
-  if (diffDays < 7) return `${diffDays} days ago`;
+  if (diffDays === 0) return 'Hoje';
+  if (diffDays === 1) return 'Ontem';
+  if (diffDays < 7) return `${diffDays} dias atrás`;
 
-  return date.toLocaleDateString('en-US', {
+  return date.toLocaleDateString('pt-BR', {
     month: 'short',
     day: 'numeric',
     year: 'numeric',

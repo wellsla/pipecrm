@@ -38,7 +38,7 @@ const handleHide = () => {
     :position="props.position"
     :style="{ width: props.width || '32rem' }"
     :contentClass="props.contentClass"
-    @hide="handleHide"
+    @update:visible="handleHide"
   >
     <template v-if="props.showHeader" #header>
       <slot name="header">

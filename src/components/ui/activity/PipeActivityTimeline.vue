@@ -2,10 +2,10 @@
   <div class="flex flex-col gap-4">
     <!-- Header with Add Button -->
     <div class="flex items-center justify-between">
-      <h3 class="text-lg font-semibold text-gray-900">Activity Timeline</h3>
+      <h3 class="text-lg font-semibold text-gray-900">Linha do Tempo</h3>
       <PipeButton
         id="add-activity-btn"
-        label="Add Activity"
+        label="Adicionar Atividade"
         :icon="{ class: 'pi pi-plus' }"
         severity="primary"
         size="small"
@@ -27,9 +27,9 @@
       class="flex flex-col items-center justify-center py-12 border-2 border-dashed border-gray-300 rounded-lg"
     >
       <i class="pi pi-history text-4xl text-gray-400 mb-2"></i>
-      <p class="text-gray-500 text-sm">No activities yet</p>
+      <p class="text-gray-500 text-sm">Nenhuma atividade ainda</p>
       <p class="text-gray-400 text-xs">
-        Add your first activity to start tracking
+        Adicione sua primeira atividade para começar
       </p>
     </div>
 
@@ -48,7 +48,7 @@
     <!-- Activity Form Dialog -->
     <PipeDialog
       :model-value="showActivityDialog"
-      :header="editingActivity ? 'Edit Activity' : 'New Activity'"
+      :header="editingActivity ? 'Editar Atividade' : 'Nova Atividade'"
       :modal="true"
       width="500px"
       @update:model-value="handleCloseDialog"
@@ -65,26 +65,26 @@
     <!-- Delete Confirmation Dialog -->
     <PipeDialog
       :model-value="showDeleteDialog"
-      header="Delete Activity"
+      header="Excluir Atividade"
       :modal="true"
       width="400px"
       @update:model-value="showDeleteDialog = false"
     >
       <p class="text-gray-700 mb-4">
-        Are you sure you want to delete this activity? This action cannot be
-        undone.
+        Tem certeza que deseja excluir esta atividade? Esta ação não pode ser
+        desfeita.
       </p>
       <div class="flex justify-end gap-3">
         <PipeButton
           id="cancel-delete-btn"
-          label="Cancel"
+          label="Cancelar"
           severity="secondary"
           variant="outlined"
           @click="showDeleteDialog = false"
         />
         <PipeButton
           id="confirm-delete-btn"
-          label="Delete"
+          label="Excluir"
           severity="danger"
           :conditions="{ loading: submitting }"
           @click="confirmDelete"

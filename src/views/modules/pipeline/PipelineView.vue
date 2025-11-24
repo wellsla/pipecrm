@@ -220,7 +220,7 @@ function getStageTotal(stageId: string) {
             @click="showActivityTab = true"
           >
             <i class="pi pi-history mr-2"></i>
-            Activities
+            Atividades
           </button>
           <button
             class="px-4 py-2 text-sm font-medium transition-colors"
@@ -232,7 +232,7 @@ function getStageTotal(stageId: string) {
             @click="showActivityTab = false"
           >
             <i class="pi pi-info-circle mr-2"></i>
-            Details
+            Detalhes
           </button>
         </div>
 
@@ -247,22 +247,26 @@ function getStageTotal(stageId: string) {
           <!-- Details Tab -->
           <div v-else class="space-y-3 p-4">
             <div>
-              <label class="text-sm font-medium text-slate-600">Deal ID</label>
+              <label class="text-sm font-medium text-slate-600"
+                >ID do Negócio</label
+              >
               <p class="text-slate-800">{{ selectedDeal.id }}</p>
             </div>
             <div>
               <label class="text-sm font-medium text-slate-600"
-                >Pipeline ID</label
+                >ID do Pipeline</label
               >
               <p class="text-slate-800">{{ selectedDeal.pipeline_id }}</p>
             </div>
             <div>
-              <label class="text-sm font-medium text-slate-600">Stage ID</label>
+              <label class="text-sm font-medium text-slate-600"
+                >ID da Etapa</label
+              >
               <p class="text-slate-800">{{ selectedDeal.stage_id }}</p>
             </div>
             <div>
               <label class="text-sm font-medium text-slate-600"
-                >Created At</label
+                >Criado em</label
               >
               <p class="text-slate-800">
                 {{ new Date(selectedDeal.created_at).toLocaleString('pt-BR') }}

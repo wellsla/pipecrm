@@ -6,7 +6,7 @@
     <!-- Activity Type Selector -->
     <div class="flex flex-col gap-2">
       <label for="activity-type" class="text-sm font-medium text-gray-700"
-        >Activity Type *</label
+        >Tipo de Atividade *</label
       >
       <select
         id="activity-type"
@@ -14,7 +14,7 @@
         class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
         required
       >
-        <option value="" disabled>Select activity type</option>
+        <option value="" disabled>Selecione o tipo de atividade</option>
         <option
           v-for="type in activityTypes"
           :key="type.value"
@@ -28,13 +28,13 @@
     <!-- Content -->
     <div class="flex flex-col gap-2">
       <label for="content" class="text-sm font-medium text-gray-700"
-        >Content *</label
+        >Conteúdo *</label
       >
       <textarea
         id="content"
         v-model="formData.content"
         rows="5"
-        placeholder="Enter activity content"
+        placeholder="Digite o conteúdo da atividade"
         class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
         required
       />
@@ -44,14 +44,14 @@
     <div class="flex justify-end gap-3 pt-4 border-t">
       <PipeButton
         id="cancel-activity-btn"
-        label="Cancel"
+        label="Cancelar"
         severity="secondary"
         variant="outlined"
         @click="handleCancel"
       />
       <PipeButton
         id="submit-activity-btn"
-        :label="isEditMode ? 'Update Activity' : 'Create Activity'"
+        :label="isEditMode ? 'Atualizar Atividade' : 'Criar Atividade'"
         severity="primary"
         :conditions="{ loading: loading }"
         @click="handleSubmit"
@@ -95,12 +95,12 @@ const error = ref<string | null>(null);
 
 // Activity types for dropdown
 const activityTypes = [
-  { value: ActivityType.NOTE, label: 'Note' },
-  { value: ActivityType.CALL, label: 'Call' },
-  { value: ActivityType.EMAIL, label: 'Email' },
-  { value: ActivityType.MEETING, label: 'Meeting' },
-  { value: ActivityType.TASK, label: 'Task' },
-  { value: ActivityType.OTHER, label: 'Other' },
+  { value: ActivityType.NOTE, label: 'Nota' },
+  { value: ActivityType.CALL, label: 'Ligação' },
+  { value: ActivityType.EMAIL, label: 'E-mail' },
+  { value: ActivityType.MEETING, label: 'Reunião' },
+  { value: ActivityType.TASK, label: 'Tarefa' },
+  { value: ActivityType.OTHER, label: 'Outro' },
 ];
 
 // Form data
@@ -130,12 +130,12 @@ const handleSubmit = () => {
 
   // Validation
   if (!formData.value.type) {
-    error.value = 'Activity type is required';
+    error.value = 'Tipo de atividade é obrigatório';
     return;
   }
 
   if (!formData.value.content?.trim()) {
-    error.value = 'Content is required';
+    error.value = 'Conteúdo é obrigatório';
     return;
   }
 
