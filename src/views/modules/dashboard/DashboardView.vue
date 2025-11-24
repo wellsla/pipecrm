@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { onMounted } from 'vue';
-import { useDashboard } from '@/composables/useDashboard';
+import { useDashboard } from '@/composables/modules/useDashboard';
 import PipeButton from '@/components/ui/button/PipeButton.vue';
 import PipeMessage from '@/components/ui/message/PipeMessage.vue';
 import PipeMetricCard from '@/components/modules/dashboard/PipeMetricCard.vue';

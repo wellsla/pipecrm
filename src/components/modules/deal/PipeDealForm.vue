@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, watch } from 'vue';
-import { useCompanies } from '@/composables/useCompanies';
-import { useContacts } from '@/composables/useContacts';
+import { useCompanies } from '@/composables/modules/useCompanies';
+import { useContacts } from '@/composables/modules/useContacts';
 import PipeInput from '@/components/ui/input/PipeInput.vue';
 import PipeButton from '@/components/ui/button/PipeButton.vue';
 import Dropdown from 'primevue/dropdown';

@@ -1,6 +1,19 @@
 import { createRouter, createWebHistory, type RouteRecordRaw } from 'vue-router';
 import { useAuthStore } from '@/stores/auth/auth.store';
 
+import LoginView from '@/views/auth/LoginView.vue';
+import RegisterView from '@/views/auth/RegisterView.vue';
+import ForgotPasswordView from '@/views/auth/ForgotPasswordView.vue';
+import ResetPasswordView from '@/views/auth/ResetPasswordView.vue';
+import TwoFactorView from '@/views/auth/TwoFactorView.vue';
+import AuthCallbackView from '@/views/auth/AuthCallbackView.vue';
+
+import HomeView from '@/views/home/HomeView.vue';
+import DashboardView from '@/views/modules/dashboard/DashboardView.vue';
+import PipelineView from '@/views/modules/pipeline/PipelineView.vue';
+import ContactsView from '@/views/modules/contacts/ContactsView.vue';
+import CompaniesView from '@/views/modules/companies/CompaniesView.vue';
+
 const routes: RouteRecordRaw[] = [
   {
     path: '/auth',
@@ -10,32 +23,32 @@ const routes: RouteRecordRaw[] = [
       {
         path: 'login',
         name: 'Login',
-        component: () => import('@/views/auth/LoginView.vue'),
+        component: LoginView,
       },
       {
         path: 'register',
         name: 'Register',
-        component: () => import('@/views/auth/RegisterView.vue'),
+        component: RegisterView,
       },
       {
         path: 'forgot-password',
         name: 'ForgotPassword',
-        component: () => import('@/views/auth/ForgotPasswordView.vue'),
+        component: ForgotPasswordView,
       },
       {
         path: 'reset-password',
         name: 'ResetPassword',
-        component: () => import('@/views/auth/ResetPasswordView.vue'),
+        component: ResetPasswordView,
       },
       {
         path: 'two-factor',
         name: 'TwoFactor',
-        component: () => import('@/views/auth/TwoFactorView.vue'),
+        component: TwoFactorView,
       },
       {
         path: 'callback',
         name: 'AuthCallback',
-        component: () => import('@/views/auth/AuthCallbackView.vue'),
+        component: AuthCallbackView,
       },
     ],
   },
@@ -51,27 +64,27 @@ const routes: RouteRecordRaw[] = [
       {
         path: 'home',
         name: 'Home',
-        component: () => import('@/views/home/HomeView.vue'),
+        component: HomeView,
       },
       {
         path: 'dashboard',
         name: 'Dashboard',
-        component: () => import('@/views/modules/dashboard/DashboardView.vue'),
+        component: DashboardView,
       },
       {
         path: 'pipeline',
         name: 'Pipeline',
-        component: () => import('@/views/modules/pipeline/PipelineView.vue'),
+        component: PipelineView,
       },
       {
         path: 'contacts',
         name: 'Contacts',
-        component: () => import('@/views/modules/contacts/ContactsView.vue'),
+        component: ContactsView,
       },
       {
         path: 'companies',
         name: 'Companies',
-        component: () => import('@/views/modules/companies/CompaniesView.vue'),
+        component: CompaniesView,
       },
     ],
   },

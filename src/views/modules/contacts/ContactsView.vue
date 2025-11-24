@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue';
-import { useContacts } from '@/composables/useContacts';
+import { useContacts } from '@/composables/modules/useContacts';
 import PipeContactCard from '@/components/modules/contact/PipeContactCard.vue';
 import PipeDialog from '@/components/ui/dialog/PipeDialog.vue';
 import PipeMessage from '@/components/ui/message/PipeMessage.vue';

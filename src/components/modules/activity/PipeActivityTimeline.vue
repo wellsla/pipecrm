@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
-import { useActivities } from '@/composables/useActivities';
+import { useActivities } from '@/composables/modules/useActivities';
 import type {
   DealActivity,
   DealActivityInsert,

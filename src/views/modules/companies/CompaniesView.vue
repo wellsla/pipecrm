@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue';
-import { useCompanies } from '@/composables/useCompanies';
+import { useCompanies } from '@/composables/modules/useCompanies';
 import PipeCompanyCard from '@/components/modules/company/PipeCompanyCard.vue';
 import PipeDialog from '@/components/ui/dialog/PipeDialog.vue';
 import PipeMessage from '@/components/ui/message/PipeMessage.vue';

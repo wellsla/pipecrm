@@ -165,12 +165,13 @@ src/
 │       └── message/             # PipeMessage + Storybook stories
 │
 ├── composables/         # Vue composables (reusable logic)
-│   ├── useActivities.ts     # Activities composable
+│   ├── modules/             # Module-specific composables
+│   │   ├── useActivities.ts     # Activities composable
+│   │   ├── useCompanies.ts      # Companies composable
+│   │   ├── useContacts.ts       # Contacts composable
+│   │   ├── useDashboard.ts      # Dashboard composable
+│   │   └── useDeals.ts          # Deals composable
 │   ├── useAsyncAction.ts    # Async action management
-│   ├── useCompanies.ts      # Companies composable
-│   ├── useContacts.ts       # Contacts composable
-│   ├── useDashboard.ts      # Dashboard composable
-│   ├── useDeals.ts          # Deals composable
 │   └── useFormState.ts      # Form state
 │
 ├── core/                # Core infrastructure

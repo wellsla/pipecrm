@@ -165,12 +165,13 @@ src/
 │       └── message/             # PipeMessage + Storybook stories
 │
 ├── composables/         # Vue composables (lógica reutilizável)
-│   ├── useActivities.ts     # Composable de atividades
+│   ├── modules/             # Composables específicos de módulos
+│   │   ├── useActivities.ts     # Composable de atividades
+│   │   ├── useCompanies.ts      # Composable de empresas
+│   │   ├── useContacts.ts       # Composable de contatos
+│   │   ├── useDashboard.ts      # Composable do dashboard
+│   │   └── useDeals.ts          # Composable de negócios
 │   ├── useAsyncAction.ts    # Gerenciamento de ações assíncronas
-│   ├── useCompanies.ts      # Composable de empresas
-│   ├── useContacts.ts       # Composable de contatos
-│   ├── useDashboard.ts      # Composable do dashboard
-│   ├── useDeals.ts          # Composable de negócios
 │   └── useFormState.ts      # Estado de formulários
 │
 ├── core/                # Infraestrutura central
@@ -229,7 +230,7 @@ src/
 │   │   ├── RegisterView.vue
 │   │   ├── ResetPasswordView.vue
 │   │   └── TwoFactorView.vue
-│   ├── home/                # Home/Dashboard inicial
+│   ├── home/                # Home inicial
 │   │   └── HomeView.vue
 │   ├── layouts/             # Layouts globais
 │   │   ├── DefaultLayout.vue    # Layout autenticado
