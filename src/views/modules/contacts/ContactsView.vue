@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue';
 import { useContacts } from '@/composables/useContacts';
-import PipeContactCard from '@/components/ui/contact/PipeContactCard.vue';
+import PipeContactCard from '@/components/modules/contact/PipeContactCard.vue';
 import PipeDialog from '@/components/ui/dialog/PipeDialog.vue';
 import PipeMessage from '@/components/ui/message/PipeMessage.vue';
-import PipeContactForm from '@/components/ui/contact/PipeContactForm.vue';
+import PipeContactForm from '@/components/modules/contact/PipeContactForm.vue';
 import PipeButton from '@/components/ui/button/PipeButton.vue';
 import type { Contact } from '@/services/modules/contacts/contacts.types';
 
@@ -90,7 +90,7 @@ async function handleFormSubmit(payload: ContactInsert | ContactUpdate) {
       {{ error }}
     </PipeMessage>
 
-    <div v-if="loading" class="p-6 text-slate-500">Carregando contatos...</div>
+    <div v-if="loading" class="p-6">Carregando contatos...</div>
 
     <div v-else class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
       <PipeContactCard

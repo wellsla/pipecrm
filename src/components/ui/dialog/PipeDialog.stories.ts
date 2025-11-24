@@ -3,7 +3,7 @@ import PipeDialog from './PipeDialog.vue';
 
 
 const meta = {
-  title: 'UI/PipeDialog',
+  title: 'Ui/Dialog/PipeDialog',
   component: PipeDialog,
   tags: ['autodocs'],
   argTypes: {

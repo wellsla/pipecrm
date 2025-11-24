@@ -1,17 +1,18 @@
 import type { Meta, StoryObj } from '@storybook/vue3';
-import PipeCompanyForm from './PipeCompanyForm.vue';
+import PipeContactForm from './PipeContactForm.vue';
 
 const meta = {
-  title: 'UI/PipeCompanyForm',
-  component: PipeCompanyForm,
+  title: 'Modules/Contact/PipeContactForm',
+  component: PipeContactForm,
   tags: ['autodocs'],
   argTypes: {
     onSubmit: { action: 'submit' },
     onCancel: { action: 'cancel' },
   },
-} satisfies Meta<typeof PipeCompanyForm>;
+} satisfies Meta<typeof PipeContactForm>;
 
 export default meta;
+
 type Story = StoryObj<typeof meta>;
 
 export const Create: Story = {
@@ -24,10 +25,12 @@ export const Create: Story = {
 export const Edit: Story = {
   args: {
     modelValue: {
-      id: 'co1',
-      name: 'Tech Solutions Inc',
-      segment: 'Software',
-      city: 'Florianópolis',
+      id: 'c1',
+      name: 'Maria Oliveira',
+      email: 'maria.oliveira@example.com',
+      phone: '+55 31 98888-7777',
+      company_id: null,
+      position: null,
       created_at: new Date().toISOString(),
     },
     loading: false,

@@ -43,7 +43,7 @@ function handleDelete(deal: DealWithRelations, event: Event) {
 
 <template>
   <div
-    class="bg-white border border-surface-border rounded-lg p-4 cursor-pointer transition-all duration-200 mb-3 shadow-sm hover:shadow-md hover:border-primary focus:outline-primary focus:outline-2 relative"
+    class="border border-surface-border rounded-lg p-4 cursor-pointer transition-all duration-200 mb-3 shadow-sm hover:shadow-md hover:border-primary focus:outline-primary focus:outline-2 relative"
     @click="emit('click', deal)"
     role="button"
     tabindex="0"
@@ -65,18 +65,18 @@ function handleDelete(deal: DealWithRelations, event: Event) {
         </button>
         <div
           v-if="showMenu"
-          class="absolute right-0 top-full mt-1 bg-white border border-surface-border rounded-lg shadow-lg z-10 min-w-[120px]"
+          class="absolute right-0 top-full mt-1 border border-surface-border rounded-lg shadow-lg z-10 min-w-[120px]"
           @click.stop
         >
           <button
-            class="w-full text-left px-4 py-2 text-sm hover:bg-slate-50 flex items-center gap-2"
+            class="w-full text-left px-4 py-2 text-sm flex items-center gap-2"
             @click="(e) => handleEdit(deal, e)"
           >
             <i class="pi pi-pencil text-xs"></i>
             Editar
           </button>
           <button
-            class="w-full text-left px-4 py-2 text-sm hover:bg-slate-50 flex items-center gap-2 text-danger"
+            class="w-full text-left px-4 py-2 text-sm flex items-center gap-2 text-danger"
             @click="(e) => handleDelete(deal, e)"
           >
             <i class="pi pi-trash text-xs"></i>

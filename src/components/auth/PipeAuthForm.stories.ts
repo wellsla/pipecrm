@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/vue3';
 import PipeAuthForm from './PipeAuthForm.vue';
-import PipeButton from '../button/PipeButton.vue';
-import PipeInput from '../input/PipeInput.vue';
+import PipeButton from '../ui/button/PipeButton.vue';
+import PipeInput from '../ui/input/PipeInput.vue';
 
 const meta = {
-  title: 'Components/Form/PipeAuthForm',
+  title: 'Auth/Form/PipeAuthForm',
   component: PipeAuthForm,
   tags: ['autodocs'],
   argTypes: {
@@ -76,7 +76,7 @@ export const Login: Story = {
           </div>
 
           <div class="text-right">
-            <button type="button" class="text-sm text-primary-600 hover:underline dark:text-primary-400">
+            <button type="button" class="text-sm hover:underline">
               Esqueceu a senha?
             </button>
           </div>
@@ -111,7 +111,7 @@ export const Login: Story = {
 
           <p class="text-center text-sm">
             Não tem uma conta?
-            <button type="button" class="font-medium text-primary-600 hover:underline dark:text-primary-400">
+            <button type="button" class="font-medium hover:underline">
               Cadastre-se
             </button>
           </p>

@@ -16,7 +16,7 @@ const emit = defineEmits<{
 
 <template>
   <div
-    class="bg-white border border-surface-border rounded-lg p-4 cursor-pointer transition-all duration-150 mb-3 shadow-sm hover:shadow-md hover:border-primary"
+    class="border border-surface-border rounded-lg p-4 cursor-pointer transition-all duration-150 mb-3 shadow-sm hover:shadow-md hover:border-primary"
     @click="emit('click', contact)"
     role="button"
     tabindex="0"
@@ -24,10 +24,10 @@ const emit = defineEmits<{
   >
     <div class="flex items-center justify-between mb-2">
       <div>
-        <div class="text-sm font-semibold text-slate-800">
+        <div class="text-sm font-semibold">
           {{ contact.name }}
         </div>
-        <div class="text-xs text-slate-500">
+        <div class="text-xs">
           {{ contact.email || contact.phone || '—' }}
         </div>
       </div>

@@ -12,7 +12,7 @@ const route = useRoute();
 const mobileMenuOpen = ref(false);
 
 const menuItems: MenuItem[] = [
-  { label: 'Dashboard', icon: 'pi pi-home', route: '/home' },
+  { label: 'Dashboard', icon: 'pi pi-chart-line', route: '/dashboard' },
   { label: 'Pipeline', icon: 'pi pi-sitemap', route: '/pipeline' },
   { label: 'Contatos', icon: 'pi pi-users', route: '/contacts' },
   { label: 'Empresas', icon: 'pi pi-building', route: '/companies' },
@@ -32,10 +32,10 @@ function toggleMobileMenu() {
 
 <template>
   <div class="flex min-h-screen flex-col">
-    <PipeHeader title="PipeCRM" subtitle="Painel Principal" />
+    <PipeHeader title="PipeCRM" :subtitle="route.name as string" />
 
     <!-- Mobile Menu Toggle Button -->
-    <div class="md:hidden sticky top-0 z-40 bg-white border-b px-4 py-3">
+    <div class="md:hidden sticky top-0 z-40 border-b px-4 py-3">
       <button
         @click="toggleMobileMenu"
         class="flex items-center gap-2 text-sm font-medium"
@@ -53,14 +53,14 @@ function toggleMobileMenu() {
       <!-- Mobile Sidebar Overlay -->
       <div
         v-if="mobileMenuOpen"
-        class="fixed inset-0 bg-black bg-opacity-50 z-40 md:hidden"
+        class="fixed inset-0 bg-opacity-50 z-40 md:hidden"
         @click="mobileMenuOpen = false"
       ></div>
 
       <!-- Sidebar (Desktop + Mobile) -->
       <aside
         :class="[
-          'fixed md:static inset-y-0 left-0 z-50 w-64 flex-col border-r bg-white transition-transform duration-300 ease-in-out md:flex',
+          'fixed md:static inset-y-0 left-0 z-50 w-64 flex-col border-r transition-transform duration-300 ease-in-out md:flex',
           mobileMenuOpen
             ? 'translate-x-0'
             : '-translate-x-full md:translate-x-0',

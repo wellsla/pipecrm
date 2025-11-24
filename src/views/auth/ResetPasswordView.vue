@@ -5,7 +5,7 @@ import { useAuthStore } from '@/stores/auth/auth.store';
 import { validationError } from '@/core/errors/form/validation';
 import type { AppError } from '@/core/errors/app/error.types';
 
-import PipeAuthForm from '@/components/ui/auth-form/PipeAuthForm.vue';
+import PipeAuthForm from '@/components/auth/PipeAuthForm.vue';
 import PipeInput from '@/components/ui/input/PipeInput.vue';
 import PipeButton from '@/components/ui/button/PipeButton.vue';
 import PipeMessage from '@/components/ui/message/PipeMessage.vue';

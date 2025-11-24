@@ -4,7 +4,7 @@ import { useRouter, useRoute } from 'vue-router';
 import { useAuthStore } from '@/stores/auth/auth.store';
 import { useFormState } from '@/composables/useFormState';
 
-import PipeAuthForm from '@/components/ui/auth-form/PipeAuthForm.vue';
+import PipeAuthForm from '@/components/auth/PipeAuthForm.vue';
 import PipeInput from '@/components/ui/input/PipeInput.vue';
 import PipeButton from '@/components/ui/button/PipeButton.vue';
 import PipeMessage from '@/components/ui/message/PipeMessage.vue';

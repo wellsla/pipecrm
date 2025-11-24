@@ -182,7 +182,7 @@ export const InFormContext: Story = {
 			<div class="w-96 space-y-3">
 				<div>
 					<label for="email" class="block text-sm font-semibold mb-2">E-mail</label>
-					<input id="email" type="email" class="w-full px-3 py-2 border rounded-md border-red-300" placeholder="seu@email.com" />
+					<input id="email" type="email" class="w-full px-3 py-2 border rounded-md" placeholder="seu@email.com" />
 					<PipeMessage severity="error" variant="simple" icon="pi pi-exclamation-circle" size="small" class="mt-2">
 						E-mail inválido. Por favor, digite um endereço válido.
 					</PipeMessage>

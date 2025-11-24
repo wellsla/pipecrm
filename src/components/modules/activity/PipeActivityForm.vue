@@ -1,65 +1,3 @@
-<template>
-  <div class="flex flex-col gap-4">
-    <!-- Error Message -->
-    <PipeMessage v-if="error" severity="error" :text="error" />
-
-    <!-- Activity Type Selector -->
-    <div class="flex flex-col gap-2">
-      <label for="activity-type" class="text-sm font-medium text-gray-700"
-        >Tipo de Atividade *</label
-      >
-      <select
-        id="activity-type"
-        v-model="formData.type"
-        class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-        required
-      >
-        <option value="" disabled>Selecione o tipo de atividade</option>
-        <option
-          v-for="type in activityTypes"
-          :key="type.value"
-          :value="type.value"
-        >
-          {{ type.label }}
-        </option>
-      </select>
-    </div>
-
-    <!-- Content -->
-    <div class="flex flex-col gap-2">
-      <label for="content" class="text-sm font-medium text-gray-700"
-        >Conteúdo *</label
-      >
-      <textarea
-        id="content"
-        v-model="formData.content"
-        rows="5"
-        placeholder="Digite o conteúdo da atividade"
-        class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
-        required
-      />
-    </div>
-
-    <!-- Form Actions -->
-    <div class="flex justify-end gap-3 pt-4 border-t">
-      <PipeButton
-        id="cancel-activity-btn"
-        label="Cancelar"
-        severity="secondary"
-        variant="outlined"
-        @click="handleCancel"
-      />
-      <PipeButton
-        id="submit-activity-btn"
-        :label="isEditMode ? 'Atualizar Atividade' : 'Criar Atividade'"
-        severity="primary"
-        :conditions="{ loading: loading }"
-        @click="handleSubmit"
-      />
-    </div>
-  </div>
-</template>
-
 <script setup lang="ts">
 import { ref, computed, watch } from 'vue';
 import type {
@@ -153,3 +91,63 @@ const handleCancel = () => {
   emit('cancel');
 };
 </script>
+
+<template>
+  <div class="flex flex-col gap-4">
+    <!-- Error Message -->
+    <PipeMessage v-if="error" severity="error" :text="error" />
+
+    <!-- Activity Type Selector -->
+    <div class="flex flex-col gap-2">
+      <label for="activity-type" class="text-sm font-medium"
+        >Tipo de Atividade *</label
+      >
+      <select
+        id="activity-type"
+        v-model="formData.type"
+        class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+        required
+      >
+        <option value="" disabled>Selecione o tipo de atividade</option>
+        <option
+          v-for="type in activityTypes"
+          :key="type.value"
+          :value="type.value"
+        >
+          {{ type.label }}
+        </option>
+      </select>
+    </div>
+
+    <!-- Content -->
+    <div class="flex flex-col gap-2">
+      <label for="content" class="text-sm font-medium">Conteúdo *</label>
+      <textarea
+        id="content"
+        v-model="formData.content"
+        rows="5"
+        placeholder="Digite o conteúdo da atividade"
+        class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
+        required
+      />
+    </div>
+
+    <!-- Form Actions -->
+    <div class="flex justify-end gap-3 pt-4 border-t">
+      <PipeButton
+        id="cancel-activity-btn"
+        label="Cancelar"
+        severity="secondary"
+        variant="outlined"
+        @click="handleCancel"
+      />
+      <PipeButton
+        id="submit-activity-btn"
+        :label="isEditMode ? 'Atualizar Atividade' : 'Criar Atividade'"
+        severity="primary"
+        :conditions="{ loading: loading }"
+        @click="handleSubmit"
+      />
+    </div>
+  </div>
+</template>

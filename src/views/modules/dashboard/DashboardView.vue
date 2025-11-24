@@ -1,3 +1,25 @@
+<script setup lang="ts">
+import { onMounted } from 'vue';
+import { useDashboard } from '@/composables/useDashboard';
+import PipeButton from '@/components/ui/button/PipeButton.vue';
+import PipeMessage from '@/components/ui/message/PipeMessage.vue';
+import PipeMetricCard from '@/components/modules/dashboard/PipeMetricCard.vue';
+
+const { metrics, loading, error, fetchMetrics, refreshMetrics } =
+  useDashboard();
+
+onMounted(() => {
+  fetchMetrics();
+});
+
+const formatCurrency = (value: number) => {
+  return new Intl.NumberFormat('pt-BR', {
+    style: 'currency',
+    currency: 'BRL',
+  }).format(value);
+};
+</script>
+
 <template>
   <div class="space-y-4 sm:space-y-6">
     <!-- Header -->
@@ -5,10 +27,8 @@
       class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3"
     >
       <div>
-        <h1 class="text-xl sm:text-2xl font-bold text-gray-900">Dashboard</h1>
-        <p class="text-xs sm:text-sm text-gray-600">
-          Visão geral das métricas do sistema
-        </p>
+        <h1 class="text-xl sm:text-2xl font-bold">Dashboard</h1>
+        <p class="text-xs sm:text-sm">Visão geral das métricas do sistema</p>
       </div>
       <PipeButton
         id="refresh-dashboard-btn"
@@ -26,9 +46,10 @@
     <!-- Loading State -->
     <div
       v-if="loading && !metrics"
-      class="flex items-center justify-center py-12"
+      class="flex flex-col items-center justify-center gap-4 p-12"
     >
-      <i class="pi pi-spinner pi-spin text-4xl text-blue-500"></i>
+      <i class="pi pi-spin pi-spinner text-3xl"></i>
+      <p>Carregando dashboard...</p>
     </div>
 
     <!-- Error State -->
@@ -38,9 +59,7 @@
     <div v-else-if="metrics" class="space-y-4 sm:space-y-6">
       <!-- Deal Metrics -->
       <div>
-        <h2
-          class="text-base sm:text-lg font-semibold text-gray-900 mb-3 sm:mb-4"
-        >
+        <h2 class="text-base sm:text-lg font-semibold mb-3 sm:mb-4">
           Negócios
         </h2>
         <div
@@ -79,9 +98,7 @@
 
       <!-- Contact & Company Metrics -->
       <div>
-        <h2
-          class="text-base sm:text-lg font-semibold text-gray-900 mb-3 sm:mb-4"
-        >
+        <h2 class="text-base sm:text-lg font-semibold mb-3 sm:mb-4">
           Contatos & Empresas
         </h2>
         <div
@@ -120,31 +137,28 @@
 
       <!-- Pipeline by Stage -->
       <div v-if="metrics.deals.byStage.length > 0">
-        <h2
-          class="text-base sm:text-lg font-semibold text-gray-900 mb-3 sm:mb-4"
-        >
+        <h2 class="text-base sm:text-lg font-semibold mb-3 sm:mb-4">
           Negócios por Etapa
         </h2>
-        <div class="bg-white rounded-lg border border-gray-200 p-3 sm:p-6">
+        <div class="rounded-lg border p-3 sm:p-6">
           <div class="space-y-3 sm:space-y-4">
             <div
               v-for="stage in metrics.deals.byStage"
               :key="stage.stageId"
-              class="flex items-center justify-between p-2.5 sm:p-3 rounded-lg bg-gray-50 hover:bg-gray-100 transition"
+              class="flex items-center justify-between p-2.5 sm:p-3 rounded-lg transition"
             >
               <div class="flex items-center gap-2 sm:gap-3 min-w-0">
                 <div class="w-2 h-2 rounded-full bg-blue-500 shrink-0"></div>
-                <span
-                  class="font-medium text-gray-900 text-sm sm:text-base truncate"
-                  >{{ stage.stageName }}</span
-                >
+                <span class="font-medium text-sm sm:text-base truncate">{{
+                  stage.stageName
+                }}</span>
               </div>
               <div class="flex items-center gap-6">
                 <div class="text-right">
-                  <p class="text-sm font-medium text-gray-900">
+                  <p class="text-sm font-medium">
                     {{ stage.count }} negócio{{ stage.count !== 1 ? 's' : '' }}
                   </p>
-                  <p class="text-xs text-gray-500">
+                  <p class="text-xs">
                     {{ formatCurrency(stage.totalValue) }}
                   </p>
                 </div>
@@ -156,9 +170,7 @@
 
       <!-- Activity Types -->
       <div v-if="metrics.activities.byType.length > 0">
-        <h2
-          class="text-base sm:text-lg font-semibold text-gray-900 mb-3 sm:mb-4"
-        >
+        <h2 class="text-base sm:text-lg font-semibold mb-3 sm:mb-4">
           Atividades por Tipo
         </h2>
         <div
@@ -167,12 +179,12 @@
           <div
             v-for="activityType in metrics.activities.byType"
             :key="activityType.type"
-            class="bg-white rounded-lg border border-gray-200 p-4 text-center"
+            class="rounded-lg border p-4 text-center"
           >
-            <div class="text-2xl font-bold text-gray-900 mb-1">
+            <div class="text-2xl font-bold mb-1">
               {{ activityType.count }}
             </div>
-            <div class="text-xs text-gray-600 capitalize">
+            <div class="text-xs capitalize">
               {{ activityType.type }}
             </div>
           </div>
@@ -181,25 +193,3 @@
     </div>
   </div>
 </template>
-
-<script setup lang="ts">
-import { onMounted } from 'vue';
-import { useDashboard } from '@/composables/useDashboard';
-import PipeButton from '@/components/ui/button/PipeButton.vue';
-import PipeMessage from '@/components/ui/message/PipeMessage.vue';
-import PipeMetricCard from '@/components/ui/dashboard/PipeMetricCard.vue';
-
-const { metrics, loading, error, fetchMetrics, refreshMetrics } =
-  useDashboard();
-
-onMounted(() => {
-  fetchMetrics();
-});
-
-const formatCurrency = (value: number) => {
-  return new Intl.NumberFormat('pt-BR', {
-    style: 'currency',
-    currency: 'BRL',
-  }).format(value);
-};
-</script>

@@ -1,0 +1,11 @@
+/* claro */
+html.light,
+html.light .docs-story {
+  background-color: #ffffff; /* surface clara */
+}
+
+/* escuro */
+html.dark,
+html.dark .docs-story {
+  background-color: #0f1012; /* surface bem escura */
+}

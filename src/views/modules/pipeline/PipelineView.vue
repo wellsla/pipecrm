@@ -5,8 +5,8 @@ import { pipelineService } from '@/services/modules/pipelines/pipeline.service';
 import PipeCard from '@/components/ui/card/PipeCard.vue';
 import PipeDialog from '@/components/ui/dialog/PipeDialog.vue';
 import PipeMessage from '@/components/ui/message/PipeMessage.vue';
-import PipeActivityTimeline from '@/components/ui/activity/PipeActivityTimeline.vue';
-import PipeDealForm from '@/components/ui/deal/PipeDealForm.vue';
+import PipeActivityTimeline from '@/components/modules/activity/PipeActivityTimeline.vue';
+import PipeDealForm from '@/components/modules/deal/PipeDealForm.vue';
 import PipeButton from '@/components/ui/button/PipeButton.vue';
 import type {
   DealWithRelations,
@@ -36,7 +36,6 @@ const formStageId = ref<string>('');
 
 onMounted(async () => {
   try {
-    // Get or create default pipeline for current user
     currentPipelineId.value =
       await pipelineService.getOrCreateDefaultPipeline();
     await fetchStages(currentPipelineId.value);
@@ -100,9 +99,7 @@ function getStageTotal(stageId: string) {
 <template>
   <div class="p-2 sm:p-6 h-full flex flex-col overflow-hidden">
     <div class="flex items-center justify-between mb-4 sm:mb-6">
-      <h1 class="text-xl sm:text-2xl font-bold text-slate-800">
-        Pipeline de Vendas
-      </h1>
+      <h1 class="text-xl sm:text-2xl font-bold">Pipeline de Vendas</h1>
     </div>
 
     <PipeMessage
@@ -116,7 +113,7 @@ function getStageTotal(stageId: string) {
 
     <div
       v-if="loading"
-      class="flex flex-col items-center justify-center gap-4 p-12 text-slate-500"
+      class="flex flex-col items-center justify-center gap-4 p-12"
     >
       <i class="pi pi-spin pi-spinner text-3xl"></i>
       <p>Carregando pipeline...</p>
@@ -129,21 +126,19 @@ function getStageTotal(stageId: string) {
       <div
         v-for="stage in stages"
         :key="stage.id"
-        class="min-w-[280px] sm:min-w-[320px] w-[85vw] sm:w-auto bg-slate-50 rounded-lg p-3 sm:p-4 flex flex-col snap-center"
+        class="surface-card min-w-[280px] sm:min-w-[320px] w-[85vw] sm:w-auto rounded-lg p-3 sm:p-4 flex flex-col snap-center"
       >
         <div class="flex items-center justify-between mb-3">
-          <h3 class="text-base font-semibold text-slate-800">
+          <h3 class="text-base font-semibold">
             {{ stage.name }}
           </h3>
           <span
-            class="inline-flex items-center justify-center min-w-6 h-6 px-1 bg-slate-200 text-slate-800 rounded-full text-xs font-semibold"
+            class="inline-flex items-center justify-center min-w-6 h-6 px-1 rounded-full text-xs font-semibold"
           >
             {{ (dealsByStage[stage.id] || []).length }}
           </span>
         </div>
-        <div
-          class="text-lg font-bold text-primary mb-4 pb-3 border-b border-slate-200"
-        >
+        <div class="text-lg font-bold text-primary mb-4 pb-3 border-b">
           {{ formatCurrency(getStageTotal(stage.id)) }}
         </div>
         <div class="mb-3">
@@ -168,7 +163,7 @@ function getStageTotal(stageId: string) {
           />
           <div
             v-if="(dealsByStage[stage.id] || []).length === 0"
-            class="flex flex-col items-center justify-center text-slate-400 py-8 text-center"
+            class="flex flex-col items-center justify-center py-8 text-center"
           >
             <i class="pi pi-inbox text-3xl mb-2"></i>
             <p class="text-sm">Nenhum negócio</p>
@@ -188,7 +183,7 @@ function getStageTotal(stageId: string) {
     >
       <div v-if="selectedDeal" class="flex flex-col gap-4">
         <!-- Deal Info Section -->
-        <div class="p-4 bg-slate-50 rounded-lg space-y-2">
+        <div class="p-4 rounded-lg space-y-2">
           <p>
             <strong>Valor:</strong> {{ formatCurrency(selectedDeal.amount) }}
           </p>
@@ -215,14 +210,12 @@ function getStageTotal(stageId: string) {
         </div>
 
         <!-- Tabs -->
-        <div class="flex gap-2 border-b border-slate-200">
+        <div class="flex gap-2 border-b">
           <button
             class="px-4 py-2 text-sm font-medium transition-colors"
-            :class="
-              showActivityTab
-                ? 'border-b-2 border-primary text-primary'
-                : 'text-slate-600 hover:text-slate-900'
-            "
+            :class="{
+              'border-b-2 border-primary text-primary': showActivityTab,
+            }"
             @click="showActivityTab = true"
           >
             <i class="pi pi-history mr-2"></i>
@@ -230,11 +223,9 @@ function getStageTotal(stageId: string) {
           </button>
           <button
             class="px-4 py-2 text-sm font-medium transition-colors"
-            :class="
-              !showActivityTab
-                ? 'border-b-2 border-primary text-primary'
-                : 'text-slate-600 hover:text-slate-900'
-            "
+            :class="{
+              'border-b-2 border-primary text-primary': !showActivityTab,
+            }"
             @click="showActivityTab = false"
           >
             <i class="pi pi-info-circle mr-2"></i>
@@ -253,35 +244,27 @@ function getStageTotal(stageId: string) {
           <!-- Details Tab -->
           <div v-else class="space-y-3 p-4">
             <div>
-              <label class="text-sm font-medium text-slate-600"
-                >ID do Negócio</label
-              >
-              <p class="text-slate-800">{{ selectedDeal.id }}</p>
+              <label class="text-sm font-medium">ID do Negócio</label>
+              <p>{{ selectedDeal.id }}</p>
             </div>
             <div>
-              <label class="text-sm font-medium text-slate-600"
-                >ID do Pipeline</label
-              >
-              <p class="text-slate-800">{{ selectedDeal.pipeline_id }}</p>
+              <label class="text-sm font-medium">ID do Pipeline</label>
+              <p>{{ selectedDeal.pipeline_id }}</p>
             </div>
             <div>
-              <label class="text-sm font-medium text-slate-600"
-                >ID da Etapa</label
-              >
-              <p class="text-slate-800">{{ selectedDeal.stage_id }}</p>
+              <label class="text-sm font-medium">ID da Etapa</label>
+              <p>{{ selectedDeal.stage_id }}</p>
             </div>
             <div>
-              <label class="text-sm font-medium text-slate-600"
-                >Criado em</label
-              >
-              <p class="text-slate-800">
+              <label class="text-sm font-medium">Criado em</label>
+              <p>
                 {{ new Date(selectedDeal.created_at).toLocaleString('pt-BR') }}
               </p>
             </div>
           </div>
         </div>
       </div>
-      <div v-else class="text-slate-500">Nenhum negócio selecionado.</div>
+      <div v-else>Nenhum negócio selecionado.</div>
     </PipeDialog>
 
     <PipeDialog

@@ -37,20 +37,16 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="flex min-h-screen items-center justify-center bg-gray-100">
-    <div class="w-full max-w-md rounded-xl bg-white p-6 shadow-lg">
-      <h1 class="mb-2 text-2xl font-semibold text-gray-800">
-        Autenticação em duas etapas
-      </h1>
-      <p class="mb-4 text-sm text-gray-600">
+  <div class="flex min-h-screen items-center justify-center">
+    <div class="w-full max-w-md rounded-xl p-6 shadow-lg">
+      <h1 class="mb-2 text-2xl font-semibold">Autenticação em duas etapas</h1>
+      <p class="mb-4 text-sm">
         Digite o código de 6 dígitos enviado para seu e-mail.
       </p>
 
       <form class="space-y-4" @submit.prevent="onSubmit">
         <div class="flex flex-col gap-1">
-          <label class="text-sm font-medium text-gray-700">
-            Código de verificação
-          </label>
+          <label class="text-sm font-medium"> Código de verificação </label>
 
           <PipeInput
             id="code"
@@ -69,7 +65,7 @@ onMounted(() => {
           :conditions="{ loading: auth.loading }"
         />
 
-        <div class="flex flex-col gap-2 text-center text-sm text-gray-500">
+        <div class="flex flex-col gap-2 text-center text-sm">
           <button
             type="button"
             class="text-primary-600 hover:underline"

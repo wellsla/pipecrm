@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/vue3'
 import PipeActivityTimeline from './PipeActivityTimeline.vue'
 
 const meta: Meta<typeof PipeActivityTimeline> = {
-  title: 'Components/Activity/PipeActivityTimeline',
+  title: 'Modules/Activity/PipeActivityTimeline',
   component: PipeActivityTimeline,
   tags: ['autodocs'],
   argTypes: {

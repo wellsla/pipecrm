@@ -1,58 +1,3 @@
-<template>
-  <div
-    class="flex gap-3 p-4 border border-gray-200 rounded-lg hover:border-blue-300 transition-colors cursor-pointer bg-white"
-    @click="handleClick"
-  >
-    <!-- Icon Column -->
-    <div class="shrink-0">
-      <div
-        :class="[
-          'w-10 h-10 rounded-full flex items-center justify-center',
-          iconColorClass,
-        ]"
-      >
-        <i :class="activityIcon" class="text-lg"></i>
-      </div>
-    </div>
-
-    <!-- Content Column -->
-    <div class="flex-1 min-w-0">
-      <!-- Header: Type and Date -->
-      <div class="flex items-center justify-between gap-2 mb-1">
-        <span class="text-sm font-medium text-gray-900 capitalize">
-          {{ activity.type }}
-        </span>
-        <span class="text-xs text-gray-500">{{ formattedDate }}</span>
-      </div>
-
-      <!-- Description -->
-      <p class="text-sm text-gray-700 line-clamp-2">
-        {{ activity.content || 'Sem conteúdo' }}
-      </p>
-    </div>
-
-    <!-- Actions Column -->
-    <div v-if="showActions" class="shrink-0 flex items-start gap-2">
-      <PipeButton
-        id="edit-activity-btn"
-        :icon="{ class: 'pi pi-pencil' }"
-        severity="secondary"
-        variant="text"
-        size="small"
-        @click.stop="handleEdit"
-      />
-      <PipeButton
-        id="delete-activity-btn"
-        :icon="{ class: 'pi pi-trash' }"
-        severity="danger"
-        variant="text"
-        size="small"
-        @click.stop="handleDelete"
-      />
-    </div>
-  </div>
-</template>
-
 <script setup lang="ts">
 import { computed } from 'vue';
 import type { DealActivity } from '@/services/modules/activities/activities.types';
@@ -75,6 +20,23 @@ const props = withDefaults(defineProps<Props>(), {
 });
 
 const emit = defineEmits<Emits>();
+
+// Activity types for display
+const activityTypes = [
+  { value: ActivityType.NOTE, label: 'Nota' },
+  { value: ActivityType.CALL, label: 'Ligação' },
+  { value: ActivityType.EMAIL, label: 'E-mail' },
+  { value: ActivityType.MEETING, label: 'Reunião' },
+  { value: ActivityType.TASK, label: 'Tarefa' },
+  { value: ActivityType.OTHER, label: 'Outro' },
+];
+const activityTypeMap = computed(() => {
+  const map: Record<string, string> = {};
+  activityTypes.forEach((type) => {
+    map[type.value] = type.label;
+  });
+  return map;
+});
 
 // Icon mapping based on activity type
 const activityIcon = computed(() => {
@@ -132,3 +94,58 @@ const handleDelete = () => {
   emit('delete', props.activity.id);
 };
 </script>
+
+<template>
+  <div
+    class="flex gap-3 p-4 border rounded-lg hover:border-blue-300 transition-colors cursor-pointer"
+    @click="handleClick"
+  >
+    <!-- Icon Column -->
+    <div class="shrink-0">
+      <div
+        :class="[
+          'w-10 h-10 rounded-full flex items-center justify-center',
+          iconColorClass,
+        ]"
+      >
+        <i :class="activityIcon" class="text-lg"></i>
+      </div>
+    </div>
+
+    <!-- Content Column -->
+    <div class="flex-1 min-w-0">
+      <!-- Header: Type and Date -->
+      <div class="flex items-center justify-between gap-2 mb-1">
+        <span class="text-sm font-medium capitalize">
+          {{ activityTypeMap[props.activity.type] || 'Outro' }}
+        </span>
+        <span class="text-xs">{{ formattedDate }}</span>
+      </div>
+
+      <!-- Description -->
+      <p class="text-sm line-clamp-2">
+        {{ activity.content || 'Sem conteúdo' }}
+      </p>
+    </div>
+
+    <!-- Actions Column -->
+    <div v-if="showActions" class="shrink-0 flex items-start gap-2">
+      <PipeButton
+        id="edit-activity-btn"
+        :icon="{ class: 'pi pi-pencil' }"
+        severity="secondary"
+        variant="text"
+        size="small"
+        @click.stop="handleEdit"
+      />
+      <PipeButton
+        id="delete-activity-btn"
+        :icon="{ class: 'pi pi-trash' }"
+        severity="danger"
+        variant="text"
+        size="small"
+        @click.stop="handleDelete"
+      />
+    </div>
+  </div>
+</template>

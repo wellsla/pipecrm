@@ -33,7 +33,7 @@
   /* Superfícies (Light) */
   --surface-ground: #ffffff; /* base da aplicação */
   --surface-alt: #f7f8f9; /* seções suaves */
-  --surface-card: #ffffff; /* cards */
+  --surface-card: #f3f4f6; /* cards */
   --surface-overlay: #ffffff; /* overlays / popovers */
   --surface-header: #ffffff; /* header/topbar */
   --surface-border: #e5e7eb;

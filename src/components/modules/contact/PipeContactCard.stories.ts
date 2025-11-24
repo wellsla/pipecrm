@@ -3,7 +3,7 @@ import PipeContactCard from './PipeContactCard.vue';
 import type { Contact } from '@/services/modules/contacts/contacts.types';
 
 const meta = {
-  title: 'UI/PipeContactCard',
+  title: 'Modules/Contact/PipeContactCard',
   component: PipeContactCard,
   tags: ['autodocs'],
   argTypes: {

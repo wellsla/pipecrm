@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/vue3'
 import PipeMetricCard from './PipeMetricCard.vue'
 
 const meta: Meta<typeof PipeMetricCard> = {
-  title: 'Components/Dashboard/PipeMetricCard',
+  title: 'Modules/Dashboard/PipeMetricCard',
   component: PipeMetricCard,
   tags: ['autodocs'],
   argTypes: {

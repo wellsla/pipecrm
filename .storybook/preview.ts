@@ -8,15 +8,15 @@ import Ripple from 'primevue/ripple'
 
 import 'primeicons/primeicons.css'
 import '@/assets/tokens.css'
+import './global.css'
 
 setup((app) => {
   app.use(PrimeVue, {
-    unstyled: false,
     ripple: true,
     theme: {
       preset: PipePreset,
       options: {
-        darkModeSelector: '.app-dark-mode',
+        darkModeSelector: '.dark',
       },
     },
   })
@@ -31,8 +31,8 @@ const preview: Preview = {
   decorators: [
     withThemeByClassName({
       themes: {
-        light: 'app-light',
-        dark: 'app-dark-mode',
+        light: 'light',
+        dark: 'dark',
       },
       defaultTheme: 'light',
     }),

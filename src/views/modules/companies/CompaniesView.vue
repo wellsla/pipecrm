@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue';
 import { useCompanies } from '@/composables/useCompanies';
-import PipeCompanyCard from '@/components/ui/company/PipeCompanyCard.vue';
+import PipeCompanyCard from '@/components/modules/company/PipeCompanyCard.vue';
 import PipeDialog from '@/components/ui/dialog/PipeDialog.vue';
 import PipeMessage from '@/components/ui/message/PipeMessage.vue';
-import PipeCompanyForm from '@/components/ui/company/PipeCompanyForm.vue';
+import PipeCompanyForm from '@/components/modules/company/PipeCompanyForm.vue';
 import PipeButton from '@/components/ui/button/PipeButton.vue';
 import type {
   Company,
@@ -89,7 +89,7 @@ async function handleFormSubmit(payload: CompanyInsert | CompanyUpdate) {
       {{ error }}
     </PipeMessage>
 
-    <div v-if="loading" class="p-6 text-slate-500">Carregando empresas...</div>
+    <div v-if="loading" class="p-6">Carregando empresas...</div>
 
     <div v-else class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
       <PipeCompanyCard

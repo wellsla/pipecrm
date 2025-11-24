@@ -3,7 +3,7 @@ import PipeCompanyCard from './PipeCompanyCard.vue';
 import type { Company } from '@/services/modules/companies/companies.types';
 
 const meta = {
-  title: 'UI/PipeCompanyCard',
+  title: 'Modules/Company/PipeCompanyCard',
   component: PipeCompanyCard,
   tags: ['autodocs'],
   argTypes: {

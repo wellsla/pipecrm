@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/vue3'
 import PipeActivityForm from './PipeActivityForm.vue'
 
 const meta: Meta<typeof PipeActivityForm> = {
-  title: 'Components/Activity/PipeActivityForm',
+  title: 'Modules/Activity/PipeActivityForm',
   component: PipeActivityForm,
   tags: ['autodocs'],
   argTypes: {

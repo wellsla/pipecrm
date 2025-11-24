@@ -3,7 +3,7 @@ import PipeActivityCard from './PipeActivityCard.vue'
 import { ActivityType } from '@/services/modules/activities/activities.types'
 
 const meta: Meta<typeof PipeActivityCard> = {
-  title: 'Components/Activity/PipeActivityCard',
+  title: 'Modules/Activity/PipeActivityCard',
   component: PipeActivityCard,
   tags: ['autodocs'],
   argTypes: {

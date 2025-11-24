@@ -3,7 +3,7 @@ import PipeCard from './PipeCard.vue';
 import type { DealWithRelations } from '@/services/modules/deals/deals.types';
 
 const meta = {
-  title: 'UI/PipeCard',
+  title: 'Ui/Card/PipeCard',
   component: PipeCard,
   tags: ['autodocs'],
   argTypes: {
