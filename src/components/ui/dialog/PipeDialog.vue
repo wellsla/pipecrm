@@ -36,8 +36,9 @@ const handleHide = () => {
     :modal="props.modal"
     :closable="props.closable"
     :position="props.position"
-    :style="{ width: props.width || '32rem' }"
+    :style="{ width: props.width || '95vw', maxWidth: '32rem' }"
     :contentClass="props.contentClass"
+    :breakpoints="{ '960px': '90vw', '640px': '95vw' }"
     @update:visible="handleHide"
   >
     <template v-if="props.showHeader" #header>

@@ -50,29 +50,32 @@ onMounted(() => {
 <template>
   <header class="border-b shadow-sm">
     <div
-      class="mx-auto flex max-w-7xl items-center justify-between gap-6 px-4 py-3 sm:px-6 sm:py-4"
+      class="mx-auto flex max-w-7xl items-center justify-between gap-2 sm:gap-6 px-3 py-2.5 sm:px-6 sm:py-4"
     >
       <!-- Logo & Title -->
-      <div class="flex items-center gap-4">
+      <div class="flex items-center gap-2 sm:gap-4 min-w-0">
         <div
-          class="flex h-11 w-11 items-center justify-center rounded-xl shadow-inner"
+          class="flex h-9 w-9 sm:h-11 sm:w-11 items-center justify-center rounded-xl shadow-inner shrink-0"
         >
-          <i class="pi pi-database text-[1.35rem]"></i>
+          <i class="pi pi-database text-lg sm:text-[1.35rem]"></i>
         </div>
-        <div>
+        <div class="min-w-0">
           <h1
-            class="text-lg sm:text-xl font-semibold leading-tight tracking-tight"
+            class="text-base sm:text-lg md:text-xl font-semibold leading-tight tracking-tight truncate"
           >
             {{ props.title }}
           </h1>
-          <p v-if="props.subtitle" class="text-xs sm:text-sm font-medium">
+          <p
+            v-if="props.subtitle"
+            class="text-xs sm:text-sm font-medium truncate hidden sm:block"
+          >
             {{ props.subtitle }}
           </p>
         </div>
       </div>
 
       <!-- Actions -->
-      <div class="flex items-center gap-3">
+      <div class="flex items-center gap-1.5 sm:gap-3 shrink-0">
         <!-- Dark Mode Toggle -->
         <PipeButton
           id="toggle-theme-button"
@@ -87,19 +90,21 @@ onMounted(() => {
         <!-- User Info -->
         <div
           v-if="props.showAuth && auth.isAuthenticated"
-          class="flex items-center gap-3"
+          class="flex items-center gap-1.5 sm:gap-3"
         >
-          <div class="flex items-center gap-3">
+          <div class="flex items-center gap-2 sm:gap-3">
             <div
-              class="flex h-10 w-10 items-center justify-center rounded-full ring-1"
+              class="flex h-8 w-8 sm:h-10 sm:w-10 items-center justify-center rounded-full ring-1 shrink-0"
             >
-              <i class="pi pi-user text-base"></i>
+              <i class="pi pi-user text-sm sm:text-base"></i>
             </div>
-            <div class="hidden flex-col gap-1 sm:flex">
-              <p class="text-sm font-medium leading-tight">
+            <div class="hidden lg:flex flex-col gap-1">
+              <p
+                class="text-sm font-medium leading-tight truncate max-w-[120px]"
+              >
                 {{ userDisplayName }}
               </p>
-              <p class="text-xs leading-tight">
+              <p class="text-xs leading-tight truncate max-w-[120px]">
                 {{ auth.user?.email }}
               </p>
             </div>

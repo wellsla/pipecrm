@@ -98,9 +98,11 @@ function getStageTotal(stageId: string) {
 </script>
 
 <template>
-  <div class="p-6 h-full flex flex-col overflow-hidden">
-    <div class="flex items-center justify-between mb-6">
-      <h1 class="text-2xl font-bold text-slate-800">Pipeline de Vendas</h1>
+  <div class="p-2 sm:p-6 h-full flex flex-col overflow-hidden">
+    <div class="flex items-center justify-between mb-4 sm:mb-6">
+      <h1 class="text-xl sm:text-2xl font-bold text-slate-800">
+        Pipeline de Vendas
+      </h1>
     </div>
 
     <PipeMessage
@@ -120,11 +122,14 @@ function getStageTotal(stageId: string) {
       <p>Carregando pipeline...</p>
     </div>
 
-    <div v-else class="flex gap-4 overflow-x-auto flex-1 pb-4">
+    <div
+      v-else
+      class="flex gap-3 sm:gap-4 overflow-x-auto flex-1 pb-4 snap-x snap-mandatory"
+    >
       <div
         v-for="stage in stages"
         :key="stage.id"
-        class="min-w-[320px] bg-slate-50 rounded-lg p-4 flex flex-col"
+        class="min-w-[280px] sm:min-w-[320px] w-[85vw] sm:w-auto bg-slate-50 rounded-lg p-3 sm:p-4 flex flex-col snap-center"
       >
         <div class="flex items-center justify-between mb-3">
           <h3 class="text-base font-semibold text-slate-800">
@@ -177,7 +182,8 @@ function getStageTotal(stageId: string) {
       :header="selectedDeal?.title"
       :showHeader="true"
       :modal="true"
-      width="50rem"
+      width="95vw"
+      class="max-w-3xl"
       @close="selectedDeal = null"
     >
       <div v-if="selectedDeal" class="flex flex-col gap-4">
@@ -282,7 +288,8 @@ function getStageTotal(stageId: string) {
       v-model="showFormDialog"
       :header="formModel?.id ? 'Editar Negócio' : 'Novo Negócio'"
       :modal="true"
-      width="32rem"
+      width="95vw"
+      class="max-w-lg"
     >
       <PipeDealForm
         v-if="currentPipelineId"

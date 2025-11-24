@@ -76,31 +76,35 @@ withDefaults(defineProps<PipeAuthFormProps>(), {
     </div>
 
     <div
-      class="flex flex-1 items-center justify-center px-4 py-10 sm:px-6 sm:py-14 lg:max-w-2xl lg:px-20 lg:py-20"
+      class="flex flex-1 items-center justify-center px-3 py-6 sm:px-6 sm:py-10 lg:max-w-2xl lg:px-20 lg:py-20"
     >
       <div class="w-full max-w-[480px]">
         <div
-          class="form-card rounded-3xl border p-10 sm:p-12 shadow-lg transition-all duration-300"
+          class="form-card rounded-2xl sm:rounded-3xl border p-6 sm:p-10 lg:p-12 shadow-lg transition-all duration-300"
         >
-          <div class="mb-10">
-            <div class="mb-9 flex items-center justify-center gap-4 lg:hidden">
+          <div class="mb-8 sm:mb-10">
+            <div
+              class="mb-6 sm:mb-9 flex items-center justify-center gap-3 sm:gap-4 lg:hidden"
+            >
               <div
-                class="flex h-14 w-14 items-center justify-center rounded-xl ring-1"
+                class="flex h-12 w-12 sm:h-14 sm:w-14 items-center justify-center rounded-xl ring-1"
               >
-                <i class="pi pi-database text-2xl"></i>
+                <i class="pi pi-database text-xl sm:text-2xl"></i>
               </div>
-              <h1 class="text-2xl font-semibold tracking-tight">PipeCRM</h1>
+              <h1 class="text-xl sm:text-2xl font-semibold tracking-tight">
+                PipeCRM
+              </h1>
             </div>
 
             <h2
-              class="mb-5 text-center text-3xl font-semibold leading-tight tracking-tight lg:text-left"
+              class="mb-3 sm:mb-5 text-center text-2xl sm:text-3xl font-semibold leading-tight tracking-tight lg:text-left"
             >
               {{ title }}
             </h2>
 
             <p
               v-if="subtitle"
-              class="text-center text-base leading-relaxed lg:text-left"
+              class="text-center text-sm sm:text-base leading-relaxed lg:text-left"
             >
               {{ subtitle }}
             </p>

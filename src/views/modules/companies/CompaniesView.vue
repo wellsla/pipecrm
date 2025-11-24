@@ -65,13 +65,17 @@ async function handleFormSubmit(payload: CompanyInsert | CompanyUpdate) {
 </script>
 
 <template>
-  <div class="p-6">
-    <div class="flex items-center justify-between mb-6">
-      <h1 class="text-2xl font-bold">Empresas</h1>
+  <div class="p-3 sm:p-6">
+    <div
+      class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 mb-4 sm:mb-6"
+    >
+      <h1 class="text-xl sm:text-2xl font-bold">Empresas</h1>
       <PipeButton
         id="btn-new-company"
         :label="'Nova Empresa'"
         :icon="{ class: 'pi pi-plus', position: 'left' }"
+        size="small"
+        class="w-full sm:w-auto"
         @click="openCreate"
       />
     </div>
@@ -111,7 +115,8 @@ async function handleFormSubmit(payload: CompanyInsert | CompanyUpdate) {
       v-model="showFormDialog"
       :header="formModel?.id ? 'Editar Empresa' : 'Nova Empresa'"
       :modal="true"
-      width="32rem"
+      width="95vw"
+      class="max-w-lg"
     >
       <PipeCompanyForm
         :modelValue="formModel"
