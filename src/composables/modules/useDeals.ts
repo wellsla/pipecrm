@@ -8,7 +8,8 @@ import type { PostgrestError } from '@supabase/supabase-js';
 export function useDeals(pipelineId?: string) {
   const deals = ref<DealWithRelations[]>([]);
   const stages = ref<Stage[]>([]);
-  const loading = ref(false);
+  const loadingStages = ref(false);
+  const loadingDeals = ref(false);
   const error = ref<string | null>(null);
 
   const dealsByStage = computed(() => {
@@ -22,7 +23,7 @@ export function useDeals(pipelineId?: string) {
   });
 
   async function fetchDeals() {
-    loading.value = true;
+    loadingDeals.value = true;
     error.value = null;
 
     try {
@@ -32,12 +33,12 @@ export function useDeals(pipelineId?: string) {
       error.value = appError.message;
       trackError(appError, 'useDeals.fetchDeals');
     } finally {
-      loading.value = false;
+      loadingDeals.value = false;
     }
   }
 
   async function fetchStages(pipeId: string) {
-    loading.value = true;
+    loadingStages.value = true;
     error.value = null;
 
     try {
@@ -47,12 +48,12 @@ export function useDeals(pipelineId?: string) {
       error.value = appError.message;
       trackError(appError, 'useDeals.fetchStages');
     } finally {
-      loading.value = false;
+      loadingStages.value = false;
     }
   }
 
   async function createDeal(deal: DealInsert) {
-    loading.value = true;
+    loadingDeals.value = true;
     error.value = null;
 
     try {
@@ -65,12 +66,12 @@ export function useDeals(pipelineId?: string) {
       trackError(appError, 'useDeals.createDeal');
       throw appError;
     } finally {
-      loading.value = false;
+      loadingDeals.value = false;
     }
   }
 
   async function updateDeal(id: string, updates: DealUpdate) {
-    loading.value = true;
+    loadingDeals.value = true;
     error.value = null;
 
     try {
@@ -83,12 +84,12 @@ export function useDeals(pipelineId?: string) {
       trackError(appError, 'useDeals.updateDeal');
       throw appError;
     } finally {
-      loading.value = false;
+      loadingDeals.value = false;
     }
   }
 
   async function deleteDeal(id: string) {
-    loading.value = true;
+    loadingDeals.value = true;
     error.value = null;
 
     try {
@@ -100,14 +101,15 @@ export function useDeals(pipelineId?: string) {
       trackError(appError, 'useDeals.deleteDeal');
       throw appError;
     } finally {
-      loading.value = false;
+      loadingDeals.value = false;
     }
   }
 
   return {
     deals,
     stages,
-    loading,
+    loadingStages,
+    loadingDeals,
     error,
     dealsByStage,
     fetchDeals,

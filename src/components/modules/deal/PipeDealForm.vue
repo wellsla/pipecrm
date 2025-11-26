@@ -4,8 +4,7 @@ import { useCompanies } from '@/composables/modules/useCompanies';
 import { useContacts } from '@/composables/modules/useContacts';
 import PipeInput from '@/components/ui/input/PipeInput.vue';
 import PipeButton from '@/components/ui/button/PipeButton.vue';
-import Dropdown from 'primevue/dropdown';
-import InputNumber from 'primevue/inputnumber';
+import PipeSelect from '@/components/ui/select/PipeSelect.vue';
 import type {
   DealInsert,
   DealUpdate,
@@ -94,7 +93,7 @@ function handleCancel() {
         id="deal-title"
         v-model="formData.title"
         placeholder="Digite o título do negócio"
-        required
+        :conditions="{ required: true }"
       />
     </div>
 
@@ -102,8 +101,9 @@ function handleCancel() {
       <label for="deal-amount" class="block text-sm font-medium mb-2"
         >Valor *</label
       >
-      <InputNumber
+      <PipeInput
         id="deal-amount"
+        type="number"
         v-model="formData.amount"
         mode="currency"
         currency="BRL"
@@ -111,7 +111,7 @@ function handleCancel() {
         :min="0"
         :minFractionDigits="2"
         class="w-full"
-        required
+        :conditions="{ required: true }"
       />
     </div>
 
@@ -119,7 +119,7 @@ function handleCancel() {
       <label for="deal-company" class="block text-sm font-medium mb-2"
         >Empresa</label
       >
-      <Dropdown
+      <PipeSelect
         id="deal-company"
         v-model="formData.company_id"
         :options="companies"
@@ -135,7 +135,7 @@ function handleCancel() {
       <label for="deal-contact" class="block text-sm font-medium mb-2"
         >Contato</label
       >
-      <Dropdown
+      <PipeSelect
         id="deal-contact"
         v-model="formData.contact_id"
         :options="contacts"
@@ -151,7 +151,7 @@ function handleCancel() {
       <label for="deal-status" class="block text-sm font-medium mb-2"
         >Status *</label
       >
-      <Dropdown
+      <PipeSelect
         id="deal-status"
         v-model="formData.status"
         :options="statusOptions"
@@ -159,7 +159,7 @@ function handleCancel() {
         optionValue="value"
         placeholder="Selecione o status"
         class="w-full"
-        required
+        :conditions="{ required: true }"
       />
     </div>
 

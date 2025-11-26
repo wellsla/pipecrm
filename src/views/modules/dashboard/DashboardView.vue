@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import { onMounted } from 'vue';
+import { onMounted, computed } from 'vue';
 import { useDashboard } from '@/composables/modules/useDashboard';
+import { ActivityType } from '@/services/modules/activities/activities.types';
 import PipeButton from '@/components/ui/button/PipeButton.vue';
 import PipeMessage from '@/components/ui/message/PipeMessage.vue';
 import PipeMetricCard from '@/components/modules/dashboard/PipeMetricCard.vue';
@@ -18,6 +19,19 @@ const formatCurrency = (value: number) => {
     currency: 'BRL',
   }).format(value);
 };
+
+// Mapping activity types to display names
+const activityTypesMapped = computed(() => {
+  const typeMap: Record<string, string> = {
+    [ActivityType.NOTE]: 'Nota',
+    [ActivityType.CALL]: 'Ligação',
+    [ActivityType.EMAIL]: 'E-mail',
+    [ActivityType.MEETING]: 'Reunião',
+    [ActivityType.TASK]: 'Tarefa',
+    [ActivityType.OTHER]: 'Outro',
+  };
+  return typeMap;
+});
 </script>
 
 <template>
@@ -185,7 +199,7 @@ const formatCurrency = (value: number) => {
               {{ activityType.count }}
             </div>
             <div class="text-xs capitalize">
-              {{ activityType.type }}
+              {{ activityTypesMapped[activityType.type] }}
             </div>
           </div>
         </div>

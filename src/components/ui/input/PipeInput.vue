@@ -17,6 +17,7 @@ interface PipeInputTextProps {
     fluid?: boolean;
     disabled?: boolean;
     invalid?: boolean;
+    required?: boolean;
   };
   mask?: string | boolean;
   slotChar?: string;
@@ -76,6 +77,7 @@ const attrs = useAttrs();
     :fluid="props.conditions?.fluid"
     :disabled="props.conditions?.disabled"
     :invalid="props.conditions?.invalid && !modelValue"
+    :required="props.conditions?.required"
     :aria-label="props.ariaLabel"
     :aria-labelledby="props.ariaLabeledBy"
     :aria-describedby="props.ariaDescribedBy"
@@ -93,6 +95,7 @@ const attrs = useAttrs();
     :fluid="props.conditions?.fluid"
     :disabled="props.conditions?.disabled"
     :invalid="props.conditions?.invalid && !modelValue"
+    :required="props.conditions?.required"
     :mask="typeof props.mask === 'string' ? props.mask : undefined"
     :slotChar="props.slotChar"
     :aria-label="props.ariaLabel"
@@ -112,6 +115,7 @@ const attrs = useAttrs();
     :fluid="props.conditions?.fluid"
     :disabled="props.conditions?.disabled"
     :invalid="props.conditions?.invalid && !modelValue"
+    :required="props.conditions?.required"
     :min="props.numberParams?.min"
     :max="props.numberParams?.max"
     :minFractionDigits="props.numberParams?.minFractionDigits"
@@ -140,6 +144,7 @@ const attrs = useAttrs();
     :id="props.id"
     :disabled="props.conditions?.disabled"
     :invalid="props.conditions?.invalid && !modelValue"
+    :required="props.conditions?.required"
     :integerOnly="props.otpParams?.integerOnly"
     :length="props.otpParams?.length"
     :aria-label="props.ariaLabel"
@@ -159,6 +164,7 @@ const attrs = useAttrs();
     :fluid="props.conditions?.fluid"
     :disabled="props.conditions?.disabled"
     :invalid="props.conditions?.invalid && !modelValue"
+    :required="props.conditions?.required"
     :feedback="props.passwordParams?.feedback"
     :promptLabel="props.passwordParams?.promptLabel"
     :weakLabel="props.passwordParams?.weakLabel"
@@ -183,6 +189,7 @@ const attrs = useAttrs();
     :fluid="props.conditions?.fluid"
     :disabled="props.conditions?.disabled"
     :invalid="props.conditions?.invalid && !modelValue"
+    :required="props.conditions?.required"
     :aria-label="props.ariaLabel"
     :aria-labelledby="props.ariaLabeledBy"
     :aria-describedby="props.ariaDescribedBy"

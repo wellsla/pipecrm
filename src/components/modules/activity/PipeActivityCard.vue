@@ -21,21 +21,17 @@ const props = withDefaults(defineProps<Props>(), {
 
 const emit = defineEmits<Emits>();
 
-// Activity types for display
-const activityTypes = [
-  { value: ActivityType.NOTE, label: 'Nota' },
-  { value: ActivityType.CALL, label: 'Ligação' },
-  { value: ActivityType.EMAIL, label: 'E-mail' },
-  { value: ActivityType.MEETING, label: 'Reunião' },
-  { value: ActivityType.TASK, label: 'Tarefa' },
-  { value: ActivityType.OTHER, label: 'Outro' },
-];
-const activityTypeMap = computed(() => {
-  const map: Record<string, string> = {};
-  activityTypes.forEach((type) => {
-    map[type.value] = type.label;
-  });
-  return map;
+// Mapping activity types to display names
+const activityType = computed(() => {
+  const typeMap: Record<string, string> = {
+    [ActivityType.NOTE]: 'Nota',
+    [ActivityType.CALL]: 'Ligação',
+    [ActivityType.EMAIL]: 'E-mail',
+    [ActivityType.MEETING]: 'Reunião',
+    [ActivityType.TASK]: 'Tarefa',
+    [ActivityType.OTHER]: 'Outro',
+  };
+  return typeMap[props.activity.type] || 'Outro';
 });
 
 // Icon mapping based on activity type
@@ -117,7 +113,7 @@ const handleDelete = () => {
       <!-- Header: Type and Date -->
       <div class="flex items-center justify-between gap-2 mb-1">
         <span class="text-sm font-medium capitalize">
-          {{ activityTypeMap[props.activity.type] || 'Outro' }}
+          {{ activityType }}
         </span>
         <span class="text-xs">{{ formattedDate }}</span>
       </div>

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue';
 import { useDeals } from '@/composables/modules/useDeals';
-import { pipelineService } from '@/services/modules/pipelines/pipeline.service';
+import { usePipelines } from '@/composables/modules/usePipeline';
 import PipeCard from '@/components/ui/card/PipeCard.vue';
 import PipeDialog from '@/components/ui/dialog/PipeDialog.vue';
 import PipeMessage from '@/components/ui/message/PipeMessage.vue';
@@ -14,10 +14,11 @@ import type {
   DealUpdate,
 } from '@/services/modules/deals/deals.types';
 
-const currentPipelineId = ref<string | null>(null);
+const { pipelineId, loading, fetchPipelines } = usePipelines();
 const {
   stages,
-  loading,
+  loadingStages,
+  loadingDeals,
   error,
   dealsByStage,
   fetchDeals,
@@ -35,14 +36,9 @@ const formModel = ref<Partial<DealWithRelations> | null>(null);
 const formStageId = ref<string>('');
 
 onMounted(async () => {
-  try {
-    currentPipelineId.value =
-      await pipelineService.getOrCreateDefaultPipeline();
-    await fetchStages(currentPipelineId.value);
-    await fetchDeals();
-  } catch (e) {
-    console.error('Error loading pipeline:', e);
-  }
+  await fetchPipelines();
+  await fetchStages(pipelineId.value);
+  await fetchDeals();
 });
 
 function handleDealClick(deal: DealWithRelations) {
@@ -112,7 +108,7 @@ function getStageTotal(stageId: string) {
     </PipeMessage>
 
     <div
-      v-if="loading"
+      v-if="loading || loadingStages"
       class="flex flex-col items-center justify-center gap-4 p-12"
     >
       <i class="pi pi-spin pi-spinner text-3xl"></i>
@@ -128,45 +124,55 @@ function getStageTotal(stageId: string) {
         :key="stage.id"
         class="surface-card min-w-[280px] sm:min-w-[320px] w-[85vw] sm:w-auto rounded-lg p-3 sm:p-4 flex flex-col snap-center"
       >
-        <div class="flex items-center justify-between mb-3">
-          <h3 class="text-base font-semibold">
-            {{ stage.name }}
-          </h3>
-          <span
-            class="inline-flex items-center justify-center min-w-6 h-6 px-1 rounded-full text-xs font-semibold"
-          >
-            {{ (dealsByStage[stage.id] || []).length }}
-          </span>
+        <div
+          v-if="loadingDeals"
+          class="flex flex-col items-center justify-center gap-4 p-12"
+        >
+          <i class="pi pi-spin pi-spinner text-3xl"></i>
+          <p>Carregando negócios...</p>
         </div>
-        <div class="text-lg font-bold text-primary mb-4 pb-3 border-b">
-          {{ formatCurrency(getStageTotal(stage.id)) }}
-        </div>
-        <div class="mb-3">
-          <PipeButton
-            :id="`btn-new-deal-${stage.id}`"
-            label="Novo Negócio"
-            :icon="{ class: 'pi pi-plus', position: 'left' }"
-            size="small"
-            outlined
-            class="w-full"
-            @click="openCreateDeal(stage.id)"
-          />
-        </div>
-        <div class="flex-1 overflow-y-auto">
-          <PipeCard
-            v-for="deal in dealsByStage[stage.id] || []"
-            :key="deal.id"
-            :deal="deal"
-            @click="handleDealClick"
-            @edit="handleDealEdit"
-            @delete="handleDealDelete"
-          />
-          <div
-            v-if="(dealsByStage[stage.id] || []).length === 0"
-            class="flex flex-col items-center justify-center py-8 text-center"
-          >
-            <i class="pi pi-inbox text-3xl mb-2"></i>
-            <p class="text-sm">Nenhum negócio</p>
+
+        <div v-else>
+          <div class="flex items-center justify-between mb-3">
+            <h3 class="text-base font-semibold">
+              {{ stage.name }}
+            </h3>
+            <span
+              class="inline-flex items-center justify-center min-w-6 h-6 px-1 rounded-full text-xs font-semibold"
+            >
+              {{ (dealsByStage[stage.id] || []).length }}
+            </span>
+          </div>
+          <div class="text-lg font-bold text-primary mb-4 pb-3 border-b">
+            {{ formatCurrency(getStageTotal(stage.id)) }}
+          </div>
+          <div class="mb-3">
+            <PipeButton
+              :id="`btn-new-deal-${stage.id}`"
+              label="Novo Negócio"
+              :icon="{ class: 'pi pi-plus', position: 'left' }"
+              size="small"
+              outlined
+              class="w-full"
+              @click="openCreateDeal(stage.id)"
+            />
+          </div>
+          <div class="flex-1 overflow-y-auto">
+            <PipeCard
+              v-for="deal in dealsByStage[stage.id] || []"
+              :key="deal.id"
+              :deal="deal"
+              @click="handleDealClick"
+              @edit="handleDealEdit"
+              @delete="handleDealDelete"
+            />
+            <div
+              v-if="(dealsByStage[stage.id] || []).length === 0"
+              class="flex flex-col items-center justify-center py-8 text-center"
+            >
+              <i class="pi pi-inbox text-3xl mb-2"></i>
+              <p class="text-sm">Nenhum negócio</p>
+            </div>
           </div>
         </div>
       </div>
@@ -275,11 +281,11 @@ function getStageTotal(stageId: string) {
       class="max-w-lg"
     >
       <PipeDealForm
-        v-if="currentPipelineId"
+        v-if="pipelineId"
         :modelValue="formModel"
         :stage-id="formStageId"
-        :pipeline-id="currentPipelineId"
-        :loading="loading"
+        :pipeline-id="pipelineId"
+        :loading="loadingDeals"
         @submit="handleFormSubmit"
         @cancel="showFormDialog = false"
       />

@@ -9,6 +9,7 @@ import { ActivityType } from '@/services/modules/activities/activities.types';
 import type { Database } from '@/core/db/supabase.types';
 import PipeButton from '@/components/ui/button/PipeButton.vue';
 import PipeMessage from '@/components/ui/message/PipeMessage.vue';
+import PipeSelect from '@/components/ui/select/PipeSelect.vue';
 
 interface Props {
   activity?: DealActivity;
@@ -102,21 +103,14 @@ const handleCancel = () => {
       <label for="activity-type" class="text-sm font-medium"
         >Tipo de Atividade *</label
       >
-      <select
-        id="activity-type"
+      <PipeSelect
         v-model="formData.type"
+        id="activity-type"
+        :options="activityTypes"
+        placeholder="Selecione o tipo de atividade"
         class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-        required
-      >
-        <option value="" disabled>Selecione o tipo de atividade</option>
-        <option
-          v-for="type in activityTypes"
-          :key="type.value"
-          :value="type.value"
-        >
-          {{ type.label }}
-        </option>
-      </select>
+        :conditions="{ required: true }"
+      />
     </div>
 
     <!-- Content -->
