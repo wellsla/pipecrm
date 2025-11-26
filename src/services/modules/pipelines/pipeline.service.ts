@@ -1,15 +1,6 @@
 import { supabase } from '@/core/db/supabase.client'
 
-/**
- * Pipeline Service Helper
- * Funções auxiliares para gerenciar pipelines
- */
-
 export const pipelineService = {
-  /**
-   * Ensure user profile exists
-   * Creates profile if missing (failsafe)
-   */
   async ensureProfileExists(): Promise<void> {
     const {
       data: { user }
@@ -17,7 +8,6 @@ export const pipelineService = {
 
     if (!user) throw new Error('User not authenticated')
 
-    // First, ensure auth_users entry exists
     const { error: authUserError } = await supabase.from('auth_users').upsert(
       {
         id: user.id,
@@ -28,22 +18,18 @@ export const pipelineService = {
 
     if (authUserError) {
       console.warn('Could not create auth_users entry:', authUserError)
-      // Continue anyway - profile creation might still work
     }
 
-    // Then, ensure profile exists
     const { data: profile, error: fetchError } = await supabase
       .from('profiles')
       .select('id')
       .eq('id', user.id)
       .maybeSingle()
 
-    // Ignore query formatting errors
     if (fetchError && fetchError.code !== 'PGRST116') {
       console.error('Error checking profile:', fetchError)
     }
 
-    // If profile doesn't exist, create it
     if (!profile) {
       const { error: profileError } = await supabase.from('profiles').upsert(
         {
@@ -56,18 +42,12 @@ export const pipelineService = {
       )
 
       if (profileError) {
-        console.error('Error creating profile:', profileError)
-        // Log but don't throw - profile might have been created by trigger
+        console.error('Error creating profile:', profileError)      
       }
     }
   },
 
-  /**
-   * Get or create default pipeline for current user
-   * @returns Pipeline ID
-   */
   async getOrCreateDefaultPipeline(): Promise<string> {
-    // Ensure profile exists first
     await this.ensureProfileExists()
 
     const {
@@ -76,7 +56,6 @@ export const pipelineService = {
 
     if (!user) throw new Error('User not authenticated')
 
-    // Try to get existing pipeline
     const { data: existingPipelines, error: fetchError } = await supabase
       .from('pipelines')
       .select('id')
@@ -89,7 +68,6 @@ export const pipelineService = {
       return existingPipelines[0].id
     }
 
-    // Create new pipeline if none exists
     const { data: newPipeline, error: createError } = await supabase
       .from('pipelines')
       .insert({ name: 'Pipeline de Vendas' })
@@ -98,7 +76,6 @@ export const pipelineService = {
 
     if (createError) throw createError
 
-    // Create default stages
     const stages = [
       { name: 'Prospecção', position: 1 },
       { name: 'Qualificação', position: 2 },

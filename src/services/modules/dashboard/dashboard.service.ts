@@ -1,16 +1,7 @@
 import { supabase } from '@/core/db/supabase.client'
 import type { DashboardMetrics } from '@/services/modules/dashboard/dashboard.types'
 
-/**
- * Dashboard Service
- * Aggregates metrics from multiple tables for dashboard display
- */
-
 export const dashboardService = {
-  /**
-   * Fetch comprehensive dashboard metrics
-   * @returns Dashboard metrics with deals, contacts, companies, and activities
-   */
   async fetchMetrics(): Promise<DashboardMetrics> {
     const [deals, contacts, companies, activities] = await Promise.all([
       this.fetchDealMetrics(),
@@ -27,11 +18,7 @@ export const dashboardService = {
     }
   },
 
-  /**
-   * Fetch deal-related metrics
-   */
   async fetchDealMetrics() {
-    // Fetch all deals with pipeline_stages
     const { data: deals, error: dealsError } = await supabase
       .from('deals')
       .select('*, pipeline_stages(id, name, position)')
@@ -47,7 +34,6 @@ export const dashboardService = {
     const averageValue = total > 0 ? totalValue / total : 0
     const conversionRate = total > 0 ? (won / total) * 100 : 0
 
-    // Group by stage
     const stageMap = new Map<string, { name: string; count: number; value: number }>()
     deals?.forEach((deal) => {
       if (deal.pipeline_stages) {
@@ -87,9 +73,6 @@ export const dashboardService = {
     }
   },
 
-  /**
-   * Fetch contact-related metrics
-   */
   async fetchContactMetrics() {
     const { data: contacts, error } = await supabase
       .from('contacts')
@@ -99,7 +82,6 @@ export const dashboardService = {
 
     const total = contacts?.length || 0
     
-    // Recently added (last 30 days)
     const thirtyDaysAgo = new Date()
     thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30)
     const recentlyAdded = contacts?.filter((c) => 
@@ -117,9 +99,6 @@ export const dashboardService = {
     }
   },
 
-  /**
-   * Fetch company-related metrics
-   */
   async fetchCompanyMetrics() {
     const { data: companies, error } = await supabase
       .from('companies')
@@ -129,14 +108,12 @@ export const dashboardService = {
 
     const total = companies?.length || 0
 
-    // Recently added (last 30 days)
     const thirtyDaysAgo = new Date()
     thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30)
     const recentlyAdded = companies?.filter((c) => 
       new Date(c.created_at) >= thirtyDaysAgo
     ).length || 0
 
-    // Group by segment
     const segmentMap = new Map<string, number>()
     companies?.forEach((company) => {
       const segment = company.segment || 'Outros'
@@ -155,9 +132,6 @@ export const dashboardService = {
     }
   },
 
-  /**
-   * Fetch activity-related metrics
-   */
   async fetchActivityMetrics() {
     const { data: activities, error } = await supabase
       .from('deal_activities')
@@ -167,14 +141,12 @@ export const dashboardService = {
 
     const total = activities?.length || 0
 
-    // Today
     const todayStart = new Date()
     todayStart.setHours(0, 0, 0, 0)
     const today = activities?.filter((a) => 
       new Date(a.created_at) >= todayStart
     ).length || 0
 
-    // This week
     const weekStart = new Date()
     weekStart.setDate(weekStart.getDate() - weekStart.getDay())
     weekStart.setHours(0, 0, 0, 0)
@@ -182,7 +154,6 @@ export const dashboardService = {
       new Date(a.created_at) >= weekStart
     ).length || 0
 
-    // Group by type
     const typeMap = new Map<string, number>()
     activities?.forEach((activity) => {
       const type = activity.type

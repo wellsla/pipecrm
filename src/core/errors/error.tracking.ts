@@ -1,4 +1,3 @@
-// src/core/errors/error.tracking.ts
 import * as Sentry from '@sentry/vue'
 
 import type { App } from 'vue'

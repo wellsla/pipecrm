@@ -145,13 +145,11 @@ const router = createRouter({
   routes,
 });
 
-// Initialize session before any navigation
 let sessionInitialized = false;
 
 router.beforeEach(async (to, _from, next) => {
   const auth = useAuthStore();
 
-  // Initialize session on first navigation
   if (!sessionInitialized) {
     await auth.initializeSession();
     sessionInitialized = true;

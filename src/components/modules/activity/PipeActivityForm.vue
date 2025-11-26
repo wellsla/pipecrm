@@ -32,7 +32,6 @@ const emit = defineEmits<Emits>();
 const isEditMode = computed(() => !!props.activity);
 const error = ref<string | null>(null);
 
-// Activity types for dropdown
 const activityTypes = [
   { value: ActivityType.NOTE, label: 'Nota' },
   { value: ActivityType.CALL, label: 'Ligação' },
@@ -42,7 +41,6 @@ const activityTypes = [
   { value: ActivityType.OTHER, label: 'Outro' },
 ];
 
-// Form data
 const formData = ref<{
   type: string;
   content: string;
@@ -51,7 +49,6 @@ const formData = ref<{
   content: props.activity?.content || '',
 });
 
-// Watch for prop changes (edit mode)
 watch(
   () => props.activity,
   (newActivity) => {
@@ -67,7 +64,6 @@ watch(
 const handleSubmit = () => {
   error.value = null;
 
-  // Validation
   if (!formData.value.type) {
     error.value = 'Tipo de atividade é obrigatório';
     return;
@@ -78,7 +74,6 @@ const handleSubmit = () => {
     return;
   }
 
-  // Build payload
   const payload: DealActivityInsert | DealActivityUpdate = {
     type: formData.value.type as Database['public']['Enums']['activity_type'],
     content: formData.value.content.trim(),
@@ -95,10 +90,8 @@ const handleCancel = () => {
 
 <template>
   <div class="flex flex-col gap-4">
-    <!-- Error Message -->
     <PipeMessage v-if="error" severity="error" :text="error" />
 
-    <!-- Activity Type Selector -->
     <div class="flex flex-col gap-2">
       <label for="activity-type" class="text-sm font-medium"
         >Tipo de Atividade *</label
@@ -113,7 +106,6 @@ const handleCancel = () => {
       />
     </div>
 
-    <!-- Content -->
     <div class="flex flex-col gap-2">
       <label for="content" class="text-sm font-medium">Conteúdo *</label>
       <textarea
@@ -126,7 +118,6 @@ const handleCancel = () => {
       />
     </div>
 
-    <!-- Form Actions -->
     <div class="flex justify-end gap-3 pt-4 border-t">
       <PipeButton
         id="cancel-activity-btn"

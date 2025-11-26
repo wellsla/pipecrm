@@ -95,7 +95,6 @@ const handleCloseDialog = () => {
 
 <template>
   <div class="flex flex-col gap-4">
-    <!-- Header with Add Button -->
     <div class="flex items-center justify-between">
       <h3 class="text-lg font-semibold">Linha do Tempo</h3>
       <PipeButton
@@ -108,15 +107,12 @@ const handleCloseDialog = () => {
       />
     </div>
 
-    <!-- Loading State -->
     <div v-if="loading" class="flex items-center justify-center py-8">
       <i class="pi pi-spinner pi-spin text-3xl text-blue-500"></i>
     </div>
 
-    <!-- Error Message -->
     <PipeMessage v-else-if="error" severity="error" :text="error" />
 
-    <!-- Empty State -->
     <div
       v-else-if="activities.length === 0"
       class="flex flex-col items-center justify-center py-12 border-2 border-dashed rounded-lg"
@@ -126,7 +122,6 @@ const handleCloseDialog = () => {
       <p class="text-xs">Adicione sua primeira atividade para começar</p>
     </div>
 
-    <!-- Activities List -->
     <div v-else class="flex flex-col gap-3">
       <PipeActivityCard
         v-for="activity in activities"
@@ -138,7 +133,6 @@ const handleCloseDialog = () => {
       />
     </div>
 
-    <!-- Activity Form Dialog -->
     <PipeDialog
       :model-value="showActivityDialog"
       :header="editingActivity ? 'Editar Atividade' : 'Nova Atividade'"
@@ -155,7 +149,6 @@ const handleCloseDialog = () => {
       />
     </PipeDialog>
 
-    <!-- Delete Confirmation Dialog -->
     <PipeDialog
       :model-value="showDeleteDialog"
       header="Excluir Atividade"

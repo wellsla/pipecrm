@@ -27,7 +27,6 @@ const emit = defineEmits<{
 const { companies, fetchCompanies } = useCompanies();
 const { contacts, fetchContacts } = useContacts();
 
-// Form state
 const formData = ref({
   title: props.modelValue?.title || '',
   amount: props.modelValue?.amount || 0,
@@ -43,11 +42,9 @@ const statusOptions = [
   { label: 'Arquivado', value: 'archived' },
 ];
 
-// Load companies and contacts
 fetchCompanies();
 fetchContacts();
 
-// Watch for model changes
 watch(
   () => props.modelValue,
   (newValue) => {

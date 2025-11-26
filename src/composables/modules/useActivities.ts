@@ -5,18 +5,11 @@ import { mapSupabasePostgrestError } from '@/core/errors/supabase/error.mapping'
 import type { DealActivity, DealActivityInsert, DealActivityUpdate } from '@/services/modules/activities/activities.types'
 import type { PostgrestError } from '@supabase/supabase-js'
 
-/**
- * Composable for managing deal activities
- * Provides reactive state and CRUD operations for activities
- */
 export function useActivities() {
   const activities = ref<DealActivity[]>([])
   const loading = ref(false)
   const error = ref<string | null>(null)
 
-  /**
-   * Fetch activities for a specific deal
-   */
   const fetchActivitiesByDeal = async (dealId: string) => {
     loading.value = true
     error.value = null
@@ -32,9 +25,6 @@ export function useActivities() {
     }
   }
 
-  /**
-   * Fetch recent activities across all deals
-   */
   const fetchRecentActivities = async (limit: number = 10) => {
     loading.value = true
     error.value = null
@@ -50,9 +40,6 @@ export function useActivities() {
     }
   }
 
-  /**
-   * Create a new activity
-   */
   const createActivity = async (activity: DealActivityInsert) => {
     loading.value = true
     error.value = null
@@ -71,9 +58,6 @@ export function useActivities() {
     }
   }
 
-  /**
-   * Update an existing activity
-   */
   const updateActivity = async (id: string, updates: DealActivityUpdate) => {
     loading.value = true
     error.value = null
@@ -95,9 +79,6 @@ export function useActivities() {
     }
   }
 
-  /**
-   * Delete an activity
-   */
   const deleteActivity = async (id: string) => {
     loading.value = true
     error.value = null

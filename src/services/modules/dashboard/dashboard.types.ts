@@ -1,8 +1,3 @@
-/**
- * Dashboard Metrics Types
- * Types for dashboard statistics and KPIs
- */
-
 export interface DashboardMetrics {
   deals: DealMetrics
   contacts: ContactMetrics

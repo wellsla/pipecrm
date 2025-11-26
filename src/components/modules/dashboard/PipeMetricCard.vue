@@ -20,16 +20,13 @@ const props = withDefaults(defineProps<Props>(), {
   trend: undefined,
 });
 
-// Format value for display
 const formattedValue = computed(() => {
   if (typeof props.value === 'number') {
-    // Format large numbers with commas
     return props.value.toLocaleString('pt-BR');
   }
   return props.value;
 });
 
-// Icon background color classes
 const iconBgClass = computed(() => {
   const colorMap: Record<string, string> = {
     primary: 'bg-blue-100',
@@ -42,7 +39,6 @@ const iconBgClass = computed(() => {
   return colorMap[props.iconColor] || colorMap.primary;
 });
 
-// Icon color classes
 const iconColorClass = computed(() => {
   const colorMap: Record<string, string> = {
     primary: 'text-blue-600',
@@ -58,7 +54,6 @@ const iconColorClass = computed(() => {
 
 <template>
   <div class="rounded-lg border p-6 transition-all hover:shadow-md">
-    <!-- Header with icon -->
     <div class="flex items-center justify-between mb-4">
       <div
         :class="[
@@ -88,7 +83,6 @@ const iconColorClass = computed(() => {
       </div>
     </div>
 
-    <!-- Content -->
     <div class="space-y-1">
       <h3 class="text-sm font-medium">{{ title }}</h3>
       <p class="text-3xl font-bold">{{ formattedValue }}</p>

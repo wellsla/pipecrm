@@ -21,7 +21,6 @@ const props = withDefaults(defineProps<Props>(), {
 
 const emit = defineEmits<Emits>();
 
-// Mapping activity types to display names
 const activityType = computed(() => {
   const typeMap: Record<string, string> = {
     [ActivityType.NOTE]: 'Nota',
@@ -34,7 +33,6 @@ const activityType = computed(() => {
   return typeMap[props.activity.type] || 'Outro';
 });
 
-// Icon mapping based on activity type
 const activityIcon = computed(() => {
   const iconMap: Record<string, string> = {
     [ActivityType.NOTE]: 'pi pi-file-edit',
@@ -47,7 +45,6 @@ const activityIcon = computed(() => {
   return iconMap[props.activity.type] || 'pi pi-info-circle';
 });
 
-// Color classes for icon background
 const iconColorClass = computed(() => {
   const colorMap: Record<string, string> = {
     [ActivityType.NOTE]: 'bg-blue-100 text-blue-600',
@@ -60,7 +57,6 @@ const iconColorClass = computed(() => {
   return colorMap[props.activity.type] || 'bg-gray-100 text-gray-600';
 });
 
-// Format date for display
 const formattedDate = computed(() => {
   const date = new Date(props.activity.created_at);
   const now = new Date();
@@ -96,7 +92,6 @@ const handleDelete = () => {
     class="flex gap-3 p-4 border rounded-lg hover:border-blue-300 transition-colors cursor-pointer"
     @click="handleClick"
   >
-    <!-- Icon Column -->
     <div class="shrink-0">
       <div
         :class="[
@@ -108,9 +103,7 @@ const handleDelete = () => {
       </div>
     </div>
 
-    <!-- Content Column -->
     <div class="flex-1 min-w-0">
-      <!-- Header: Type and Date -->
       <div class="flex items-center justify-between gap-2 mb-1">
         <span class="text-sm font-medium capitalize">
           {{ activityType }}
@@ -118,13 +111,11 @@ const handleDelete = () => {
         <span class="text-xs">{{ formattedDate }}</span>
       </div>
 
-      <!-- Description -->
       <p class="text-sm line-clamp-2">
         {{ activity.content || 'Sem conteúdo' }}
       </p>
     </div>
 
-    <!-- Actions Column -->
     <div v-if="showActions" class="shrink-0 flex items-start gap-2">
       <PipeButton
         id="edit-activity-btn"
