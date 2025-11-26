@@ -1,13 +1,13 @@
-import { supabase } from '@/core/db/supabase.client'
-import type { DashboardMetrics } from '@/services/modules/dashboard/dashboard.types'
+import { supabase } from '@/db/supabase.client'
+import type { DashboardMetrics } from '@/types/modules/dashboard.types'
 
 export const dashboardService = {
-  async fetchMetrics(): Promise<DashboardMetrics> {
+  async getMetrics(): Promise<DashboardMetrics> {
     const [deals, contacts, companies, activities] = await Promise.all([
-      this.fetchDealMetrics(),
-      this.fetchContactMetrics(),
-      this.fetchCompanyMetrics(),
-      this.fetchActivityMetrics()
+      this.getDealMetrics(),
+      this.getContactMetrics(),
+      this.getCompanyMetrics(),
+      this.getActivityMetrics()
     ])
 
     return {
@@ -18,7 +18,7 @@ export const dashboardService = {
     }
   },
 
-  async fetchDealMetrics() {
+  async getDealMetrics() {
     const { data: deals, error: dealsError } = await supabase
       .from('deals')
       .select('*, pipeline_stages(id, name, position)')
@@ -73,7 +73,7 @@ export const dashboardService = {
     }
   },
 
-  async fetchContactMetrics() {
+  async getContactMetrics() {
     const { data: contacts, error } = await supabase
       .from('contacts')
       .select('*')
@@ -99,7 +99,7 @@ export const dashboardService = {
     }
   },
 
-  async fetchCompanyMetrics() {
+  async getCompanyMetrics() {
     const { data: companies, error } = await supabase
       .from('companies')
       .select('*')
@@ -132,7 +132,7 @@ export const dashboardService = {
     }
   },
 
-  async fetchActivityMetrics() {
+  async getActivityMetrics() {
     const { data: activities, error } = await supabase
       .from('deal_activities')
       .select('*')

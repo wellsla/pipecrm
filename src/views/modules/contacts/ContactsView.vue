@@ -6,13 +6,13 @@ import PipeDialog from '@/components/ui/dialog/PipeDialog.vue';
 import PipeMessage from '@/components/ui/message/PipeMessage.vue';
 import PipeContactForm from '@/components/modules/contact/PipeContactForm.vue';
 import PipeButton from '@/components/ui/button/PipeButton.vue';
-import type { Contact } from '@/services/modules/contacts/contacts.types';
+import type { Contact } from '@/types/modules/contacts.types';
 
 const {
   contacts,
   loading,
   error,
-  fetchContacts,
+  getContacts,
   deleteContact,
   createContact,
   updateContact,
@@ -24,7 +24,7 @@ const showFormDialog = ref(false);
 const formModel = ref<Partial<Contact> | null>(null);
 
 onMounted(async () => {
-  await fetchContacts();
+  await getContacts();
 });
 
 function handleClick(c: Contact) {
@@ -50,7 +50,7 @@ function openEdit(c: Contact) {
 import type {
   ContactInsert,
   ContactUpdate,
-} from '@/services/modules/contacts/contacts.types';
+} from '@/types/modules/contacts.types';
 
 async function handleFormSubmit(payload: ContactInsert | ContactUpdate) {
   try {

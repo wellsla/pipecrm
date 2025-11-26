@@ -1,5 +1,5 @@
-import { supabase } from '@/core/db/supabase.client';
-import type { Contact, ContactInsert, ContactUpdate } from '@/services/modules/contacts/contacts.types';
+import { supabase } from '@/db/supabase.client';
+import type { Contact, ContactInsert, ContactUpdate } from '@/types/modules/contacts.types';
 
 export const contactsService = {
   async getContacts(): Promise<Contact[]> {

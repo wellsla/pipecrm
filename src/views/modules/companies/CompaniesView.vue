@@ -10,13 +10,13 @@ import type {
   Company,
   CompanyInsert,
   CompanyUpdate,
-} from '@/services/modules/companies/companies.types';
+} from '@/types/modules/companies.types';
 
 const {
   companies,
   loading,
   error,
-  fetchCompanies,
+  getCompanies,
   deleteCompany,
   createCompany,
   updateCompany,
@@ -28,7 +28,7 @@ const showFormDialog = ref(false);
 const formModel = ref<Partial<Company> | null>(null);
 
 onMounted(async () => {
-  await fetchCompanies();
+  await getCompanies();
 });
 
 function handleClick(c: Company) {

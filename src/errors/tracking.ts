@@ -2,9 +2,9 @@ import * as Sentry from '@sentry/vue'
 
 import type { App } from 'vue'
 import type { Extras } from '@sentry/core'
-import type { AppError } from './app/error.types'
+import type { AppError } from '../types/error'
 
-import { isAppError } from './app/error.mapping'
+import { isAppError } from './app/app.mapping'
 
 export const initSentry = (app: App): void => {
   Sentry.init({

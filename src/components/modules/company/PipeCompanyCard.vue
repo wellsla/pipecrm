@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { Company } from '@/services/modules/companies/companies.types';
+import type { Company } from '@/types/modules/companies.types';
 
 interface Props {
   company: Company;

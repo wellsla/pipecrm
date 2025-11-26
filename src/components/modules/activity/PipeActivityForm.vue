@@ -1,15 +1,18 @@
 <script setup lang="ts">
 import { ref, computed, watch } from 'vue';
+import { ActivityType } from '@/types/modules/activities.types';
+
 import type {
   DealActivity,
   DealActivityInsert,
   DealActivityUpdate,
-} from '@/services/modules/activities/activities.types';
-import { ActivityType } from '@/services/modules/activities/activities.types';
-import type { Database } from '@/core/db/supabase.types';
+} from '@/types/modules/activities.types';
+import type { Database } from '@/db/supabase.types';
+
 import PipeButton from '@/components/ui/button/PipeButton.vue';
 import PipeMessage from '@/components/ui/message/PipeMessage.vue';
 import PipeSelect from '@/components/ui/select/PipeSelect.vue';
+import PipeTextarea from '@/components/ui/textarea/PipeTextarea.vue';
 
 interface Props {
   activity?: DealActivity;
@@ -32,14 +35,22 @@ const emit = defineEmits<Emits>();
 const isEditMode = computed(() => !!props.activity);
 const error = ref<string | null>(null);
 
-const activityTypes = [
-  { value: ActivityType.NOTE, label: 'Nota' },
-  { value: ActivityType.CALL, label: 'Ligação' },
-  { value: ActivityType.EMAIL, label: 'E-mail' },
-  { value: ActivityType.MEETING, label: 'Reunião' },
-  { value: ActivityType.TASK, label: 'Tarefa' },
-  { value: ActivityType.OTHER, label: 'Outro' },
+const activityTypes: ActivityType[] = [
+  ActivityType.NOTE,
+  ActivityType.CALL,
+  ActivityType.EMAIL,
+  ActivityType.MEETING,
+  ActivityType.TASK,
+  ActivityType.OTHER,
 ];
+const typeMap: Record<string, string> = {
+  [ActivityType.NOTE]: 'Nota',
+  [ActivityType.CALL]: 'Ligação',
+  [ActivityType.EMAIL]: 'E-mail',
+  [ActivityType.MEETING]: 'Reunião',
+  [ActivityType.TASK]: 'Tarefa',
+  [ActivityType.OTHER]: 'Outro',
+};
 
 const formData = ref<{
   type: string;
@@ -100,6 +111,7 @@ const handleCancel = () => {
         v-model="formData.type"
         id="activity-type"
         :options="activityTypes"
+        :optionLabel="(option: string) => typeMap[option]"
         placeholder="Selecione o tipo de atividade"
         class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
         :conditions="{ required: true }"
@@ -108,13 +120,13 @@ const handleCancel = () => {
 
     <div class="flex flex-col gap-2">
       <label for="content" class="text-sm font-medium">Conteúdo *</label>
-      <textarea
+      <PipeTextarea
         id="content"
         v-model="formData.content"
-        rows="5"
+        :rows="5"
         placeholder="Digite o conteúdo da atividade"
         class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
-        required
+        :conditions="{ required: true }"
       />
     </div>
 

@@ -1,5 +1,5 @@
-import { supabase } from '@/core/db/supabase.client';
-import type { Deal, DealInsert, DealUpdate, DealWithRelations, Stage } from '@/services/modules/deals/deals.types';
+import { supabase } from '@/db/supabase.client';
+import type { Deal, DealInsert, DealUpdate, DealWithRelations, Stage } from '@/types/modules/deals.types';
 
 export const dealsService = {
   async getDeals(pipelineId?: string): Promise<DealWithRelations[]> {

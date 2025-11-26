@@ -9,7 +9,6 @@ import TwoFactorView from '@/views/auth/TwoFactorView.vue';
 import AuthCallbackView from '@/views/auth/AuthCallbackView.vue';
 
 import HomeView from '@/views/home/HomeView.vue';
-import PipelineView from '@/views/modules/pipeline/PipelineView.vue';
 import ContactsView from '@/views/modules/contacts/ContactsView.vue';
 import CompaniesView from '@/views/modules/companies/CompaniesView.vue';
 
@@ -108,7 +107,7 @@ const routes: RouteRecordRaw[] = [
       {
         path: 'pipeline',
         name: 'Pipeline',
-        component: PipelineView,
+        component: () => import('@/views/modules/pipeline/PipelineView.vue'),
         meta: {
           title: 'Pipeline PipeCRM',
           description: 'Gerenciar e acompanhar o fúnil de vendas do PipeCRM',

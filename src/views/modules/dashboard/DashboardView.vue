@@ -1,16 +1,15 @@
 <script setup lang="ts">
 import { onMounted, computed } from 'vue';
 import { useDashboard } from '@/composables/modules/useDashboard';
-import { ActivityType } from '@/services/modules/activities/activities.types';
+import { ActivityType } from '@/types/modules/activities.types';
 import PipeButton from '@/components/ui/button/PipeButton.vue';
 import PipeMessage from '@/components/ui/message/PipeMessage.vue';
 import PipeMetricCard from '@/components/modules/dashboard/PipeMetricCard.vue';
 
-const { metrics, loading, error, fetchMetrics, refreshMetrics } =
-  useDashboard();
+const { metrics, loading, error, getMetrics, refreshMetrics } = useDashboard();
 
 onMounted(() => {
-  fetchMetrics();
+  getMetrics();
 });
 
 const formatCurrency = (value: number) => {

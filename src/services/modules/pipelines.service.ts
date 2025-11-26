@@ -1,4 +1,4 @@
-import { supabase } from '@/core/db/supabase.client'
+import { supabase } from '@/db/supabase.client'
 
 export const pipelineService = {
   async ensureProfileExists(): Promise<void> {
@@ -20,14 +20,14 @@ export const pipelineService = {
       console.warn('Could not create auth_users entry:', authUserError)
     }
 
-    const { data: profile, error: fetchError } = await supabase
+    const { data: profile, error: getError } = await supabase
       .from('profiles')
       .select('id')
       .eq('id', user.id)
       .maybeSingle()
 
-    if (fetchError && fetchError.code !== 'PGRST116') {
-      console.error('Error checking profile:', fetchError)
+    if (getError && getError.code !== 'PGRST116') {
+      console.error('Error checking profile:', getError)
     }
 
     if (!profile) {
@@ -56,13 +56,13 @@ export const pipelineService = {
 
     if (!user) throw new Error('User not authenticated')
 
-    const { data: existingPipelines, error: fetchError } = await supabase
+    const { data: existingPipelines, error: getError } = await supabase
       .from('pipelines')
       .select('id')
       .eq('owner_id', user.id)
       .limit(1)
 
-    if (fetchError) throw fetchError
+    if (getError) throw getError
 
     if (existingPipelines && existingPipelines.length > 0) {
       return existingPipelines[0].id

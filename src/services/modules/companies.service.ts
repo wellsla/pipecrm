@@ -1,5 +1,5 @@
-import { supabase } from '@/core/db/supabase.client';
-import type { Company, CompanyInsert, CompanyUpdate } from '@/services/modules/companies/companies.types';
+import { supabase } from '@/db/supabase.client';
+import type { Company, CompanyInsert, CompanyUpdate } from '@/types/modules/companies.types';
 
 export const companiesService = {
   async getCompanies(): Promise<Company[]> {

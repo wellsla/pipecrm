@@ -1,8 +1,8 @@
 import { ref } from 'vue'
-import { activitiesService } from '@/services/modules/activities/activities.service'
-import { trackError } from '@/core/errors/error.tracking'
-import { mapSupabasePostgrestError } from '@/core/errors/supabase/error.mapping'
-import type { DealActivity, DealActivityInsert, DealActivityUpdate } from '@/services/modules/activities/activities.types'
+import { activitiesService } from '@/services/modules/activities.service'
+import { trackError } from '@/errors/tracking'
+import { mapSupabasePostgrestError } from '@/errors/supabase/supabase.mapping'
+import type { DealActivity, DealActivityInsert, DealActivityUpdate } from '@/types/modules/activities.types'
 import type { PostgrestError } from '@supabase/supabase-js'
 
 export function useActivities() {
@@ -10,31 +10,31 @@ export function useActivities() {
   const loading = ref(false)
   const error = ref<string | null>(null)
 
-  const fetchActivitiesByDeal = async (dealId: string) => {
+  const getActivitiesByDeal = async (dealId: string) => {
     loading.value = true
     error.value = null
 
     try {
-      activities.value = await activitiesService.fetchByDeal(dealId)
+      activities.value = await activitiesService.getByDeal(dealId)
     } catch (e) {
       const appError = mapSupabasePostgrestError(e as PostgrestError)
       error.value = appError.message
-      trackError(appError, 'useActivities.fetchActivitiesByDeal')
+      trackError(appError, 'useActivities.getActivitiesByDeal')
     } finally {
       loading.value = false
     }
   }
 
-  const fetchRecentActivities = async (limit: number = 10) => {
+  const getRecentActivities = async (limit: number = 10) => {
     loading.value = true
     error.value = null
 
     try {
-      activities.value = await activitiesService.fetchRecent(limit)
+      activities.value = await activitiesService.getRecent(limit)
     } catch (e) {
       const appError = mapSupabasePostgrestError(e as PostgrestError)
       error.value = appError.message
-      trackError(appError, 'useActivities.fetchRecentActivities')
+      trackError(appError, 'useActivities.getRecentActivities')
     } finally {
       loading.value = false
     }
@@ -100,8 +100,8 @@ export function useActivities() {
     activities,
     loading,
     error,
-    fetchActivitiesByDeal,
-    fetchRecentActivities,
+    getActivitiesByDeal,
+    getRecentActivities,
     createActivity,
     updateActivity,
     deleteActivity

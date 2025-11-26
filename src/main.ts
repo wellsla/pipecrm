@@ -1,9 +1,9 @@
 import { createApp } from 'vue';
 import { createPinia } from 'pinia';
-import { supabase } from '@/core/db/supabase.client';
+import { supabase } from '@/db/supabase.client';
 import { createSentryPiniaPlugin } from '@sentry/vue';
-import { initSentry, trackError } from './core/errors/error.tracking';
-import { isAppError } from './core/errors/app/error.mapping';
+import { initSentry, trackError } from './errors/tracking';
+import { isAppError } from './errors/app/app.mapping';
 import { useAuthStore } from '@/stores/auth/auth.store';
  
 import router from '@/router';

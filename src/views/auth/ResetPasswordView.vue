@@ -2,8 +2,8 @@
 import { ref, computed } from 'vue';
 import { useRouter } from 'vue-router';
 import { useAuthStore } from '@/stores/auth/auth.store';
-import { validationError } from '@/core/errors/form/validation';
-import type { AppError } from '@/core/errors/app/error.types';
+import { validationError } from '@/errors/form/form.mapping';
+import type { AppError } from '@/types/error';
 
 import PipeAuthForm from '@/components/auth/PipeAuthForm.vue';
 import PipeInput from '@/components/ui/input/PipeInput.vue';

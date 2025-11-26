@@ -1,17 +1,17 @@
 import { ZodError } from 'zod';
-import { supabase } from '@/core/db/supabase.client';
+import { supabase } from '@/db/supabase.client';
 import {
   signInSchema,
   signUpSchema,
   mfaCodeSchema,
   forgotPasswordSchema,
   resetPasswordSchema,
-} from './auth.schemas';
-import { isAppError } from '@/core/errors/app/error.mapping';
-import { mapZodError } from '@/core/errors/zod/error.mapping';
-import { mapSupabaseAuthError } from '@/core/errors/supabase/error.mapping';
-import { mapUnknownError } from '@/core/errors/unknown/error.mapping';
-import { trackError } from '@/core/errors/error.tracking';
+} from '../../schemas/auth/auth.schema';
+import { isAppError } from '@/errors/app/app.mapping';
+import { mapZodError } from '@/errors/zod/zod.mapping';
+import { mapSupabaseAuthError } from '@/errors/supabase/supabase.mapping';
+import { mapUnknownError } from '@/errors/unknown/unknown.mapping';
+import { trackError } from '@/errors/tracking';
 
 import type {
   SignInPayload,
@@ -19,9 +19,9 @@ import type {
   ForgotPasswordPayload,
   ResetPasswordPayload,
   AuthUser,
-} from './auth.types';
+} from '@/types/auth/auth.types';
 import type { AuthError } from '@supabase/supabase-js';
-import type { AppError } from '@/core/errors/app/error.types';
+import type { AppError } from '@/types/error';
 
 export class AuthService {
   public async signIn(payload: SignInPayload): Promise<AuthUser> {

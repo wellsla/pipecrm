@@ -1,7 +1,7 @@
 import { createClient, type SupabaseClient, type PostgrestError } from '@supabase/supabase-js';
 
-import type { Database } from '@/core/db/supabase.types';
-import type { AppError } from '@/core/errors/app/error.types';
+import type { Database } from '@/db/supabase.types';
+import type { AppError } from '@/types/error';
 
 const url = import.meta.env.VITE_SUPABASE_URL as string;
 const anonKey = import.meta.env.VITE_SUPABASE_KEY as string;

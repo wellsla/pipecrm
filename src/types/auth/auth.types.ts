@@ -5,7 +5,7 @@ import {
   mfaCodeSchema,
   forgotPasswordSchema,
   resetPasswordSchema,
-} from './auth.schemas';
+} from '@/schemas/auth/auth.schema';
 
 export type SignInPayload = z.infer<typeof signInSchema>;
 export type SignUpPayload = z.infer<typeof signUpSchema>;

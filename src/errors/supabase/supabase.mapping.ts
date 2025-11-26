@@ -1,7 +1,7 @@
-import { createAppError } from '../app/error.mapping'
+import { createAppError } from '../app/app.mapping'
 
 import type { PostgrestError, AuthError } from '@supabase/supabase-js'
-import type { AppError } from '../app/error.types'
+import type { AppError } from '../../types/error'
 
 export const mapSupabaseAuthError = (error: AuthError): AppError => { 
   if (error.message.toLowerCase().includes('invalid login credentials')) {

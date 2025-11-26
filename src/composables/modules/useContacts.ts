@@ -1,8 +1,8 @@
 import { ref } from 'vue';
-import { contactsService } from '@/services/modules/contacts/contacts.service';
-import { trackError } from '@/core/errors/error.tracking';
-import { mapSupabasePostgrestError } from '@/core/errors/supabase/error.mapping';
-import type { Contact, ContactInsert, ContactUpdate } from '@/services/modules/contacts/contacts.types';
+import { contactsService } from '@/services/modules/contacts.service';
+import { trackError } from '@/errors/tracking';
+import { mapSupabasePostgrestError } from '@/errors/supabase/supabase.mapping';
+import type { Contact, ContactInsert, ContactUpdate } from '@/types/modules/contacts.types';
 import type { PostgrestError } from '@supabase/supabase-js';
 
 export function useContacts() {
@@ -10,7 +10,7 @@ export function useContacts() {
   const loading = ref(false);
   const error = ref<string | null>(null);
 
-  async function fetchContacts() {
+  async function getContacts() {
     loading.value = true;
     error.value = null;
     try {
@@ -18,7 +18,7 @@ export function useContacts() {
     } catch (e) {
       const appError = mapSupabasePostgrestError(e as PostgrestError);
       error.value = appError.message;
-      trackError(appError, 'useContacts.fetchContacts');
+      trackError(appError, 'useContacts.getContacts');
     } finally {
       loading.value = false;
     }
@@ -29,7 +29,7 @@ export function useContacts() {
     error.value = null;
     try {
       const created = await contactsService.createContact(payload);
-      await fetchContacts();
+      await getContacts();
       return created;
     } catch (e) {
       const appError = mapSupabasePostgrestError(e as PostgrestError);
@@ -46,7 +46,7 @@ export function useContacts() {
     error.value = null;
     try {
       const updated = await contactsService.updateContact(id, updates);
-      await fetchContacts();
+      await getContacts();
       return updated;
     } catch (e) {
       const appError = mapSupabasePostgrestError(e as PostgrestError);
@@ -63,7 +63,7 @@ export function useContacts() {
     error.value = null;
     try {
       await contactsService.deleteContact(id);
-      await fetchContacts();
+      await getContacts();
     } catch (e) {
       const appError = mapSupabasePostgrestError(e as PostgrestError);
       error.value = appError.message;
@@ -78,7 +78,7 @@ export function useContacts() {
     contacts,
     loading,
     error,
-    fetchContacts,
+    getContacts,
     createContact,
     updateContact,
     deleteContact,

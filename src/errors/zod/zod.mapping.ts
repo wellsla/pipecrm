@@ -1,7 +1,7 @@
-import { createAppError } from '../app/error.mapping'
+import { createAppError } from '../app/app.mapping'
 import { treeifyError, type ZodError } from 'zod'
 
-import type { AppError } from '../app/error.types'
+import type { AppError } from '../../types/error'
 
 export const mapZodError = (error: ZodError): AppError => {
   const firstIssue = error.issues[0]

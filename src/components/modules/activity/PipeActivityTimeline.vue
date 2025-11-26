@@ -5,7 +5,7 @@ import type {
   DealActivity,
   DealActivityInsert,
   DealActivityUpdate,
-} from '@/services/modules/activities/activities.types';
+} from '@/types/modules/activities.types';
 import PipeButton from '@/components/ui/button/PipeButton.vue';
 import PipeDialog from '@/components/ui/dialog/PipeDialog.vue';
 import PipeMessage from '@/components/ui/message/PipeMessage.vue';
@@ -22,7 +22,7 @@ const {
   activities,
   loading,
   error,
-  fetchActivitiesByDeal,
+  getActivitiesByDeal,
   createActivity,
   updateActivity,
   deleteActivity,
@@ -36,7 +36,7 @@ const submitting = ref(false);
 
 // Load activities on mount
 onMounted(() => {
-  fetchActivitiesByDeal(props.dealId);
+  getActivitiesByDeal(props.dealId);
 });
 
 const handleEditActivity = (activity: DealActivity) => {

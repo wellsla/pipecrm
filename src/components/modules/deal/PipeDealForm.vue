@@ -5,10 +5,7 @@ import { useContacts } from '@/composables/modules/useContacts';
 import PipeInput from '@/components/ui/input/PipeInput.vue';
 import PipeButton from '@/components/ui/button/PipeButton.vue';
 import PipeSelect from '@/components/ui/select/PipeSelect.vue';
-import type {
-  DealInsert,
-  DealUpdate,
-} from '@/services/modules/deals/deals.types';
+import type { DealInsert, DealUpdate } from '@/types/modules/deals.types';
 
 interface Props {
   modelValue: (Partial<DealInsert> & { id?: string }) | null;
@@ -24,8 +21,8 @@ const emit = defineEmits<{
   cancel: [];
 }>();
 
-const { companies, fetchCompanies } = useCompanies();
-const { contacts, fetchContacts } = useContacts();
+const { companies, getCompanies } = useCompanies();
+const { contacts, getContacts } = useContacts();
 
 const formData = ref({
   title: props.modelValue?.title || '',
@@ -42,8 +39,8 @@ const statusOptions = [
   { label: 'Arquivado', value: 'archived' },
 ];
 
-fetchCompanies();
-fetchContacts();
+getCompanies();
+getContacts();
 
 watch(
   () => props.modelValue,

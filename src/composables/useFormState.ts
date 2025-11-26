@@ -1,5 +1,5 @@
 import { ref } from 'vue';
-import type { AppError } from '@/core/errors/app/error.types';
+import type { AppError } from '@/types/error';
 
 export interface UseFormStateOptions {
   onSuccess?: () => void;

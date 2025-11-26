@@ -1,5 +1,5 @@
-import { createAppError } from '../app/error.mapping'
-import type { AppError } from '../app/error.types'
+import { createAppError } from '../app/app.mapping'
+import type { AppError } from '../../types/error'
 
 export const validationError = (message: string, field?: string): AppError => {
   return createAppError({

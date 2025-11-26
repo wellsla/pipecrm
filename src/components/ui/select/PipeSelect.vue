@@ -7,8 +7,8 @@ const props = withDefaults(
   defineProps<{
     id: string;
     options: SelectPassThroughOptionType[];
-    optionLabel?: string;
-    optionValue?: string;
+    optionLabel?: string | ((option: string) => string);
+    optionValue?: string | ((option: string) => string | number);
     placeholder?: string;
     conditions?: {
       fluid?: boolean;
@@ -44,5 +44,6 @@ const attrs = useAttrs();
     :invalid="props.conditions?.invalid && !modelValue"
     :required="props.conditions?.required"
     :showClear="props.showClear"
+    emptyMessage="Não há opções disponíveis"
   />
 </template>

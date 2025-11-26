@@ -1,8 +1,8 @@
 import { ref, computed } from 'vue';
-import { dealsService } from '@/services/modules/deals/deals.service';
-import { trackError } from '@/core/errors/error.tracking';
-import { mapSupabasePostgrestError } from '@/core/errors/supabase/error.mapping';
-import type { DealInsert, DealUpdate, DealWithRelations, Stage } from '@/services/modules/deals/deals.types';
+import { dealsService } from '@/services/modules/deals.service';
+import { trackError } from '@/errors/tracking';
+import { mapSupabasePostgrestError } from '@/errors/supabase/supabase.mapping';
+import type { DealInsert, DealUpdate, DealWithRelations, Stage } from '@/types/modules/deals.types';
 import type { PostgrestError } from '@supabase/supabase-js';
 
 export function useDeals(pipelineId?: string) {
@@ -22,7 +22,7 @@ export function useDeals(pipelineId?: string) {
     return grouped;
   });
 
-  async function fetchDeals() {
+  async function getDeals() {
     loadingDeals.value = true;
     error.value = null;
 
@@ -31,13 +31,13 @@ export function useDeals(pipelineId?: string) {
     } catch (e) {
       const appError = mapSupabasePostgrestError(e as PostgrestError);
       error.value = appError.message;
-      trackError(appError, 'useDeals.fetchDeals');
+      trackError(appError, 'useDeals.getDeals');
     } finally {
       loadingDeals.value = false;
     }
   }
 
-  async function fetchStages(pipeId: string) {
+  async function getStages(pipeId: string) {
     loadingStages.value = true;
     error.value = null;
 
@@ -46,7 +46,7 @@ export function useDeals(pipelineId?: string) {
     } catch (e) {
       const appError = mapSupabasePostgrestError(e as PostgrestError);
       error.value = appError.message;
-      trackError(appError, 'useDeals.fetchStages');
+      trackError(appError, 'useDeals.getStages');
     } finally {
       loadingStages.value = false;
     }
@@ -58,7 +58,7 @@ export function useDeals(pipelineId?: string) {
 
     try {
       const newDeal = await dealsService.createDeal(deal);
-      await fetchDeals();
+      await getDeals();
       return newDeal;
     } catch (e) {
       const appError = mapSupabasePostgrestError(e as PostgrestError);
@@ -76,7 +76,7 @@ export function useDeals(pipelineId?: string) {
 
     try {
       const updated = await dealsService.updateDeal(id, updates);
-      await fetchDeals();
+      await getDeals();
       return updated;
     } catch (e) {
       const appError = mapSupabasePostgrestError(e as PostgrestError);
@@ -94,7 +94,7 @@ export function useDeals(pipelineId?: string) {
 
     try {
       await dealsService.deleteDeal(id);
-      await fetchDeals();
+      await getDeals();
     } catch (e) {
       const appError = mapSupabasePostgrestError(e as PostgrestError);
       error.value = appError.message;
@@ -112,8 +112,8 @@ export function useDeals(pipelineId?: string) {
     loadingDeals,
     error,
     dealsByStage,
-    fetchDeals,
-    fetchStages,
+    getDeals,
+    getStages,
     createDeal,
     updateDeal,
     deleteDeal,

@@ -8,8 +8,8 @@ import PipeAuthForm from '@/components/auth/PipeAuthForm.vue';
 import PipeInput from '@/components/ui/input/PipeInput.vue';
 import PipeButton from '@/components/ui/button/PipeButton.vue';
 import PipeMessage from '@/components/ui/message/PipeMessage.vue';
-import { validationError } from '@/core/errors/form/validation';
-import type { AppError } from '@/core/errors/app/error.types';
+import { validationError } from '@/errors/form/form.mapping';
+import type { AppError } from '@/types/error';
 
 const router = useRouter();
 const route = useRoute();

@@ -1,11 +1,11 @@
 import { ref, computed } from 'vue';
 import { defineStore } from 'pinia';
 import { authService } from '@/services/auth/auth.service';
-import { isAppError } from '@/core/errors/app/error.mapping';
-import { mapUnknownError } from '@/core/errors/unknown/error.mapping';
+import { isAppError } from '@/errors/app/app.mapping';
+import { mapUnknownError } from '@/errors/unknown/unknown.mapping';
 
-import type { AuthUser } from '@/services/auth/auth.types';
-import type { AppError } from '@/core/errors/app/error.types';
+import type { AuthUser } from '@/types/auth/auth.types';
+import type { AppError } from '@/types/error';
 
 export const useAuthStore = defineStore('auth', () => {
   // states

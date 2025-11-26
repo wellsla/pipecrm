@@ -1,8 +1,8 @@
-import { supabase } from '@/core/db/supabase.client'
-import type { DealActivityInsert, DealActivityUpdate } from '@/services/modules/activities/activities.types'
+import { supabase } from '@/db/supabase.client'
+import type { DealActivityInsert, DealActivityUpdate } from '@/types/modules/activities.types'
 
 export const activitiesService = {
-  async fetchByDeal(dealId: string) {
+  async getByDeal(dealId: string) {
     const { data, error } = await supabase
       .from('deal_activities')
       .select('*')
@@ -13,7 +13,7 @@ export const activitiesService = {
     return data
   },
 
-  async fetchById(id: string) {
+  async getById(id: string) {
     const { data, error } = await supabase
       .from('deal_activities')
       .select('*')
@@ -53,7 +53,7 @@ export const activitiesService = {
     if (error) throw error
   },
 
-  async fetchRecent(limit: number = 10) {
+  async getRecent(limit: number = 10) {
     const { data, error } = await supabase
       .from('deal_activities')
       .select('*, deals(title)')

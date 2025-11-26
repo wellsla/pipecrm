@@ -1,6 +1,6 @@
-import { createAppError } from '../app/error.mapping'
+import { createAppError } from '../app/app.mapping'
 
-import type { AppError } from '../app/error.types'
+import type { AppError } from '../../types/error'
 
 export const mapUnknownError = (error: unknown): AppError => {
   if (typeof error === 'string') {

@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/vue3';
 import PipeCompanyCard from './PipeCompanyCard.vue';
-import type { Company } from '@/services/modules/companies/companies.types';
+import type { Company } from '@/types/modules/companies.types';
 
 const meta = {
   title: 'Modules/Company/PipeCompanyCard',

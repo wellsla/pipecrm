@@ -12,17 +12,17 @@ import type {
   DealWithRelations,
   DealInsert,
   DealUpdate,
-} from '@/services/modules/deals/deals.types';
+} from '@/types/modules/deals.types';
 
-const { pipelineId, loading, fetchPipelines } = usePipelines();
+const { pipelineId, loading, getPipelines } = usePipelines();
 const {
   stages,
   loadingStages,
   loadingDeals,
   error,
   dealsByStage,
-  fetchDeals,
-  fetchStages,
+  getDeals,
+  getStages,
   createDeal,
   updateDeal,
   deleteDeal,
@@ -36,9 +36,9 @@ const formModel = ref<Partial<DealWithRelations> | null>(null);
 const formStageId = ref<string>('');
 
 onMounted(async () => {
-  await fetchPipelines();
-  await fetchStages(pipelineId.value);
-  await fetchDeals();
+  await getPipelines();
+  await getStages(pipelineId.value);
+  await getDeals();
 });
 
 function handleDealClick(deal: DealWithRelations) {
@@ -249,18 +249,6 @@ function getStageTotal(stageId: string) {
 
           <!-- Details Tab -->
           <div v-else class="space-y-3 p-4">
-            <div>
-              <label class="text-sm font-medium">ID do Negócio</label>
-              <p>{{ selectedDeal.id }}</p>
-            </div>
-            <div>
-              <label class="text-sm font-medium">ID do Pipeline</label>
-              <p>{{ selectedDeal.pipeline_id }}</p>
-            </div>
-            <div>
-              <label class="text-sm font-medium">ID da Etapa</label>
-              <p>{{ selectedDeal.stage_id }}</p>
-            </div>
             <div>
               <label class="text-sm font-medium">Criado em</label>
               <p>

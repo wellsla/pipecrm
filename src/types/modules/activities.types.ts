@@ -1,4 +1,4 @@
-import type { Database } from '@/core/db/supabase.types'
+import type { Database } from '@/db/supabase.types'
 
 export type DealActivity = Database['public']['Tables']['deal_activities']['Row']
 export type DealActivityInsert = Database['public']['Tables']['deal_activities']['Insert']

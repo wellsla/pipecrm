@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import type { DealWithRelations } from '@/services/modules/deals/deals.types';
+import type { DealWithRelations } from '@/types/modules/deals.types';
 
 interface Props {
   deal: DealWithRelations;
@@ -69,14 +69,14 @@ function handleDelete(deal: DealWithRelations, event: Event) {
           @click.stop
         >
           <button
-            class="w-full text-left px-4 py-2 text-sm flex items-center gap-2"
+            class="w-full text-left px-4 py-2 text-sm flex items-center gap-2 cursor-pointer"
             @click="(e) => handleEdit(deal, e)"
           >
             <i class="pi pi-pencil text-xs"></i>
             Editar
           </button>
           <button
-            class="w-full text-left px-4 py-2 text-sm flex items-center gap-2 text-danger"
+            class="w-full text-left px-4 py-2 text-sm flex items-center gap-2 text-danger cursor-pointer"
             @click="(e) => handleDelete(deal, e)"
           >
             <i class="pi pi-trash text-xs"></i>

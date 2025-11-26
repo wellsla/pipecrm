@@ -1,8 +1,8 @@
 import { ref } from 'vue'
-import { dashboardService } from '@/services/modules/dashboard/dashboard.service'
-import { trackError } from '@/core/errors/error.tracking'
-import { mapSupabasePostgrestError } from '@/core/errors/supabase/error.mapping'
-import type { DashboardMetrics } from '@/services/modules/dashboard/dashboard.types'
+import { dashboardService } from '@/services/modules/dashboard.service'
+import { trackError } from '@/errors/tracking'
+import { mapSupabasePostgrestError } from '@/errors/supabase/supabase.mapping'
+import type { DashboardMetrics } from '@/types/modules/dashboard.types'
 import type { PostgrestError } from '@supabase/supabase-js'
 
 export function useDashboard() {
@@ -10,30 +10,30 @@ export function useDashboard() {
   const loading = ref(false)
   const error = ref<string | null>(null)
 
-  const fetchMetrics = async () => {
+  const getMetrics = async () => {
     loading.value = true
     error.value = null
 
     try {
-      metrics.value = await dashboardService.fetchMetrics()
+      metrics.value = await dashboardService.getMetrics()
     } catch (e) {
       const appError = mapSupabasePostgrestError(e as PostgrestError)
       error.value = appError.message
-      trackError(appError, 'useDashboard.fetchMetrics')
+      trackError(appError, 'useDashboard.getMetrics')
     } finally {
       loading.value = false
     }
   }
 
   const refreshMetrics = async () => {
-    await fetchMetrics()
+    await getMetrics()
   }
 
   return {
     metrics,
     loading,
     error,
-    fetchMetrics,
+    getMetrics,
     refreshMetrics
   }
 }

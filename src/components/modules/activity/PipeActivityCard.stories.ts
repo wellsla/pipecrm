@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/vue3'
 import PipeActivityCard from './PipeActivityCard.vue'
-import { ActivityType } from '@/services/modules/activities/activities.types'
+import { ActivityType } from '@/types/modules/activities.types'
 
 const meta: Meta<typeof PipeActivityCard> = {
   title: 'Modules/Activity/PipeActivityCard',

@@ -1,8 +1,8 @@
 import { ref } from 'vue';
-import { companiesService } from '@/services/modules/companies/companies.service';
-import { trackError } from '@/core/errors/error.tracking';
-import { mapSupabasePostgrestError } from '@/core/errors/supabase/error.mapping';
-import type { Company, CompanyInsert, CompanyUpdate } from '@/services/modules/companies/companies.types';
+import { companiesService } from '@/services/modules/companies.service';
+import { trackError } from '@/errors/tracking';
+import { mapSupabasePostgrestError } from '@/errors/supabase/supabase.mapping';
+import type { Company, CompanyInsert, CompanyUpdate } from '@/types/modules/companies.types';
 import type { PostgrestError } from '@supabase/supabase-js';
 
 export function useCompanies() {
@@ -10,7 +10,7 @@ export function useCompanies() {
   const loading = ref(false);
   const error = ref<string | null>(null);
 
-  async function fetchCompanies() {
+  async function getCompanies() {
     loading.value = true;
     error.value = null;
     try {
@@ -18,7 +18,7 @@ export function useCompanies() {
     } catch (e) {
       const appError = mapSupabasePostgrestError(e as PostgrestError);
       error.value = appError.message;
-      trackError(appError, 'useCompanies.fetchCompanies');
+      trackError(appError, 'useCompanies.getCompanies');
     } finally {
       loading.value = false;
     }
@@ -29,7 +29,7 @@ export function useCompanies() {
     error.value = null;
     try {
       const created = await companiesService.createCompany(payload);
-      await fetchCompanies();
+      await getCompanies();
       return created;
     } catch (e) {
       const appError = mapSupabasePostgrestError(e as PostgrestError);
@@ -46,7 +46,7 @@ export function useCompanies() {
     error.value = null;
     try {
       const updated = await companiesService.updateCompany(id, updates);
-      await fetchCompanies();
+      await getCompanies();
       return updated;
     } catch (e) {
       const appError = mapSupabasePostgrestError(e as PostgrestError);
@@ -63,7 +63,7 @@ export function useCompanies() {
     error.value = null;
     try {
       await companiesService.deleteCompany(id);
-      await fetchCompanies();
+      await getCompanies();
     } catch (e) {
       const appError = mapSupabasePostgrestError(e as PostgrestError);
       error.value = appError.message;
@@ -78,7 +78,7 @@ export function useCompanies() {
     companies,
     loading,
     error,
-    fetchCompanies,
+    getCompanies,
     createCompany,
     updateCompany,
     deleteCompany,

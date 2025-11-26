@@ -1,4 +1,4 @@
-import type { AppError } from './error.types';
+import type { AppError } from '../../types/error';
 
 export const createAppError = (input: AppError): AppError => input;
 
