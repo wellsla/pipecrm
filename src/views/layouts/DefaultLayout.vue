@@ -18,16 +18,16 @@ const menuItems: MenuItem[] = [
   { label: 'Empresas', icon: 'pi pi-building', route: '/companies' },
 ];
 
-function navigateTo(r: string) {
+const navigateTo = (r: string) => {
   if (route.path !== r) {
     router.push(r);
     mobileMenuOpen.value = false; // Close mobile menu after navigation
   }
-}
+};
 
-function toggleMobileMenu() {
+const toggleMobileMenu = () => {
   mobileMenuOpen.value = !mobileMenuOpen.value;
-}
+};
 </script>
 
 <template>

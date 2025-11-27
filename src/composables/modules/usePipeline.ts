@@ -4,11 +4,11 @@ import { trackError } from '@/errors/tracking';
 import { mapSupabasePostgrestError } from '@/errors/supabase/supabase.mapping';
 import type { PostgrestError } from '@supabase/supabase-js';
 
-export function usePipelines() {
+export const usePipelines = () => {
   const pipelineId = ref<string>('');
   const loading = ref(false);
 
-  async function getPipelines() {
+  const getPipelines = async () => {
     loading.value = true;
 
     try {

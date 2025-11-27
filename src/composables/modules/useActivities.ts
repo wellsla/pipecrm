@@ -5,7 +5,7 @@ import { mapSupabasePostgrestError } from '@/errors/supabase/supabase.mapping'
 import type { DealActivity, DealActivityInsert, DealActivityUpdate } from '@/types/modules/activities.types'
 import type { PostgrestError } from '@supabase/supabase-js'
 
-export function useActivities() {
+export const useActivities = () => {
   const activities = ref<DealActivity[]>([])
   const loading = ref(false)
   const error = ref<string | null>(null)

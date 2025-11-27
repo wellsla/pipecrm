@@ -5,12 +5,12 @@ import { mapSupabasePostgrestError } from '@/errors/supabase/supabase.mapping';
 import type { Contact, ContactInsert, ContactUpdate } from '@/types/modules/contacts.types';
 import type { PostgrestError } from '@supabase/supabase-js';
 
-export function useContacts() {
+export const useContacts = () => {
   const contacts = ref<Contact[]>([]);
   const loading = ref(false);
   const error = ref<string | null>(null);
 
-  async function getContacts() {
+  const getContacts = async () => {
     loading.value = true;
     error.value = null;
     try {
@@ -24,7 +24,7 @@ export function useContacts() {
     }
   }
 
-  async function createContact(payload: ContactInsert) {
+  const createContact = async (payload: ContactInsert) => {
     loading.value = true;
     error.value = null;
     try {
@@ -41,7 +41,7 @@ export function useContacts() {
     }
   }
 
-  async function updateContact(id: string, updates: ContactUpdate) {
+  const updateContact = async (id: string, updates: ContactUpdate) => {
     loading.value = true;
     error.value = null;
     try {
@@ -58,7 +58,7 @@ export function useContacts() {
     }
   }
 
-  async function deleteContact(id: string) {
+  const deleteContact = async (id: string) => {
     loading.value = true;
     error.value = null;
     try {

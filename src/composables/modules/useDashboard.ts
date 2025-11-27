@@ -5,7 +5,7 @@ import { mapSupabasePostgrestError } from '@/errors/supabase/supabase.mapping'
 import type { DashboardMetrics } from '@/types/modules/dashboard.types'
 import type { PostgrestError } from '@supabase/supabase-js'
 
-export function useDashboard() {
+export const useDashboard = () => {
   const metrics = ref<DashboardMetrics | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)

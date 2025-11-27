@@ -5,7 +5,7 @@ export interface MappedError {
   code?: string;
 }
 
-export function mapSupabaseError(error: AuthError): MappedError {
+export const mapSupabaseError = (error: AuthError): MappedError => {
   if (error.code === 'invalid_credentials') {
     return {
       message: 'E-mail ou senha inválidos',

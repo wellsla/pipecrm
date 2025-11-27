@@ -47,16 +47,16 @@ watch(
 
 const isEdit = computed(() => Boolean(props.modelValue?.id));
 
-function validate() {
+const validate = () => {
   if (!name.value.trim()) {
     error.value = 'Nome da empresa é obrigatório';
     return false;
   }
   error.value = null;
   return true;
-}
+};
 
-function handleSubmit() {
+const handleSubmit = () => {
   if (!validate()) return;
   if (isEdit.value) {
     const updatePayload: CompanyUpdate = {
@@ -73,7 +73,7 @@ function handleSubmit() {
     };
     emit('submit', createPayload);
   }
-}
+};
 </script>
 
 <template>

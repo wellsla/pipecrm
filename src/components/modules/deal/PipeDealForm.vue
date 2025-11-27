@@ -58,7 +58,7 @@ watch(
   { immediate: true }
 );
 
-function handleSubmit() {
+const handleSubmit = () => {
   const payload: DealInsert | DealUpdate = {
     title: formData.value.title,
     amount: formData.value.amount,
@@ -70,11 +70,11 @@ function handleSubmit() {
   };
 
   emit('submit', payload);
-}
+};
 
-function handleCancel() {
+const handleCancel = () => {
   emit('cancel');
-}
+};
 </script>
 
 <template>

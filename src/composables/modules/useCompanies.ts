@@ -5,12 +5,12 @@ import { mapSupabasePostgrestError } from '@/errors/supabase/supabase.mapping';
 import type { Company, CompanyInsert, CompanyUpdate } from '@/types/modules/companies.types';
 import type { PostgrestError } from '@supabase/supabase-js';
 
-export function useCompanies() {
+export const useCompanies = () => {
   const companies = ref<Company[]>([]);
   const loading = ref(false);
   const error = ref<string | null>(null);
 
-  async function getCompanies() {
+  const getCompanies = async () => {
     loading.value = true;
     error.value = null;
     try {
@@ -24,7 +24,7 @@ export function useCompanies() {
     }
   }
 
-  async function createCompany(payload: CompanyInsert) {
+  const createCompany = async (payload: CompanyInsert) => {
     loading.value = true;
     error.value = null;
     try {
@@ -41,7 +41,7 @@ export function useCompanies() {
     }
   }
 
-  async function updateCompany(id: string, updates: CompanyUpdate) {
+  const updateCompany = async (id: string, updates: CompanyUpdate) => {
     loading.value = true;
     error.value = null;
     try {
@@ -58,7 +58,7 @@ export function useCompanies() {
     }
   }
 
-  async function deleteCompany(id: string) {
+  const deleteCompany = async (id: string) => {
     loading.value = true;
     error.value = null;
     try {

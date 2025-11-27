@@ -31,27 +31,27 @@ onMounted(async () => {
   await getCompanies();
 });
 
-function handleClick(c: Company) {
+const handleClick = (c: Company) => {
   selected.value = c;
   showCompanyDialog.value = true;
-}
+};
 
-function handleDelete(c: Company) {
+const handleDelete = (c: Company) => {
   if (!confirm('Excluir empresa?')) return;
   deleteCompany(c.id);
-}
+};
 
-function openCreate() {
+const openCreate = () => {
   formModel.value = null;
   showFormDialog.value = true;
-}
+};
 
-function openEdit(c: Company) {
+const openEdit = (c: Company) => {
   formModel.value = c;
   showFormDialog.value = true;
-}
+};
 
-async function handleFormSubmit(payload: CompanyInsert | CompanyUpdate) {
+const handleFormSubmit = async (payload: CompanyInsert | CompanyUpdate) => {
   try {
     if (formModel.value?.id) {
       await updateCompany(formModel.value.id, payload as CompanyUpdate);
@@ -61,7 +61,7 @@ async function handleFormSubmit(payload: CompanyInsert | CompanyUpdate) {
     showFormDialog.value = false;
     formModel.value = null;
   } catch {}
-}
+};
 </script>
 
 <template>

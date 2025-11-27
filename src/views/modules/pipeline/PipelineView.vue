@@ -2,7 +2,6 @@
 import { onMounted, ref } from 'vue';
 import { useDeals } from '@/composables/modules/useDeals';
 import { usePipelines } from '@/composables/modules/usePipeline';
-import PipeCard from '@/components/ui/card/PipeCard.vue';
 import PipeDialog from '@/components/ui/dialog/PipeDialog.vue';
 import PipeMessage from '@/components/ui/message/PipeMessage.vue';
 import PipeActivityTimeline from '@/components/modules/activity/PipeActivityTimeline.vue';
@@ -13,6 +12,7 @@ import type {
   DealInsert,
   DealUpdate,
 } from '@/types/modules/deals.types';
+import PipeDealDraggableCard from '@/components/modules/deal/PipeDealDraggableCard.vue';
 
 const { pipelineId, loading, getPipelines } = usePipelines();
 const {
@@ -26,6 +26,10 @@ const {
   createDeal,
   updateDeal,
   deleteDeal,
+  startDragging,
+  stopDragging,
+  moveDealToStage,
+  draggingDealId,
 } = useDeals();
 
 const selectedDeal = ref<DealWithRelations | null>(null);
@@ -41,31 +45,31 @@ onMounted(async () => {
   await getDeals();
 });
 
-function handleDealClick(deal: DealWithRelations) {
+const handleDealClick = (deal: DealWithRelations) => {
   selectedDeal.value = deal;
   showDealDialog.value = true;
-}
+};
 
-function handleDealEdit(deal: DealWithRelations) {
+const handleDealEdit = (deal: DealWithRelations) => {
   formModel.value = deal;
   formStageId.value = deal.stage_id;
   showFormDialog.value = true;
   showDealDialog.value = false;
-}
+};
 
-function handleDealDelete(deal: DealWithRelations) {
+const handleDealDelete = (deal: DealWithRelations) => {
   if (!confirm(`Excluir negócio "${deal.title}"?`)) return;
   deleteDeal(deal.id);
   showDealDialog.value = false;
-}
+};
 
-function openCreateDeal(stageId: string) {
+const openCreateDeal = (stageId: string) => {
   formModel.value = null;
   formStageId.value = stageId;
   showFormDialog.value = true;
-}
+};
 
-async function handleFormSubmit(payload: DealInsert | DealUpdate) {
+const handleFormSubmit = async (payload: DealInsert | DealUpdate) => {
   try {
     if (formModel.value?.id) {
       await updateDeal(formModel.value.id, payload as DealUpdate);
@@ -77,19 +81,38 @@ async function handleFormSubmit(payload: DealInsert | DealUpdate) {
   } catch (e) {
     console.error('Error submitting deal:', e);
   }
-}
+};
 
-function formatCurrency(value: number) {
+const formatCurrency = (value: number) => {
   return new Intl.NumberFormat('pt-BR', {
     style: 'currency',
     currency: 'BRL',
   }).format(value);
-}
+};
 
-function getStageTotal(stageId: string) {
+const getStageTotal = (stageId: string) => {
   const stageDeals = dealsByStage.value[stageId] || [];
   return stageDeals.reduce((sum, deal) => sum + deal.amount, 0);
-}
+};
+
+const onDragStart = (payload: { dealId: string }) => {
+  startDragging(payload.dealId);
+};
+
+const onDragEnd = () => {
+  stopDragging();
+};
+
+const onDrop = async (stage: { id: string; pipeline_id: string }) => {
+  if (draggingDealId.value) {
+    await moveDealToStage(draggingDealId.value, pipelineId.value, stage.id);
+    stopDragging();
+  }
+};
+
+const allowDrop = (event: DragEvent) => {
+  event.preventDefault();
+};
 </script>
 
 <template>
@@ -157,14 +180,20 @@ function getStageTotal(stageId: string) {
               @click="openCreateDeal(stage.id)"
             />
           </div>
-          <div class="flex-1 overflow-y-auto">
-            <PipeCard
+          <div
+            class="flex-1 overflow-y-auto"
+            @dragover="allowDrop"
+            @drop="onDrop(stage)"
+          >
+            <PipeDealDraggableCard
               v-for="deal in dealsByStage[stage.id] || []"
               :key="deal.id"
               :deal="deal"
               @click="handleDealClick"
               @edit="handleDealEdit"
               @delete="handleDealDelete"
+              @drag-start="onDragStart"
+              @drag-end="onDragEnd"
             />
             <div
               v-if="(dealsByStage[stage.id] || []).length === 0"

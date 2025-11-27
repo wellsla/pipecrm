@@ -50,16 +50,16 @@ watch(
 
 const isEdit = computed(() => Boolean(props.modelValue?.id));
 
-function validate() {
+const validate = () => {
   if (!name.value.trim()) {
     error.value = 'Nome é obrigatório';
     return false;
   }
   error.value = null;
   return true;
-}
+};
 
-function handleSubmit() {
+const handleSubmit = () => {
   if (!validate()) return;
 
   const payload: ContactInsert | ContactUpdate = {
@@ -70,7 +70,7 @@ function handleSubmit() {
   };
 
   emit('submit', payload);
-}
+};
 </script>
 
 <template>

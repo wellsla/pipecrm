@@ -63,4 +63,16 @@ export const dealsService = {
     if (error) throw error;
     return (data || []) as Stage[];
   },
+
+  async moveDeal(dealId: string, pipelineId: string, stageId: string): Promise<Deal> {
+    const { data, error } = await supabase
+      .from('deals')
+      .update({ pipeline_id: pipelineId, stage_id: stageId })
+      .eq('id', dealId)
+      .select()
+      .single();
+
+    if (error) throw error;
+    return data as Deal;
+  }
 };

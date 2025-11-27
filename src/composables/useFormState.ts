@@ -6,7 +6,7 @@ export interface UseFormStateOptions {
   onError?: (error: AppError) => void;
 }
 
-export function useFormState(options: UseFormStateOptions = {}) {
+export const useFormState = (options: UseFormStateOptions = {}) => {
   const loading = ref(false);
   const error = ref<AppError | null>(null);
   const success = ref(false);

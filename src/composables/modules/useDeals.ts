@@ -5,12 +5,13 @@ import { mapSupabasePostgrestError } from '@/errors/supabase/supabase.mapping';
 import type { DealInsert, DealUpdate, DealWithRelations, Stage } from '@/types/modules/deals.types';
 import type { PostgrestError } from '@supabase/supabase-js';
 
-export function useDeals(pipelineId?: string) {
+export const useDeals = (pipelineId?: string) => {
   const deals = ref<DealWithRelations[]>([]);
   const stages = ref<Stage[]>([]);
   const loadingStages = ref(false);
   const loadingDeals = ref(false);
   const error = ref<string | null>(null);
+  const draggingDealId = ref<string | null>(null);
 
   const dealsByStage = computed(() => {
     const grouped: Record<string, DealWithRelations[]> = {};
@@ -22,7 +23,7 @@ export function useDeals(pipelineId?: string) {
     return grouped;
   });
 
-  async function getDeals() {
+  const getDeals = async () => {
     loadingDeals.value = true;
     error.value = null;
 
@@ -37,7 +38,7 @@ export function useDeals(pipelineId?: string) {
     }
   }
 
-  async function getStages(pipeId: string) {
+  const getStages = async (pipeId: string) => {
     loadingStages.value = true;
     error.value = null;
 
@@ -52,7 +53,7 @@ export function useDeals(pipelineId?: string) {
     }
   }
 
-  async function createDeal(deal: DealInsert) {
+  const createDeal = async (deal: DealInsert) => {
     loadingDeals.value = true;
     error.value = null;
 
@@ -70,7 +71,7 @@ export function useDeals(pipelineId?: string) {
     }
   }
 
-  async function updateDeal(id: string, updates: DealUpdate) {
+  const updateDeal = async (id: string, updates: DealUpdate) => {
     loadingDeals.value = true;
     error.value = null;
 
@@ -88,7 +89,7 @@ export function useDeals(pipelineId?: string) {
     }
   }
 
-  async function deleteDeal(id: string) {
+  const deleteDeal = async (id: string) => {
     loadingDeals.value = true;
     error.value = null;
 
@@ -105,6 +106,35 @@ export function useDeals(pipelineId?: string) {
     }
   }
 
+  const startDragging = (dealId: string) => {
+    const deal = deals.value.find(d => d.id === dealId);
+    if (deal) {
+      draggingDealId.value = dealId;
+    }
+  }
+  
+  const stopDragging = () => {
+    draggingDealId.value = null;
+  }
+
+  const moveDealToStage = async (dealId: string, pipelineId: string, stageId: string) => {
+    deals.value = deals.value.map(deal => {
+      if (deal.id === dealId) {
+        return { ...deal, pipeline_id: pipelineId, stage_id: stageId };
+      }
+      return deal;
+    });
+
+    try {
+      await dealsService.moveDeal(dealId, pipelineId, stageId);
+    } catch (e) {
+      await getDeals();
+      const appError = mapSupabasePostgrestError(e as PostgrestError);
+      error.value = appError.message;
+      trackError(appError, 'useDeals.moveDealToStage');
+    }
+  }
+
   return {
     deals,
     stages,
@@ -117,5 +147,9 @@ export function useDeals(pipelineId?: string) {
     createDeal,
     updateDeal,
     deleteDeal,
+    draggingDealId,
+    startDragging,
+    stopDragging,
+    moveDealToStage,
   };
 }

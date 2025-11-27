@@ -23,22 +23,22 @@ const formatCurrency = (value: number) => {
   }).format(value);
 };
 
-function toggleMenu(deal: DealWithRelations, event: Event) {
+const toggleMenu = (deal: DealWithRelations, event: Event) => {
   event.stopPropagation();
   showMenu.value = !showMenu.value;
-}
+};
 
-function handleEdit(deal: DealWithRelations, event: Event) {
+const handleEdit = (deal: DealWithRelations, event: Event) => {
   event.stopPropagation();
   showMenu.value = false;
   emit('edit', deal);
-}
+};
 
-function handleDelete(deal: DealWithRelations, event: Event) {
+const handleDelete = (deal: DealWithRelations, event: Event) => {
   event.stopPropagation();
   showMenu.value = false;
   emit('delete', deal);
-}
+};
 </script>
 
 <template>

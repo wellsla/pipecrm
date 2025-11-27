@@ -27,32 +27,32 @@ onMounted(async () => {
   await getContacts();
 });
 
-function handleClick(c: Contact) {
+const handleClick = (c: Contact) => {
   selected.value = c;
   showContactDialog.value = true;
-}
+};
 
-function handleDelete(c: Contact) {
+const handleDelete = (c: Contact) => {
   if (!confirm('Excluir contato?')) return;
   deleteContact(c.id);
-}
+};
 
-function openCreate() {
+const openCreate = () => {
   formModel.value = null;
   showFormDialog.value = true;
-}
+};
 
-function openEdit(c: Contact) {
+const openEdit = (c: Contact) => {
   formModel.value = c;
   showFormDialog.value = true;
-}
+};
 
 import type {
   ContactInsert,
   ContactUpdate,
 } from '@/types/modules/contacts.types';
 
-async function handleFormSubmit(payload: ContactInsert | ContactUpdate) {
+const handleFormSubmit = async (payload: ContactInsert | ContactUpdate) => {
   try {
     if (formModel.value?.id) {
       await updateContact(formModel.value.id, payload as ContactUpdate);
@@ -62,7 +62,7 @@ async function handleFormSubmit(payload: ContactInsert | ContactUpdate) {
     showFormDialog.value = false;
     formModel.value = null;
   } catch {}
-}
+};
 </script>
 
 <template>
