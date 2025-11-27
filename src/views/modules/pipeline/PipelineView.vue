@@ -7,10 +7,11 @@ import PipeMessage from '@/components/ui/message/PipeMessage.vue';
 import PipeActivityTimeline from '@/components/modules/activity/PipeActivityTimeline.vue';
 import PipeDealForm from '@/components/modules/deal/PipeDealForm.vue';
 import PipeButton from '@/components/ui/button/PipeButton.vue';
-import type {
-  DealWithRelations,
-  DealInsert,
-  DealUpdate,
+import {
+  type DealWithRelations,
+  type DealInsert,
+  type DealUpdate,
+  DealStatus,
 } from '@/types/modules/deals.types';
 import PipeDealDraggableCard from '@/components/modules/deal/PipeDealDraggableCard.vue';
 
@@ -112,6 +113,13 @@ const onDrop = async (stage: { id: string; pipeline_id: string }) => {
 
 const allowDrop = (event: DragEvent) => {
   event.preventDefault();
+};
+
+const statusMap: Record<DealStatus, string> = {
+  [DealStatus.OPEN]: 'Aberto',
+  [DealStatus.WON]: 'Ganho',
+  [DealStatus.LOST]: 'Perdido',
+  [DealStatus.ARCHIVED]: 'Arquivado',
 };
 </script>
 
@@ -222,7 +230,7 @@ const allowDrop = (event: DragEvent) => {
           <p>
             <strong>Valor:</strong> {{ formatCurrency(selectedDeal.amount) }}
           </p>
-          <p><strong>Status:</strong> {{ selectedDeal.status }}</p>
+          <p><strong>Status:</strong> {{ statusMap[selectedDeal.status] }}</p>
           <div class="flex gap-2 pt-2">
             <PipeButton
               id="btn-edit-deal-modal"

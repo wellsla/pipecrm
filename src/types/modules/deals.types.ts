@@ -1,6 +1,11 @@
 import type { Pipeline } from './pipelines.types';
 
-export type DealStatus = 'open' | 'won' | 'lost' | 'archived';
+export enum DealStatus {
+  OPEN = 'open',
+  WON = 'won',
+  LOST = 'lost',
+  ARCHIVED = 'archived'
+}
 
 export interface Deal {
   id: string;
